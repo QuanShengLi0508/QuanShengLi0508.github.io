@@ -2125,7 +2125,7 @@ body[data-visual-theme="anime"] .hero::after {
   display: grid;
   grid-template-columns: minmax(0, 1.28fr) minmax(320px, 0.92fr);
   gap: 28px;
-  align-items: stretch;
+  align-items: start;
 }
 
 .hero-panel {
@@ -2314,11 +2314,11 @@ body[data-visual-theme="anime"] .btn-primary {
 
 .hero-side-stack {
   display: grid;
-  gap: 18px;
+  gap: 14px;
+  align-content: start;
 }
 
-.hero-summary-panel,
-.hero-highlights-panel {
+.hero-summary-panel {
   padding: 24px;
 }
 
@@ -2347,6 +2347,7 @@ body[data-visual-theme="anime"] .btn-primary {
 
 .hero-education-list {
   display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px;
 }
 
@@ -2434,22 +2435,32 @@ body[data-visual-theme="anime"] .btn-primary {
   gap: 18px;
 }
 
+.hero-info-grid-inline {
+  margin-top: 24px;
+  grid-template-columns: minmax(220px, 1.08fr) minmax(0, 0.92fr);
+  gap: 14px;
+}
+
 .hero-info-panel {
-  padding: 24px 26px;
-  min-height: 188px;
+  padding: 20px 22px;
+  min-height: 0;
   min-width: 0;
   overflow: hidden;
 }
 
+.hero-info-grid-inline .hero-info-panel {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.025));
+}
+
 .hero-clock-date {
   color: var(--text-secondary);
-  font-size: 0.94rem;
-  margin-bottom: 12px;
+  font-size: 0.88rem;
+  margin-bottom: 10px;
 }
 
 .hero-clock-time {
   font-family: var(--font-display);
-  font-size: clamp(1.52rem, 2.15vw, 2.28rem);
+  font-size: clamp(1.42rem, 1.95vw, 2.05rem);
   line-height: 1;
   letter-spacing: 0.015em;
   font-variant-numeric: tabular-nums;
@@ -2462,21 +2473,21 @@ body[data-visual-theme="anime"] .btn-primary {
 
 .hero-info-foot {
   color: var(--text-tertiary);
-  font-size: 0.88rem;
+  font-size: 0.82rem;
 }
 
 .hero-mini-list {
   list-style: none;
   display: grid;
-  gap: 10px;
-  margin-top: 8px;
+  gap: 8px;
+  margin-top: 4px;
 }
 
 .hero-mini-list li {
   position: relative;
   padding-left: 18px;
   color: var(--text-secondary);
-  line-height: 1.65;
+  line-height: 1.5;
 }
 
 .hero-mini-list li::before {
@@ -2489,45 +2500,6 @@ body[data-visual-theme="anime"] .btn-primary {
   border-radius: 50%;
   background: linear-gradient(135deg, var(--primary-400), var(--accent-500));
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.14);
-}
-
-.hero-highlights-panel {
-  display: grid;
-  gap: 18px;
-}
-
-.hero-metrics-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
-}
-
-.hero-metric-card {
-  display: grid;
-  gap: 6px;
-  padding: 16px 18px;
-  border-radius: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.04);
-  transition: transform var(--transition-base), border-color var(--transition-base), background var(--transition-base);
-}
-
-.hero-metric-card:hover {
-  transform: translateY(-2px);
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.16);
-}
-
-.hero-metric-card strong {
-  font-family: var(--font-display);
-  font-size: 1.32rem;
-  letter-spacing: 0.04em;
-  color: var(--text-primary);
-}
-
-.hero-metric-card span {
-  color: var(--text-secondary);
-  font-size: 0.86rem;
 }
 
 .theme-dock {
@@ -2910,6 +2882,14 @@ body[data-visual-theme="anime"] .back-to-top {
   .hero-actions {
     justify-content: center;
   }
+
+  .hero-info-grid-inline {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-education-list {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 1400px) {
@@ -2936,7 +2916,7 @@ body[data-visual-theme="anime"] .back-to-top {
 
   .hero-panel-main,
   .hero-summary-panel,
-  .hero-highlights-panel {
+  .hero-info-panel {
     padding: 24px;
   }
 
@@ -2986,10 +2966,6 @@ body[data-visual-theme="anime"] .back-to-top {
   .hero-highlight-chip {
     width: 100%;
     justify-content: center;
-  }
-
-  .hero-metrics-grid {
-    grid-template-columns: 1fr;
   }
 
   .about-stats {
