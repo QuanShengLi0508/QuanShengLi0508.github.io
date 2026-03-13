@@ -2193,7 +2193,8 @@ body[data-visual-theme="anime"] .hero-panel {
 .hero-text {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  padding-top: 6px;
   color: var(--text-primary);
 }
 
@@ -2313,12 +2314,12 @@ body[data-visual-theme="anime"] .btn-primary {
 
 .hero-side-stack {
   display: grid;
-  gap: 22px;
+  gap: 18px;
 }
 
 .hero-summary-panel,
 .hero-highlights-panel {
-  padding: 28px;
+  padding: 24px;
 }
 
 .panel-title {
@@ -2342,6 +2343,49 @@ body[data-visual-theme="anime"] .btn-primary {
 .panel-copy-zh {
   margin-bottom: 0;
   color: var(--text-secondary);
+}
+
+.hero-education-list {
+  display: grid;
+  gap: 10px;
+}
+
+.hero-education-item {
+  display: grid;
+  gap: 4px;
+  padding: 12px 14px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.hero-education-date {
+  display: inline-flex;
+  width: fit-content;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--primary-300);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.hero-education-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.hero-education-org {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+.hero-education-desc {
+  color: var(--text-tertiary);
+  font-size: 0.8rem;
+  line-height: 1.55;
 }
 
 .theme-switcher {
