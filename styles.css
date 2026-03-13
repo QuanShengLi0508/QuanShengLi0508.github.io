@@ -252,7 +252,7 @@ img {
   justify-content: center;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+  background: linear-gradient(135deg, #0a0f1e 0%, #131b35 30%, #0f172a 60%, #1a1040 100%);
 }
 
 .hero-bg-animation {
@@ -620,6 +620,123 @@ img {
   background: linear-gradient(90deg, var(--primary-500), var(--accent-500));
   border-radius: 2px;
   margin: 0 auto;
+}
+
+/* ---------- Typewriter Block (About) ---------- */
+.typewriter-block {
+  background: linear-gradient(135deg, rgba(51, 112, 255, 0.04) 0%, rgba(139, 92, 246, 0.04) 100%);
+  border: 1px solid rgba(51, 112, 255, 0.12);
+  border-radius: var(--radius-lg);
+  padding: 28px 32px;
+  margin-bottom: 20px;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.9;
+  color: var(--text-secondary);
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.4s ease, border-color 0.4s ease;
+  backdrop-filter: blur(8px);
+}
+
+.typewriter-block::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 0;
+  background: linear-gradient(180deg, var(--primary-500), var(--accent-500));
+  border-radius: 2px;
+  transition: height 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.typewriter-block.active::before {
+  height: 100%;
+}
+
+.typewriter-block::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(51, 112, 255, 0.06) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.typewriter-block:hover::after {
+  opacity: 1;
+}
+
+.typewriter-block.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.typewriter-block:hover {
+  border-color: rgba(51, 112, 255, 0.25);
+  box-shadow: 0 8px 32px rgba(51, 112, 255, 0.08), 0 0 0 1px rgba(51, 112, 255, 0.05);
+}
+
+.typewriter-prefix {
+  display: none;
+}
+
+.typewriter-text {
+  color: var(--text-primary);
+  letter-spacing: 0.01em;
+}
+
+.typewriter-text .char {
+  opacity: 0;
+  display: inline;
+  animation: charFadeIn 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes charFadeIn {
+  0% {
+    opacity: 0;
+    filter: blur(6px);
+    transform: translateY(8px) scale(0.95);
+  }
+  60% {
+    filter: blur(0);
+    transform: translateY(-1px) scale(1.01);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0) scale(1);
+  }
+}
+
+.typewriter-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.1em;
+  background: linear-gradient(180deg, var(--primary-500), var(--accent-500));
+  border-radius: 1px;
+  vertical-align: text-bottom;
+  margin-left: 2px;
+  animation: cursorPulse 1s ease-in-out infinite;
+}
+
+@keyframes cursorPulse {
+  0%, 100% { opacity: 1; transform: scaleY(1); }
+  50% { opacity: 0.3; transform: scaleY(0.8); }
+}
+
+.typewriter-block.done .typewriter-cursor {
+  animation: cursorFadeOut 0.5s ease forwards;
+}
+
+@keyframes cursorFadeOut {
+  to { opacity: 0; width: 0; margin: 0; }
 }
 
 /* ---------- About Section ---------- */

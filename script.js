@@ -6,10 +6,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // ---------- Typed Text Effect ----------
   const typedText = document.getElementById('typedText');
   const phrases = [
-    '深度学习与人工智能',
-    '计算机视觉',
-    '自然语言处理',
-    '数据挖掘与分析'
+    '红外探测器',
+    '读出电路',
+    '模拟IC',
+    'AI for Science'
   ];
   let phraseIndex = 0;
   let charIndex = 0;
@@ -227,6 +227,61 @@ document.addEventListener('DOMContentLoaded', () => {
       ticking = true;
     }
   }, { passive: true });
+
+  // ---------- Typewriter Float Effect (About) ----------
+  const typewriterBlocks = document.querySelectorAll('.typewriter-block');
+
+  function startTypewriter(block) {
+    const textEl = block.querySelector('.typewriter-text');
+    const fullText = textEl.getAttribute('data-text');
+    if (!fullText) return;
+
+    block.classList.add('active');
+    textEl.innerHTML = '';
+    let i = 0;
+
+    function typeChar() {
+      if (i < fullText.length) {
+        const span = document.createElement('span');
+        span.className = 'char';
+        span.textContent = fullText[i];
+        span.style.animationDelay = '0s';
+        textEl.appendChild(span);
+        i++;
+        const speed = fullText[i - 1] === '.' || fullText[i - 1] === ',' ? 60 : 18;
+        setTimeout(typeChar, speed);
+      } else {
+        block.classList.add('done');
+        // Start next block
+        const nextBlock = block.nextElementSibling;
+        if (nextBlock && nextBlock.classList.contains('typewriter-block')) {
+          setTimeout(() => startTypewriter(nextBlock), 400);
+        }
+      }
+    }
+
+    typeChar();
+  }
+
+  if (typewriterBlocks.length > 0) {
+    const twObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const block = entry.target;
+            // Only start the first block; rest chain automatically
+            if (block.getAttribute('data-delay') === '0') {
+              setTimeout(() => startTypewriter(block), 300);
+            }
+            twObserver.unobserve(block);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+    // Only observe the first block
+    twObserver.observe(typewriterBlocks[0]);
+  }
 
   // ---------- Initial call ----------
   handleScroll();
