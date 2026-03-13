@@ -607,38 +607,26 @@ img {
   overflow: hidden;
 }
 
-/* Subtle dot pattern background for all sections */
+/* Dot pattern + gradient mesh background */
 .section::before {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(circle, rgba(51, 112, 255, 0.04) 1px, transparent 1px);
-  background-size: 32px 32px;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(51, 112, 255, 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.05) 0%, transparent 50%),
+    radial-gradient(circle, rgba(51, 112, 255, 0.06) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 28px 28px;
   pointer-events: none;
   z-index: 0;
 }
 
-/* Floating gradient orb decoration */
-.section::after {
-  content: '';
-  position: absolute;
-  width: 400px;
-  height: 400px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(51, 112, 255, 0.04) 0%, transparent 70%);
-  pointer-events: none;
-  z-index: 0;
-  top: -100px;
-  right: -150px;
-}
-
-/* Alternate orb position for even sections */
-.section-alt::after {
-  right: auto;
-  left: -150px;
-  top: auto;
-  bottom: -100px;
-  background: radial-gradient(circle, rgba(139, 92, 246, 0.04) 0%, transparent 70%);
+.section-alt::before {
+  background-image:
+    radial-gradient(circle at 75% 20%, rgba(139, 92, 246, 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 25% 80%, rgba(51, 112, 255, 0.05) 0%, transparent 50%),
+    radial-gradient(circle, rgba(139, 92, 246, 0.05) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 28px 28px;
 }
 
 /* Ensure content sits above decorations */
@@ -649,6 +637,126 @@ img {
 
 .section-alt {
   background: var(--bg-secondary);
+}
+
+/* ---------- Section Wave Dividers ---------- */
+.section-wave {
+  position: relative;
+}
+
+.wave-divider {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 80px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.wave-divider.top {
+  top: -1px;
+}
+
+.wave-divider.bottom {
+  bottom: -1px;
+}
+
+.wave-divider svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* ---------- Floating Decorations ---------- */
+.section-deco {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.07;
+}
+
+.section-deco.deco-circle {
+  border-radius: 50%;
+  border: 2px solid var(--primary-400);
+}
+
+.section-deco.deco-ring {
+  border-radius: 50%;
+  border: 2px dashed var(--accent-400);
+  animation: spin 40s linear infinite;
+}
+
+.section-deco.deco-cross {
+  width: 24px;
+  height: 24px;
+}
+
+.section-deco.deco-cross::before,
+.section-deco.deco-cross::after {
+  content: '';
+  position: absolute;
+  background: var(--primary-500);
+  border-radius: 2px;
+}
+
+.section-deco.deco-cross::before {
+  width: 100%;
+  height: 3px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.section-deco.deco-cross::after {
+  height: 100%;
+  width: 3px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.section-deco.deco-dots {
+  display: grid;
+  grid-template-columns: repeat(5, 8px);
+  gap: 10px;
+}
+
+.section-deco.deco-dots span {
+  width: 8px;
+  height: 8px;
+  background: var(--primary-400);
+  border-radius: 50%;
+}
+
+.section-deco.deco-triangle {
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-bottom: 34px solid var(--accent-400);
+  opacity: 0.06;
+}
+
+.section-deco.deco-square {
+  border: 2px solid var(--primary-400);
+  border-radius: 4px;
+  transform: rotate(45deg);
+}
+
+@keyframes floatDeco {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+@keyframes floatDecoAlt {
+  0%, 100% { transform: translateY(0) rotate(45deg); }
+  50% { transform: translateY(-12px) rotate(45deg); }
+}
+
+.section-deco.float {
+  animation: floatDeco 6s ease-in-out infinite;
+}
+
+.section-deco.float-alt {
+  animation: floatDecoAlt 8s ease-in-out infinite;
 }
 
 .section-header {
