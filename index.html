@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="个人学术主页 - 展示研究成果、论文发表与学术经历">
+  <meta name="keywords" content="学术主页, 个人主页, 研究, 论文, academic homepage">
+  <title>Your Name | Academic Homepage</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#" class="nav-logo">
+        <span class="logo-icon">🎓</span>
+        <span class="logo-text">Your Name</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#research" class="nav-link">Research</a></li>
+        <li><a href="#publications" class="nav-link">Publications</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#education" class="nav-link">Education</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span class="hamburger"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="hero-bg-animation">
+      <div class="floating-shape shape-1"></div>
+      <div class="floating-shape shape-2"></div>
+      <div class="floating-shape shape-3"></div>
+      <div class="floating-shape shape-4"></div>
+      <div class="floating-shape shape-5"></div>
+    </div>
+    <div class="hero-container">
+      <div class="hero-content">
+        <div class="hero-avatar-wrapper">
+          <div class="hero-avatar">
+            <div class="avatar-placeholder">
+              <i class="fas fa-user-graduate"></i>
+            </div>
+            <!-- Replace with your photo: <img src="avatar.jpg" alt="Your Name"> -->
+          </div>
+          <div class="avatar-ring"></div>
+        </div>
+        <div class="hero-text">
+          <div class="hero-greeting animate-fade-up">Hello, I'm</div>
+          <h1 class="hero-name animate-fade-up delay-1">Your Name</h1>
+          <p class="hero-title animate-fade-up delay-2">
+            <span class="title-highlight">Ph.D. Candidate</span> / Researcher
+          </p>
+          <p class="hero-affiliation animate-fade-up delay-3">
+            <i class="fas fa-university"></i> School of XX, XX University
+          </p>
+          <p class="hero-description animate-fade-up delay-4">
+            致力于 <span class="typed-text" id="typedText"></span><span class="cursor">|</span>
+          </p>
+          <div class="hero-social animate-fade-up delay-5">
+            <a href="#" class="social-btn" title="Google Scholar">
+              <i class="fas fa-graduation-cap"></i>
+            </a>
+            <a href="#" class="social-btn" title="GitHub">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="#" class="social-btn" title="ORCID">
+              <i class="fab fa-orcid"></i>
+            </a>
+            <a href="mailto:your-email@example.com" class="social-btn" title="Email">
+              <i class="fas fa-envelope"></i>
+            </a>
+            <a href="#" class="social-btn" title="ResearchGate">
+              <i class="fab fa-researchgate"></i>
+            </a>
+          </div>
+          <div class="hero-actions animate-fade-up delay-5">
+            <a href="#publications" class="btn btn-primary">
+              <i class="fas fa-file-alt"></i> View Publications
+            </a>
+            <a href="#contact" class="btn btn-outline">
+              <i class="fas fa-paper-plane"></i> Contact Me
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-indicator">
+        <div class="scroll-arrow"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">BIOGRAPHY</span>
+        <h2 class="section-title">About Me</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="about-grid">
+        <div class="about-content">
+          <p class="about-text">
+            我是 XX 大学 XX 学院的博士研究生（或教授/副教授/讲师等），导师为 XX 教授。我的研究兴趣包括 XX、XX 和 XX。
+          </p>
+          <p class="about-text">
+            我于 20XX 年在 XX 大学获得学士学位，20XX 年在 XX 大学获得硕士学位。在攻读博士学位期间，我参与了多个国家级/省部级科研项目，并在国际顶级期刊和会议上发表了多篇学术论文。
+          </p>
+          <p class="about-text">
+            我对 XX 领域的前沿问题充满热情，致力于通过创新的方法和技术解决实际问题。欢迎与我交流合作！
+          </p>
+        </div>
+        <div class="about-stats">
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-file-alt"></i></div>
+            <div class="stat-number" data-target="10">0</div>
+            <div class="stat-label">Publications</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-quote-right"></i></div>
+            <div class="stat-number" data-target="150">0</div>
+            <div class="stat-label">Citations</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-project-diagram"></i></div>
+            <div class="stat-number" data-target="5">0</div>
+            <div class="stat-label">Projects</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-award"></i></div>
+            <div class="stat-number" data-target="3">0</div>
+            <div class="stat-label">Awards</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Research Interests Section -->
+  <section class="section section-alt" id="research">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">FOCUS AREAS</span>
+        <h2 class="section-title">Research Interests</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="research-grid">
+        <div class="research-card">
+          <div class="research-icon">
+            <i class="fas fa-brain"></i>
+          </div>
+          <h3 class="research-title">研究方向 1</h3>
+          <p class="research-desc">在此描述你的第一个研究方向，例如：深度学习与计算机视觉方面的研究，专注于图像识别和目标检测。</p>
+          <div class="research-tags">
+            <span class="tag">关键词1</span>
+            <span class="tag">关键词2</span>
+            <span class="tag">关键词3</span>
+          </div>
+        </div>
+        <div class="research-card">
+          <div class="research-icon">
+            <i class="fas fa-robot"></i>
+          </div>
+          <h3 class="research-title">研究方向 2</h3>
+          <p class="research-desc">在此描述你的第二个研究方向，例如：自然语言处理与文本挖掘，关注信息抽取和知识图谱构建。</p>
+          <div class="research-tags">
+            <span class="tag">关键词1</span>
+            <span class="tag">关键词2</span>
+            <span class="tag">关键词3</span>
+          </div>
+        </div>
+        <div class="research-card">
+          <div class="research-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3 class="research-title">研究方向 3</h3>
+          <p class="research-desc">在此描述你的第三个研究方向，例如：数据挖掘与大数据分析，探索复杂数据集中的模式与规律。</p>
+          <div class="research-tags">
+            <span class="tag">关键词1</span>
+            <span class="tag">关键词2</span>
+            <span class="tag">关键词3</span>
+          </div>
+        </div>
+        <div class="research-card">
+          <div class="research-icon">
+            <i class="fas fa-network-wired"></i>
+          </div>
+          <h3 class="research-title">研究方向 4</h3>
+          <p class="research-desc">在此描述你的第四个研究方向，例如：物联网与边缘计算，研究分布式系统的优化与应用。</p>
+          <div class="research-tags">
+            <span class="tag">关键词1</span>
+            <span class="tag">关键词2</span>
+            <span class="tag">关键词3</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Publications Section -->
+  <section class="section" id="publications">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">ACADEMIC OUTPUT</span>
+        <h2 class="section-title">Selected Publications</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <!-- Publication Filters -->
+      <div class="pub-filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="journal">Journal</button>
+        <button class="filter-btn" data-filter="conference">Conference</button>
+        <button class="filter-btn" data-filter="preprint">Preprint</button>
+      </div>
+
+      <div class="publications-list">
+        <!-- Publication 1 -->
+        <div class="pub-card" data-type="journal">
+          <div class="pub-year">2025</div>
+          <div class="pub-content">
+            <div class="pub-venue-badge journal">Journal</div>
+            <h3 class="pub-title">Paper Title: A Novel Approach to Something Very Important in Your Field</h3>
+            <p class="pub-authors"><strong>Your Name</strong>, Co-author A, Co-author B, Co-author C</p>
+            <p class="pub-venue"><i class="fas fa-book"></i> Journal of XX, Vol. XX, No. XX, pp. XXX-XXX, 2025</p>
+            <div class="pub-links">
+              <a href="#" class="pub-link"><i class="fas fa-file-pdf"></i> PDF</a>
+              <a href="#" class="pub-link"><i class="fas fa-link"></i> DOI</a>
+              <a href="#" class="pub-link"><i class="fab fa-github"></i> Code</a>
+              <a href="#" class="pub-link"><i class="fas fa-database"></i> Dataset</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Publication 2 -->
+        <div class="pub-card" data-type="conference">
+          <div class="pub-year">2024</div>
+          <div class="pub-content">
+            <div class="pub-venue-badge conference">Conference</div>
+            <h3 class="pub-title">Another Paper Title: Advancing the State of the Art in Your Research Area</h3>
+            <p class="pub-authors"><strong>Your Name</strong>, Co-author D, Co-author E</p>
+            <p class="pub-venue"><i class="fas fa-users"></i> Proceedings of the XX International Conference on XX (XX'24), 2024</p>
+            <div class="pub-links">
+              <a href="#" class="pub-link"><i class="fas fa-file-pdf"></i> PDF</a>
+              <a href="#" class="pub-link"><i class="fas fa-link"></i> DOI</a>
+              <a href="#" class="pub-link"><i class="fas fa-video"></i> Video</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Publication 3 -->
+        <div class="pub-card" data-type="journal">
+          <div class="pub-year">2024</div>
+          <div class="pub-content">
+            <div class="pub-venue-badge journal">Journal</div>
+            <h3 class="pub-title">Yet Another Important Paper: Exploring New Frontiers in Research</h3>
+            <p class="pub-authors">Co-author F, <strong>Your Name</strong>, Co-author G</p>
+            <p class="pub-venue"><i class="fas fa-book"></i> IEEE Transactions on XX, Vol. XX, pp. XXX-XXX, 2024</p>
+            <div class="pub-links">
+              <a href="#" class="pub-link"><i class="fas fa-file-pdf"></i> PDF</a>
+              <a href="#" class="pub-link"><i class="fas fa-link"></i> DOI</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Publication 4 -->
+        <div class="pub-card" data-type="preprint">
+          <div class="pub-year">2025</div>
+          <div class="pub-content">
+            <div class="pub-venue-badge preprint">Preprint</div>
+            <h3 class="pub-title">A Cutting-Edge Preprint: New Insights and Methodologies</h3>
+            <p class="pub-authors"><strong>Your Name</strong>, Co-author H</p>
+            <p class="pub-venue"><i class="fas fa-archive"></i> arXiv:2025.XXXXX, 2025</p>
+            <div class="pub-links">
+              <a href="#" class="pub-link"><i class="fas fa-file-pdf"></i> PDF</a>
+              <a href="#" class="pub-link"><i class="fas fa-link"></i> arXiv</a>
+              <a href="#" class="pub-link"><i class="fab fa-github"></i> Code</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section class="section section-alt" id="projects">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">PORTFOLIO</span>
+        <h2 class="section-title">Research Projects</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-image">
+            <div class="project-image-placeholder">
+              <i class="fas fa-microscope"></i>
+            </div>
+          </div>
+          <div class="project-info">
+            <div class="project-status active">进行中</div>
+            <h3 class="project-name">项目名称 1</h3>
+            <p class="project-desc">在此描述你的项目，包括项目背景、目标、方法和主要成果。例如：基于深度学习的XX系统，实现了XX功能。</p>
+            <div class="project-meta">
+              <span><i class="fas fa-calendar"></i> 2023 - 至今</span>
+              <span><i class="fas fa-users"></i> 国家自然科学基金</span>
+            </div>
+            <div class="project-tech">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">PyTorch</span>
+              <span class="tech-tag">CUDA</span>
+            </div>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-image">
+            <div class="project-image-placeholder">
+              <i class="fas fa-cogs"></i>
+            </div>
+          </div>
+          <div class="project-info">
+            <div class="project-status completed">已完成</div>
+            <h3 class="project-name">项目名称 2</h3>
+            <p class="project-desc">在此描述你的另一个项目。例如：开发了一套高效的数据分析平台，处理了大规模XX数据集。</p>
+            <div class="project-meta">
+              <span><i class="fas fa-calendar"></i> 2021 - 2023</span>
+              <span><i class="fas fa-users"></i> 省部级项目</span>
+            </div>
+            <div class="project-tech">
+              <span class="tech-tag">TensorFlow</span>
+              <span class="tech-tag">Docker</span>
+              <span class="tech-tag">AWS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education & Experience Timeline -->
+  <section class="section" id="education">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">BACKGROUND</span>
+        <h2 class="section-title">Education & Experience</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <div class="timeline-badge">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <span class="timeline-date">20XX - 至今</span>
+            <h3 class="timeline-title">博士研究生</h3>
+            <p class="timeline-subtitle">XX大学 · XX学院 · XX专业</p>
+            <p class="timeline-desc">导师：XX 教授<br>研究方向：XX、XX</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <div class="timeline-badge">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <span class="timeline-date">20XX - 20XX</span>
+            <h3 class="timeline-title">硕士研究生</h3>
+            <p class="timeline-subtitle">XX大学 · XX学院 · XX专业</p>
+            <p class="timeline-desc">导师：XX 教授<br>硕士论文：《XX研究》</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <div class="timeline-badge">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <span class="timeline-date">20XX - 20XX</span>
+            <h3 class="timeline-title">本科</h3>
+            <p class="timeline-subtitle">XX大学 · XX学院 · XX专业</p>
+            <p class="timeline-desc">GPA：X.XX/4.0<br>获得XX奖学金</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <div class="timeline-badge">
+              <i class="fas fa-briefcase"></i>
+            </div>
+            <span class="timeline-date">20XX 夏</span>
+            <h3 class="timeline-title">研究实习</h3>
+            <p class="timeline-subtitle">XX公司/研究所</p>
+            <p class="timeline-desc">参与XX项目的研发工作，负责XX模块的设计与实现。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Awards Section -->
+  <section class="section section-alt" id="awards">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">RECOGNITION</span>
+        <h2 class="section-title">Awards & Honors</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="awards-grid">
+        <div class="award-card">
+          <div class="award-icon"><i class="fas fa-trophy"></i></div>
+          <div class="award-info">
+            <h3 class="award-name">XX奖学金</h3>
+            <p class="award-org">XX大学</p>
+            <span class="award-year">202X</span>
+          </div>
+        </div>
+        <div class="award-card">
+          <div class="award-icon"><i class="fas fa-medal"></i></div>
+          <div class="award-info">
+            <h3 class="award-name">最佳论文奖</h3>
+            <p class="award-org">XX国际会议</p>
+            <span class="award-year">202X</span>
+          </div>
+        </div>
+        <div class="award-card">
+          <div class="award-icon"><i class="fas fa-star"></i></div>
+          <div class="award-info">
+            <h3 class="award-name">优秀研究生</h3>
+            <p class="award-org">XX大学</p>
+            <span class="award-year">202X</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">GET IN TOUCH</span>
+        <h2 class="section-title">Contact Me</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info-cards">
+          <div class="contact-card">
+            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+            <h3>Email</h3>
+            <p><a href="mailto:your-email@example.com">your-email@example.com</a></p>
+          </div>
+          <div class="contact-card">
+            <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <h3>Address</h3>
+            <p>XX省XX市XX区XX路XX号<br>XX大学XX学院 XX楼 XXX室</p>
+          </div>
+          <div class="contact-card">
+            <div class="contact-icon"><i class="fas fa-phone"></i></div>
+            <h3>Phone</h3>
+            <p>+86 1XX-XXXX-XXXX</p>
+          </div>
+        </div>
+        <div class="contact-map">
+          <div class="map-placeholder">
+            <i class="fas fa-map-marked-alt"></i>
+            <p>在此嵌入地图或校园照片</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <span class="logo-icon">🎓</span>
+          <span>Your Name</span>
+        </div>
+        <div class="footer-social">
+          <a href="#" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+          <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+          <a href="#" title="ORCID"><i class="fab fa-orcid"></i></a>
+          <a href="mailto:your-email@example.com" title="Email"><i class="fas fa-envelope"></i></a>
+        </div>
+        <p class="footer-copy">
+          &copy; 2025 Your Name. Built with <i class="fas fa-heart" style="color: #ef4444;"></i> using GitHub Pages.
+        </p>
+        <p class="footer-update">Last updated: March 2026</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <script src="script.js"></script>
+</body>
+</html>
