@@ -91,23 +91,21 @@
                 <i class="fas fa-paper-plane"></i> Contact Me
               </a>
             </div>
-            <p class="hero-note animate-fade-up delay-5" id="themeStatus">
-              当前主题：赛博霓虹 · 使用内置场景
+            <p class="hero-note animate-fade-up delay-5">
+              Open to research collaboration in infrared detection, ROIC, analog front-end design, and AI-assisted scientific workflows.
             </p>
           </div>
         </div>
         <div class="hero-side-stack">
-          <div class="hero-panel hero-control-panel animate-fade-up delay-2">
-            <span class="panel-kicker">Theme Console</span>
-            <h2 class="panel-title">半透明毛玻璃主页</h2>
-            <p class="panel-copy">内置赛博霓虹和二次元暮色两套背景，也支持上传你自己的封面图，后面替换风格不需要改页面结构。</p>
-            <div class="theme-switcher" id="themeSwitcher">
-              <button class="theme-chip is-active" type="button" data-theme="cyber">赛博霓虹</button>
-              <button class="theme-chip" type="button" data-theme="anime">二次元暮色</button>
-              <label class="theme-chip upload-chip" for="backgroundUpload">上传背景</label>
-              <button class="theme-chip subtle" type="button" id="resetBackground">清除背景</button>
-            </div>
-            <input type="file" id="backgroundUpload" accept="image/*" hidden>
+          <div class="hero-panel hero-summary-panel animate-fade-up delay-2">
+            <span class="panel-kicker">Research Summary</span>
+            <h2 class="panel-title">Infrared detectors, ROIC design, analog ICs, and AI for Science.</h2>
+            <p class="panel-copy panel-copy-en">
+              A master’s student jointly trained at Shanghai Institute of Technical Physics, Chinese Academy of Sciences. My research focuses on infrared detectors, ROIC design, analog ICs, and AI for Science, covering detector mechanism analysis, cryogenic readout circuits, and experimental characterization.
+            </p>
+            <p class="panel-copy panel-copy-zh">
+              我是一名在中国科学院上海技术物理研究所接受联合培养的硕士研究生。我的研究方向是红外探测器、读出电路设计、模拟集成电路和科学人工智能，涵盖探测器机理分析、低温读出电路和实验表征。
+            </p>
           </div>
           <div class="hero-info-grid">
             <div class="hero-panel hero-info-panel animate-fade-up delay-3">
@@ -125,11 +123,26 @@
               </ul>
             </div>
           </div>
-          <div class="hero-panel hero-quick-links animate-fade-up delay-5">
-            <a href="#about" class="hero-quick-link"><i class="fas fa-user"></i><span>About</span></a>
-            <a href="#research" class="hero-quick-link"><i class="fas fa-microchip"></i><span>Research</span></a>
-            <a href="#projects" class="hero-quick-link"><i class="fas fa-flask"></i><span>Projects</span></a>
-            <a href="#contact" class="hero-quick-link"><i class="fas fa-paper-plane"></i><span>Contact</span></a>
+          <div class="hero-panel hero-highlights-panel animate-fade-up delay-5">
+            <span class="panel-kicker">Selected Highlights</span>
+            <div class="hero-metrics-grid">
+              <div class="hero-metric-card">
+                <strong>1 / 47</strong>
+                <span>Rank in Major</span>
+              </div>
+              <div class="hero-metric-card">
+                <strong>4.16</strong>
+                <span>GPA</span>
+              </div>
+              <div class="hero-metric-card">
+                <strong>20+</strong>
+                <span>Awards</span>
+              </div>
+              <div class="hero-metric-card">
+                <strong>4</strong>
+                <span>Projects</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -691,6 +704,30 @@
   <button class="back-to-top" id="backToTop" aria-label="Back to top">
     <i class="fas fa-chevron-up"></i>
   </button>
+
+  <div class="theme-dock" id="themeDock">
+    <div class="theme-dock-panel" id="themeDockPanel" aria-hidden="true">
+      <div class="theme-dock-head">
+        <span class="panel-kicker">Theme</span>
+        <button class="theme-dock-close" id="themeDockClose" type="button" aria-label="Close theme panel">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <p class="theme-dock-status" id="themeStatus">当前主题：赛博霓虹 · 使用内置场景</p>
+      <p class="theme-dock-note">切换背景风格，或上传你自己的封面图。</p>
+      <div class="theme-switcher">
+        <button class="theme-chip is-active" type="button" data-theme="cyber">赛博霓虹</button>
+        <button class="theme-chip" type="button" data-theme="anime">二次元暮色</button>
+        <label class="theme-chip upload-chip" for="backgroundUpload">上传背景</label>
+        <button class="theme-chip subtle" type="button" id="resetBackground">清除背景</button>
+      </div>
+      <input type="file" id="backgroundUpload" accept="image/*" hidden>
+    </div>
+    <button class="theme-dock-toggle" id="themeDockToggle" type="button" aria-expanded="false" aria-controls="themeDockPanel">
+      <i class="fas fa-palette"></i>
+      <span>Theme</span>
+    </button>
+  </div>
 
   <script src="script.js"></script>
 </body>

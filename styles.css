@@ -2316,8 +2316,8 @@ body[data-visual-theme="anime"] .btn-primary {
   gap: 22px;
 }
 
-.hero-control-panel,
-.hero-quick-links {
+.hero-summary-panel,
+.hero-highlights-panel {
   padding: 28px;
 }
 
@@ -2333,6 +2333,15 @@ body[data-visual-theme="anime"] .btn-primary {
   font-size: 0.95rem;
   line-height: 1.8;
   margin-bottom: 20px;
+}
+
+.panel-copy-en {
+  color: var(--text-primary);
+}
+
+.panel-copy-zh {
+  margin-bottom: 0;
+  color: var(--text-secondary);
 }
 
 .theme-switcher {
@@ -2438,29 +2447,146 @@ body[data-visual-theme="anime"] .btn-primary {
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.14);
 }
 
-.hero-quick-links {
+.hero-highlights-panel {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+  gap: 18px;
 }
 
-.hero-quick-link {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 14px 16px;
+.hero-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.hero-metric-card {
+  display: grid;
+  gap: 6px;
+  padding: 16px 18px;
   border-radius: 18px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   background: rgba(255, 255, 255, 0.04);
-  color: var(--text-primary);
-  transition: transform var(--transition-base), background var(--transition-base), border-color var(--transition-base);
+  transition: transform var(--transition-base), border-color var(--transition-base), background var(--transition-base);
 }
 
-.hero-quick-link:hover {
+.hero-metric-card:hover {
   transform: translateY(-2px);
   background: rgba(255, 255, 255, 0.12);
   border-color: rgba(255, 255, 255, 0.16);
+}
+
+.hero-metric-card strong {
+  font-family: var(--font-display);
+  font-size: 1.32rem;
+  letter-spacing: 0.04em;
   color: var(--text-primary);
+}
+
+.hero-metric-card span {
+  color: var(--text-secondary);
+  font-size: 0.86rem;
+}
+
+.theme-dock {
+  position: fixed;
+  right: 30px;
+  bottom: 92px;
+  z-index: 998;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.theme-dock-toggle,
+.theme-dock-close {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: linear-gradient(180deg, rgba(8, 16, 30, 0.58), rgba(6, 12, 24, 0.18));
+  color: var(--text-primary);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 18px 40px rgba(2, 8, 23, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.theme-dock-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: transform var(--transition-base), border-color var(--transition-base), background var(--transition-base);
+}
+
+.theme-dock-toggle:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+.theme-dock-panel {
+  width: min(340px, calc(100vw - 32px));
+  padding: 18px;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: linear-gradient(180deg, rgba(8, 16, 30, 0.62), rgba(6, 12, 24, 0.22));
+  box-shadow: 0 24px 60px rgba(2, 8, 23, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(12px) scale(0.98);
+  transition: opacity var(--transition-base), transform var(--transition-base), visibility var(--transition-base);
+}
+
+body[data-visual-theme="anime"] .theme-dock-panel,
+body[data-visual-theme="anime"] .theme-dock-toggle,
+body[data-visual-theme="anime"] .theme-dock-close {
+  background: linear-gradient(180deg, rgba(26, 34, 62, 0.58), rgba(16, 21, 38, 0.18));
+}
+
+.theme-dock.is-open .theme-dock-panel {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+.theme-dock-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.theme-dock-head .panel-kicker {
+  margin-bottom: 0;
+}
+
+.theme-dock-close {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.theme-dock-status {
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  margin-bottom: 8px;
+}
+
+.theme-dock-note {
+  color: var(--text-tertiary);
+  font-size: 0.84rem;
+  line-height: 1.7;
+  margin-bottom: 16px;
 }
 
 .scroll-indicator {
@@ -2765,17 +2891,13 @@ body[data-visual-theme="anime"] .back-to-top {
   }
 
   .hero-panel-main,
-  .hero-control-panel,
-  .hero-quick-links {
+  .hero-summary-panel,
+  .hero-highlights-panel {
     padding: 24px;
   }
 
   .hero-info-grid {
     grid-template-columns: 1fr;
-  }
-
-  .hero-quick-links {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .section > .container {
@@ -2785,6 +2907,11 @@ body[data-visual-theme="anime"] .back-to-top {
   .project-meta {
     flex-direction: column;
     gap: 8px;
+  }
+
+  .theme-dock {
+    right: 18px;
+    bottom: 78px;
   }
 }
 
@@ -2817,7 +2944,7 @@ body[data-visual-theme="anime"] .back-to-top {
     justify-content: center;
   }
 
-  .hero-quick-links {
+  .hero-metrics-grid {
     grid-template-columns: 1fr;
   }
 
@@ -2843,5 +2970,13 @@ body[data-visual-theme="anime"] .back-to-top {
   .back-to-top {
     right: 18px;
     bottom: 18px;
+  }
+
+  .theme-dock-toggle {
+    padding: 12px 14px;
+  }
+
+  .theme-dock-toggle span {
+    display: none;
   }
 }
