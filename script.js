@@ -294,27 +294,21 @@ document.addEventListener('DOMContentLoaded', () => {
     let animId;
 
     function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
     }
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    document.addEventListener('mousemove', (e) => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
+    canvas.parentElement.addEventListener('mousemove', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
     });
-    document.addEventListener('mouseleave', () => {
+    canvas.parentElement.addEventListener('mouseleave', () => {
       mouse.x = -1000;
       mouse.y = -1000;
     });
-
-    // Determine if we're in the hero (dark) area
-    function isInHero() {
-      const heroEl = document.getElementById('hero');
-      if (!heroEl) return false;
-      return window.scrollY < heroEl.offsetHeight;
-    }
 
     class Particle {
       constructor() {
@@ -329,6 +323,7 @@ document.addEventListener('DOMContentLoaded', () => {
         this.opacity = Math.random() * 0.5 + 0.2;
       }
       update() {
+        // Mouse repulsion
         const dx = this.x - mouse.x;
         const dy = this.y - mouse.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
@@ -337,19 +332,21 @@ document.addEventListener('DOMContentLoaded', () => {
           this.vx += dx * force;
           this.vy += dy * force;
         }
+        // Damping
         this.vx *= 0.99;
         this.vy *= 0.99;
         this.x += this.vx;
         this.y += this.vy;
+        // Wrap
         if (this.x < 0) this.x = canvas.width;
         if (this.x > canvas.width) this.x = 0;
         if (this.y < 0) this.y = canvas.height;
         if (this.y > canvas.height) this.y = 0;
       }
-      draw(color) {
+      draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = color.replace('OPACITY', this.opacity);
+        ctx.fillStyle = `rgba(142, 187, 255, ${this.opacity})`;
         ctx.fill();
       }
     }
@@ -358,7 +355,7 @@ document.addEventListener('DOMContentLoaded', () => {
       particles.push(new Particle());
     }
 
-    function drawConnections(lineColor) {
+    function drawConnections() {
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
@@ -369,7 +366,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = lineColor.replace('OPACITY', opacity);
+            ctx.strokeStyle = `rgba(142, 187, 255, ${opacity})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }
@@ -379,21 +376,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function animateParticles() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      // Dark area: light blue particles; Light area: blue/indigo particles
-      const dark = isInHero();
-      const dotColor = dark
-        ? 'rgba(142, 187, 255, OPACITY)'
-        : 'rgba(51, 112, 255, OPACITY)';
-      const lineColor = dark
-        ? 'rgba(142, 187, 255, OPACITY)'
-        : 'rgba(51, 112, 255, OPACITY)';
-
-      particles.forEach(p => { p.update(); p.draw(dotColor); });
-      drawConnections(lineColor);
+      particles.forEach(p => { p.update(); p.draw(); });
+      drawConnections();
       animId = requestAnimationFrame(animateParticles);
     }
 
-    animateParticles();
+    // Only animate when hero is visible
+    const heroEl = document.getElementById('hero');
+    const heroObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateParticles();
+        } else {
+          cancelAnimationFrame(animId);
+        }
+      });
+    }, { threshold: 0 });
+    heroObserver.observe(heroEl);
   }
 
   // ---------- Initial call ----------
