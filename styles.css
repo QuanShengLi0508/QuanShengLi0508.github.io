@@ -1911,10 +1911,10 @@ img {
   --font-sans: 'Space Grotesk', 'Noto Sans SC', sans-serif;
   --font-display: 'Orbitron', 'Noto Sans SC', sans-serif;
   --hero-custom-image: none;
-  --glass-blur: 24px;
-  --glass-border: rgba(255, 255, 255, 0.14);
-  --glass-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
-  --glass-inner-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  --glass-blur: 30px;
+  --glass-border: rgba(255, 255, 255, 0.18);
+  --glass-shadow: 0 24px 80px rgba(0, 0, 0, 0.2);
+  --glass-inner-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14);
 }
 
 body {
@@ -2016,14 +2016,14 @@ a:hover {
 }
 
 .navbar {
-  background: rgba(6, 12, 24, 0.4);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(6, 12, 24, 0.24);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 16px 40px rgba(2, 8, 23, 0.12);
 }
 
 .navbar.scrolled {
-  background: rgba(5, 10, 20, 0.72);
-  border-bottom-color: rgba(255, 255, 255, 0.08);
+  background: rgba(5, 10, 20, 0.48);
+  border-bottom-color: rgba(255, 255, 255, 0.12);
   box-shadow: 0 18px 44px rgba(2, 8, 23, 0.18);
 }
 
@@ -2062,7 +2062,7 @@ a:hover {
 
 body[data-visual-theme="cyber"] .hero::before {
   background-image:
-    linear-gradient(180deg, rgba(2, 7, 16, 0.12), rgba(2, 7, 16, 0.64)),
+    linear-gradient(180deg, rgba(2, 7, 16, 0.08), rgba(2, 7, 16, 0.46)),
     radial-gradient(circle at 16% 20%, rgba(103, 232, 249, 0.24) 0%, transparent 24%),
     radial-gradient(circle at 82% 18%, rgba(251, 113, 133, 0.18) 0%, transparent 22%),
     radial-gradient(circle at 52% 72%, rgba(8, 145, 178, 0.18) 0%, transparent 26%),
@@ -2076,7 +2076,7 @@ body[data-visual-theme="cyber"] .hero::before {
 
 body[data-visual-theme="anime"] .hero::before {
   background-image:
-    linear-gradient(180deg, rgba(10, 12, 22, 0.1), rgba(10, 12, 22, 0.58)),
+    linear-gradient(180deg, rgba(10, 12, 22, 0.06), rgba(10, 12, 22, 0.4)),
     radial-gradient(circle at 18% 18%, rgba(253, 186, 116, 0.22) 0%, transparent 25%),
     radial-gradient(circle at 78% 18%, rgba(125, 211, 252, 0.18) 0%, transparent 21%),
     radial-gradient(circle at 56% 76%, rgba(251, 146, 60, 0.16) 0%, transparent 28%),
@@ -2092,18 +2092,18 @@ body[data-visual-theme="cyber"] .hero::after {
   background-image:
     linear-gradient(var(--grid-color) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid-color) 1px, transparent 1px),
-    linear-gradient(180deg, transparent 48%, rgba(3, 8, 18, 0.2) 70%, rgba(2, 6, 15, 0.92) 100%);
+    linear-gradient(180deg, transparent 54%, rgba(3, 8, 18, 0.12) 74%, rgba(2, 6, 15, 0.68) 100%);
   background-size: 54px 54px, 54px 54px, 100% 100%;
   background-position: center;
 }
 
 body[data-visual-theme="anime"] .hero::after {
   background-image:
-    radial-gradient(ellipse at 50% 108%, rgba(14, 19, 38, 0.95) 0%, rgba(14, 19, 38, 0.95) 24%, transparent 25%),
-    radial-gradient(ellipse at 16% 108%, rgba(19, 27, 52, 0.86) 0%, rgba(19, 27, 52, 0.86) 19%, transparent 20%),
-    radial-gradient(ellipse at 84% 108%, rgba(19, 27, 52, 0.84) 0%, rgba(19, 27, 52, 0.84) 21%, transparent 22%),
-    linear-gradient(180deg, transparent 42%, rgba(5, 8, 18, 0.74) 100%);
-  opacity: 0.96;
+    radial-gradient(ellipse at 50% 108%, rgba(14, 19, 38, 0.78) 0%, rgba(14, 19, 38, 0.78) 24%, transparent 25%),
+    radial-gradient(ellipse at 16% 108%, rgba(19, 27, 52, 0.68) 0%, rgba(19, 27, 52, 0.68) 19%, transparent 20%),
+    radial-gradient(ellipse at 84% 108%, rgba(19, 27, 52, 0.66) 0%, rgba(19, 27, 52, 0.66) 21%, transparent 22%),
+    linear-gradient(180deg, transparent 50%, rgba(5, 8, 18, 0.52) 100%);
+  opacity: 0.88;
 }
 
 .hero-bg-animation {
@@ -2132,7 +2132,7 @@ body[data-visual-theme="anime"] .hero::after {
   position: relative;
   border: 1px solid var(--glass-border);
   border-radius: 30px;
-  background: linear-gradient(180deg, rgba(8, 16, 30, 0.72), rgba(6, 12, 24, 0.44));
+  background: linear-gradient(180deg, rgba(8, 16, 30, 0.46), rgba(6, 12, 24, 0.18));
   box-shadow: var(--glass-shadow), var(--glass-inner-shadow);
   backdrop-filter: blur(var(--glass-blur));
   -webkit-backdrop-filter: blur(var(--glass-blur));
@@ -2140,14 +2140,14 @@ body[data-visual-theme="anime"] .hero::after {
 }
 
 body[data-visual-theme="anime"] .hero-panel {
-  background: linear-gradient(180deg, rgba(26, 34, 62, 0.72), rgba(16, 21, 38, 0.46));
+  background: linear-gradient(180deg, rgba(26, 34, 62, 0.42), rgba(16, 21, 38, 0.16));
 }
 
 .hero-panel::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), transparent 36%, transparent 64%, rgba(255, 255, 255, 0.04));
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.18), transparent 34%, transparent 64%, rgba(255, 255, 255, 0.06));
   pointer-events: none;
 }
 
@@ -2182,7 +2182,7 @@ body[data-visual-theme="anime"] .hero-panel {
   padding: 8px 16px;
   border-radius: var(--radius-full);
   border: 1px solid rgba(255, 255, 255, 0.14);
-  background: rgba(255, 255, 255, 0.09);
+  background: rgba(255, 255, 255, 0.05);
   color: var(--text-secondary);
   font-size: 0.76rem;
   font-weight: 600;
@@ -2248,7 +2248,7 @@ body[data-visual-theme="anime"] .hero-panel {
   padding: 8px 14px;
   border-radius: var(--radius-full);
   border: 1px solid rgba(255, 255, 255, 0.14);
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.05);
   color: var(--text-primary);
   font-size: 0.82rem;
   font-weight: 500;
@@ -2267,8 +2267,8 @@ body[data-visual-theme="anime"] .hero-panel {
 }
 
 .social-btn {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   color: var(--text-primary);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
@@ -2294,7 +2294,7 @@ body[data-visual-theme="anime"] .btn-primary {
 }
 
 .btn-outline {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.18);
   color: var(--text-primary);
 }
@@ -2349,7 +2349,7 @@ body[data-visual-theme="anime"] .btn-primary {
   padding: 10px 16px;
   border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.04);
   color: var(--text-primary);
   font-family: var(--font-sans);
   font-size: 0.85rem;
@@ -2362,12 +2362,12 @@ body[data-visual-theme="anime"] .btn-primary {
 .theme-chip.is-active {
   transform: translateY(-2px);
   border-color: rgba(255, 255, 255, 0.24);
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.08));
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.05));
   box-shadow: 0 16px 30px rgba(2, 8, 23, 0.18);
 }
 
 .theme-chip.subtle {
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.02);
   color: var(--text-secondary);
 }
 
@@ -2445,7 +2445,7 @@ body[data-visual-theme="anime"] .btn-primary {
   padding: 14px 16px;
   border-radius: 18px;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.04);
   color: var(--text-primary);
   transition: transform var(--transition-base), background var(--transition-base), border-color var(--transition-base);
 }
@@ -2482,15 +2482,15 @@ body[data-visual-theme="anime"] .btn-primary {
 .section > .container {
   padding: 56px 40px;
   border-radius: 32px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: linear-gradient(180deg, rgba(8, 15, 28, 0.62), rgba(5, 9, 20, 0.38));
-  box-shadow: 0 24px 80px rgba(2, 8, 23, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(22px);
-  -webkit-backdrop-filter: blur(22px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(180deg, rgba(8, 15, 28, 0.34), rgba(5, 9, 20, 0.12));
+  box-shadow: 0 24px 80px rgba(2, 8, 23, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(26px);
+  -webkit-backdrop-filter: blur(26px);
 }
 
 body[data-visual-theme="anime"] .section > .container {
-  background: linear-gradient(180deg, rgba(28, 36, 64, 0.6), rgba(15, 19, 36, 0.36));
+  background: linear-gradient(180deg, rgba(28, 36, 64, 0.28), rgba(15, 19, 36, 0.1));
 }
 
 .section-header {
@@ -2535,11 +2535,11 @@ body[data-visual-theme="anime"] .section > .container {
 .contact-card,
 .contact-map,
 .filter-btn {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 18px 50px rgba(2, 8, 23, 0.18);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015));
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 18px 50px rgba(2, 8, 23, 0.12);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
 }
 
 .stat-card:hover,
@@ -2573,7 +2573,7 @@ body[data-visual-theme="anime"] .section > .container {
 .contact-icon,
 .award-icon,
 .timeline-badge {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.04));
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.03));
   border: 1px solid rgba(255, 255, 255, 0.12);
   color: var(--primary-300);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
@@ -2584,7 +2584,7 @@ body[data-visual-theme="anime"] .section > .container {
 .pub-link,
 .timeline-date,
 .award-year {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
   color: var(--text-primary);
 }
@@ -2660,7 +2660,7 @@ body[data-visual-theme="anime"] .project-image-placeholder {
 }
 
 .map-placeholder {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015));
   color: var(--text-tertiary);
 }
 
@@ -2675,16 +2675,16 @@ body[data-visual-theme="anime"] .project-image-placeholder {
 
 .footer .container {
   border-radius: 28px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: linear-gradient(180deg, rgba(8, 14, 26, 0.62), rgba(5, 9, 18, 0.44));
-  box-shadow: 0 22px 70px rgba(2, 8, 23, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(180deg, rgba(8, 14, 26, 0.3), rgba(5, 9, 18, 0.12));
+  box-shadow: 0 22px 70px rgba(2, 8, 23, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   padding: 36px 24px;
 }
 
 body[data-visual-theme="anime"] .footer .container {
-  background: linear-gradient(180deg, rgba(22, 28, 50, 0.68), rgba(15, 18, 34, 0.46));
+  background: linear-gradient(180deg, rgba(22, 28, 50, 0.28), rgba(15, 18, 34, 0.12));
 }
 
 .footer-brand {
@@ -2697,7 +2697,7 @@ body[data-visual-theme="anime"] .footer .container {
 }
 
 .footer-social a {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
   color: var(--text-primary);
 }
