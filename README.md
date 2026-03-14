@@ -1,73 +1,140 @@
-# 个人学术主页静态站点
+# 个人学术主页
 
-这个仓库已经整理成适合下面两种用途的基础版本：
+一个基于 `HTML + CSS + JavaScript` 的静态个人学术主页，适合展示个人简介、研究方向、论文、项目、获奖经历、教育背景和联系方式。仓库已经配置好 GitHub Pages 工作流，修改后可直接部署上线。
 
-1. 私有仓库保存源码，通过 GitHub Pages 发布一个可访问的网站。
-2. 在 GitHub 上打开 `Template repository` 后，作为新仓库模板继续复用。
+## 功能特点
 
-## 重要边界
+- 纯静态站点，无需后端，部署简单
+- 响应式布局，适配桌面端和移动端
+- 首页包含头像、打字效果和滚动动画
+- 支持展示研究方向、论文、项目、竞赛获奖和教育经历
+- 论文 PDF、头像和图片资源可独立管理
+- 已配置 GitHub Pages 自动部署流程
 
-- 私有仓库不等于私密网站。仓库可以是 private，但发布后的 GitHub Pages 站点本身仍然是可访问的。
-- 这是纯前端静态站点。浏览器拿到的 `HTML`、`CSS`、`JavaScript`、图片和 PDF 资源都可以被查看或下载，无法做到“访客只能看页面但完全看不到前端代码”。
-- 你能隐藏的是 Git 仓库源码和提交历史，不能隐藏已经发布到浏览器里的静态资源。
+## 页面模块
 
-## 当前已经加好的内容
+- 首页 Hero
+- About Me
+- Research Interests
+- Publications
+- Projects
+- Awards
+- Education
+- Contact
 
-- `GitHub Actions` 版本的 Pages 部署工作流，适合私有仓库发布。
-- `All Rights Reserved` 闭源许可证说明。
-- 模板仓库使用文档。
-- 头像图片缺失时的前端兜底，不会因为本地删掉图片直接出现坏链。
-
-## 文件结构
+## 项目结构
 
 ```text
 .
 ├── .github/workflows/deploy-pages.yml  # GitHub Pages 自动部署
-├── .nojekyll                           # 静态资源直出
-├── assets/images/                      # 图片资源
-├── assets/papers/                      # 论文 PDF
-├── LICENSE                             # 闭源声明
+├── assets/
+│   ├── images/                         # 头像和图片资源
+│   └── papers/                         # 论文 PDF
+├── index.html                          # 页面结构与主要内容
+├── styles.css                          # 页面样式
+├── script.js                           # 动画与交互逻辑
 ├── TEMPLATE_GUIDE.md                   # 模板仓库使用说明
-├── index.html                          # 主页面
-├── styles.css                          # 样式
-├── script.js                           # 交互脚本
-└── README.md                           # 仓库说明
+├── LICENSE                             # 授权说明
+└── README.md                           # 项目说明
 ```
 
-## 私有仓库部署
+## 本地使用
 
-1. 在 GitHub 新建一个 `private` 仓库。
-2. 把当前代码推送到新仓库。
-3. 进入 `Settings -> Pages`。
-4. 在 `Build and deployment` 中把 `Source` 设为 `GitHub Actions`。
-5. 推送到 `main` 分支后，工作流会自动部署。
+### 方式一：直接打开
 
-如果你的 GitHub 套餐不支持从私有仓库使用 GitHub Pages，需要改用以下任一方案：
+这是一个纯静态页面，直接双击 `index.html` 就可以在浏览器中预览。
 
-- 使用 Cloudflare Pages / Vercel，从私有 GitHub 仓库自动部署。
-- 保留源码仓库为 private，再单独准备一个只放构建产物的 public 发布仓库。
+### 方式二：本地启动静态服务器
 
-## 模板仓库使用
+如果你希望更接近实际部署环境，可以在项目目录运行：
 
-详细步骤见 [`TEMPLATE_GUIDE.md`](TEMPLATE_GUIDE.md)。
+```bash
+python3 -m http.server 8000
+```
 
-简版流程：
+然后访问：
 
-1. 把当前仓库推送到你准备作为模板的仓库。
-2. 进入 GitHub 仓库 `Settings`。
-3. 打开 `Template repository`。
-4. 点击 `Use this template` 创建新的仓库。
-5. 新仓库可以继续选择 `private` 或 `public`。
+```text
+http://localhost:8000
+```
 
-## 站点内容修改入口
+## 自定义方法
 
-- 个人信息、论文、项目、教育经历：修改 `index.html`
-- 图片和论文附件：修改 `assets/images`、`assets/papers`
-- 配色、布局、动画：修改 `styles.css`
-- 打字效果、滚动交互、动画逻辑：修改 `script.js`
+### 1. 修改个人信息
 
-## 许可证
+编辑 `index.html`，可调整：
 
-当前仓库默认采用闭源模式：`All Rights Reserved`。
+- 姓名、单位、邮箱
+- 个人简介
+- 研究方向
+- 论文列表
+- 项目经历
+- 获奖与教育背景
+- 社交链接和联系方式
 
-如果你之后要把模板公开给别人复用，再把 `LICENSE` 改成 MIT、Apache-2.0 或你需要的开源许可证。
+### 2. 修改头像和图片
+
+- 头像图片放在 `assets/images/`
+- 当前首页头像文件为 `assets/images/avatar.jpg`
+- 备用图片为 `assets/images/image.png`
+
+如果要替换头像，直接用你的图片覆盖 `assets/images/avatar.jpg`，或者修改 `index.html` 中的图片路径。
+
+### 3. 修改论文附件
+
+- 论文 PDF 放在 `assets/papers/`
+- 当前页面中的论文链接已经指向该目录
+
+新增论文时：
+
+1. 把 PDF 放到 `assets/papers/`
+2. 在 `index.html` 的论文区域添加对应条目
+3. 把链接改成对应文件路径
+
+### 4. 修改样式
+
+编辑 `styles.css`，可调整：
+
+- 颜色
+- 字体
+- 间距
+- 卡片样式
+- 动画效果
+- 响应式布局
+
+### 5. 修改交互效果
+
+编辑 `script.js`，可调整：
+
+- 打字机文字内容
+- 滚动触发动画
+- 导航交互
+- 数字统计动画
+
+## 部署到 GitHub Pages
+
+仓库已包含 GitHub Pages 工作流文件 `.github/workflows/deploy-pages.yml`。
+
+### 部署步骤
+
+1. 将代码推送到 GitHub 仓库
+2. 打开仓库 `Settings -> Pages`
+3. 在 `Build and deployment` 中选择 `GitHub Actions`
+4. 推送到 `main` 分支后，GitHub 会自动构建并部署
+
+## 作为模板仓库使用
+
+如果你想把这个项目作为模板继续复用：
+
+1. 打开仓库 `Settings`
+2. 勾选 `Template repository`
+3. 返回仓库首页
+4. 点击 `Use this template`
+
+更详细的模板说明见 [`TEMPLATE_GUIDE.md`](TEMPLATE_GUIDE.md)。
+
+## 说明
+
+- 这是静态网站，浏览器加载到的前端资源本身是可见的
+- 如果仓库是公开的，仓库中的图片和 PDF 资源也会在 GitHub 上可见
+- 授权方式请以 [`LICENSE`](LICENSE) 为准
