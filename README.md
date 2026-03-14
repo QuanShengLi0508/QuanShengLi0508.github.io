@@ -24,6 +24,8 @@
 .
 ├── .github/workflows/deploy-pages.yml  # GitHub Pages 自动部署
 ├── .nojekyll                           # 静态资源直出
+├── assets/images/                      # 图片资源
+├── assets/papers/                      # 论文 PDF
 ├── LICENSE                             # 闭源声明
 ├── TEMPLATE_GUIDE.md                   # 模板仓库使用说明
 ├── index.html                          # 主页面
@@ -60,6 +62,7 @@
 ## 站点内容修改入口
 
 - 个人信息、论文、项目、教育经历：修改 `index.html`
+- 图片和论文附件：修改 `assets/images`、`assets/papers`
 - 配色、布局、动画：修改 `styles.css`
 - 打字效果、滚动交互、动画逻辑：修改 `script.js`
 
