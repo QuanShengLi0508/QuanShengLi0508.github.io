@@ -49,10 +49,10 @@
         <div class="hero-avatar-wrapper">
           <div class="hero-avatar">
             <img
-              src="image.png"
+              src="avatar.jpg"
               alt="李泉胜"
               class="hero-avatar-image"
-              onerror="this.parentElement.classList.add('is-fallback');"
+              onerror="if (this.dataset.fallback !== 'done') { this.dataset.fallback = 'done'; this.src = 'image.png'; return; } this.parentElement.classList.add('is-fallback');"
             >
             <div class="avatar-placeholder" aria-hidden="true">
               <i class="fas fa-user-graduate"></i>
