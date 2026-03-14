@@ -1,137 +1,70 @@
-# 个人学术主页 | Academic Homepage
+# 个人学术主页静态站点
 
-一个基于 GitHub Pages 的现代个人学术主页模板，简洁优雅，响应式设计。
+这个仓库已经整理成适合下面两种用途的基础版本：
 
-## ✨ 功能特点
+1. 私有仓库保存源码，通过 GitHub Pages 发布一个可访问的网站。
+2. 在 GitHub 上打开 `Template repository` 后，作为新仓库模板继续复用。
 
-- 🎨 **现代设计** — 精美的配色方案、玻璃态效果、微动画
-- 📱 **响应式布局** — 完美支持桌面端、平板和手机
-- ⚡ **纯静态** — 无需后端，部署方便
-- 🔍 **SEO 友好** — 合理的 HTML 结构和 meta 标签
-- 📝 **易于定制** — 清晰的代码结构，方便修改
+## 重要边界
 
-## 📂 文件结构
+- 私有仓库不等于私密网站。仓库可以是 private，但发布后的 GitHub Pages 站点本身仍然是可访问的。
+- 这是纯前端静态站点。浏览器拿到的 `HTML`、`CSS`、`JavaScript`、图片和 PDF 资源都可以被查看或下载，无法做到“访客只能看页面但完全看不到前端代码”。
+- 你能隐藏的是 Git 仓库源码和提交历史，不能隐藏已经发布到浏览器里的静态资源。
 
-```
-├── index.html      # 主页面
-├── styles.css      # 样式文件
-├── script.js       # 交互脚本
-└── README.md       # 说明文档
-```
+## 当前已经加好的内容
 
-## 🚀 部署到 GitHub Pages
+- `GitHub Actions` 版本的 Pages 部署工作流，适合私有仓库发布。
+- `All Rights Reserved` 闭源许可证说明。
+- 模板仓库使用文档。
+- 头像图片缺失时的前端兜底，不会因为本地删掉图片直接出现坏链。
 
-### 第一步：创建 GitHub 仓库
+## 文件结构
 
-1. 登录 [GitHub](https://github.com)
-2. 点击右上角 **+** → **New repository**
-3. 仓库名填写 `你的用户名.github.io`（例如：`zhangsan.github.io`）
-   - 如果不想用这个格式，也可以用其他名字（比如 `homepage`），但访问地址会变成 `你的用户名.github.io/homepage`
-4. 设为 **Public**（公开）
-5. 点击 **Create repository**
-
-### 第二步：上传代码
-
-**方法 A：通过 Git 命令行（推荐）**
-
-```bash
-# 进入项目目录
-cd /path/to/your/project
-
-# 初始化 Git
-git init
-
-# 添加所有文件
-git add .
-
-# 提交
-git commit -m "Initial commit: academic homepage"
-
-# 添加远程仓库（替换为你的仓库地址）
-git remote add origin https://github.com/你的用户名/你的用户名.github.io.git
-
-# 推送到 GitHub
-git push -u origin main
+```text
+.
+├── .github/workflows/deploy-pages.yml  # GitHub Pages 自动部署
+├── .nojekyll                           # 静态资源直出
+├── LICENSE                             # 闭源声明
+├── TEMPLATE_GUIDE.md                   # 模板仓库使用说明
+├── index.html                          # 主页面
+├── styles.css                          # 样式
+├── script.js                           # 交互脚本
+└── README.md                           # 仓库说明
 ```
 
-**方法 B：通过 GitHub 网页上传**
+## 私有仓库部署
 
-1. 在仓库页面点击 **Add file** → **Upload files**
-2. 将 `index.html`、`styles.css`、`script.js` 拖拽上传
-3. 点击 **Commit changes**
+1. 在 GitHub 新建一个 `private` 仓库。
+2. 把当前代码推送到新仓库。
+3. 进入 `Settings -> Pages`。
+4. 在 `Build and deployment` 中把 `Source` 设为 `GitHub Actions`。
+5. 推送到 `main` 分支后，工作流会自动部署。
 
-### 第三步：开启 GitHub Pages
+如果你的 GitHub 套餐不支持从私有仓库使用 GitHub Pages，需要改用以下任一方案：
 
-1. 进入仓库 **Settings** → 左侧菜单 **Pages**
-2. 在 **Source** 下选择 **Deploy from a branch**
-3. 选择 **main** 分支和 **/ (root)** 目录
-4. 点击 **Save**
-5. 等待 1-2 分钟，页面将在 `https://你的用户名.github.io` 上线！
+- 使用 Cloudflare Pages / Vercel，从私有 GitHub 仓库自动部署。
+- 保留源码仓库为 private，再单独准备一个只放构建产物的 public 发布仓库。
 
-## ✏️ 如何自定义内容
+## 模板仓库使用
 
-### 修改个人信息
+详细步骤见 [`TEMPLATE_GUIDE.md`](TEMPLATE_GUIDE.md)。
 
-打开 `index.html`，搜索并替换以下占位文本：
+简版流程：
 
-| 占位文本 | 替换为 |
-|---------|-------|
-| `Your Name` | 你的姓名 |
-| `Ph.D. Candidate` | 你的职称/身份 |
-| `XX University` | 你的学校名 |
-| `your-email@example.com` | 你的邮箱 |
-| 各个 `XX` 占位符 | 你的实际信息 |
+1. 把当前仓库推送到你准备作为模板的仓库。
+2. 进入 GitHub 仓库 `Settings`。
+3. 打开 `Template repository`。
+4. 点击 `Use this template` 创建新的仓库。
+5. 新仓库可以继续选择 `private` 或 `public`。
 
-### 更换头像
+## 站点内容修改入口
 
-1. 将你的照片命名为 `avatar.jpg` 放到项目根目录
-2. 在 `index.html` 中找到 `hero-avatar` 部分
-3. 取消注释 `<img>` 标签，删除 `avatar-placeholder` div
+- 个人信息、论文、项目、教育经历：修改 `index.html`
+- 配色、布局、动画：修改 `styles.css`
+- 打字效果、滚动交互、动画逻辑：修改 `script.js`
 
-```html
-<!-- 将这个 -->
-<div class="avatar-placeholder">
-  <i class="fas fa-user-graduate"></i>
-</div>
-<!-- 替换为 -->
-<img src="avatar.jpg" alt="Your Name">
-```
+## 许可证
 
-### 修改打字动画文字
+当前仓库默认采用闭源模式：`All Rights Reserved`。
 
-打开 `script.js`，修改 `phrases` 数组：
-
-```javascript
-const phrases = [
-  '你的研究方向1',
-  '你的研究方向2',
-  '你的研究方向3',
-];
-```
-
-### 添加更多论文
-
-在 `index.html` 的 `publications-list` 中复制一个 `pub-card` 并修改内容。
-
-### 修改统计数据
-
-在 `index.html` 中修改 `data-target` 属性的值：
-
-```html
-<div class="stat-number" data-target="你的论文数">0</div>
-```
-
-## 🎨 自定义样式
-
-打开 `styles.css`，修改 `:root` 中的 CSS 变量来自定义配色：
-
-```css
-:root {
-  --primary-500: #3370ff;    /* 主色调 */
-  --accent-500: #8b5cf6;     /* 强调色 */
-}
-```
-
-## 📄 License
-
-MIT License — 自由使用和修改。
+如果你之后要把模板公开给别人复用，再把 `LICENSE` 改成 MIT、Apache-2.0 或你需要的开源许可证。

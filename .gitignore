@@ -3,3 +3,7 @@
 
 # Claude配置
 .claude/
+
+# 本地构建产物
+_site/
+.DS_Store

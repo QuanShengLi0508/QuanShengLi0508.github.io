@@ -563,9 +563,12 @@ body.custom-cursor-pressed .custom-cursor-ring span {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: opacity var(--transition-base);
 }
 
 .avatar-placeholder {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   display: flex;
@@ -573,6 +576,16 @@ body.custom-cursor-pressed .custom-cursor-ring span {
   justify-content: center;
   font-size: 5rem;
   color: rgba(255, 255, 255, 0.9);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.hero-avatar.is-fallback img {
+  opacity: 0;
+}
+
+.hero-avatar.is-fallback .avatar-placeholder {
+  opacity: 1;
 }
 
 .avatar-ring {
