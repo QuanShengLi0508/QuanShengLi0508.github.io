@@ -53,6 +53,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const themeChips = document.querySelectorAll('.theme-chip[data-theme]');
   const backgroundUpload = document.getElementById('backgroundUpload');
   const resetBackground = document.getElementById('resetBackground');
+  const themeDock = document.getElementById('themeDock');
+  const themeDockPanel = document.getElementById('themeDockPanel');
+  const themeDockToggle = document.getElementById('themeDockToggle');
+  const themeDockClose = document.getElementById('themeDockClose');
   const visualThemeLabels = {
     cyber: '赛博霓虹',
     anime: '二次元暮色'
@@ -97,6 +101,14 @@ document.addEventListener('DOMContentLoaded', () => {
       ? '已启用自定义背景'
       : '使用内置场景';
     themeStatus.textContent = `当前主题：${currentTheme} · ${backgroundLabel}`;
+  }
+
+  function setThemeDockOpen(nextOpen) {
+    if (!themeDock || !themeDockPanel || !themeDockToggle) return;
+
+    themeDock.classList.toggle('is-open', nextOpen);
+    themeDockPanel.setAttribute('aria-hidden', String(!nextOpen));
+    themeDockToggle.setAttribute('aria-expanded', String(nextOpen));
   }
 
   function applyTheme(theme, persist = true) {
@@ -186,6 +198,31 @@ document.addEventListener('DOMContentLoaded', () => {
     chip.addEventListener('click', () => {
       applyTheme(chip.dataset.theme);
     });
+  });
+
+  if (themeDockToggle) {
+    themeDockToggle.addEventListener('click', () => {
+      const willOpen = !themeDock.classList.contains('is-open');
+      setThemeDockOpen(willOpen);
+    });
+  }
+
+  if (themeDockClose) {
+    themeDockClose.addEventListener('click', () => {
+      setThemeDockOpen(false);
+    });
+  }
+
+  document.addEventListener('click', (event) => {
+    if (!themeDock || !themeDock.classList.contains('is-open')) return;
+    if (themeDock.contains(event.target)) return;
+    setThemeDockOpen(false);
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      setThemeDockOpen(false);
+    }
   });
 
   if (backgroundUpload) {
