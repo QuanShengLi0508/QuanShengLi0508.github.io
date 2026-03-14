@@ -44,6 +44,69 @@ document.addEventListener('DOMContentLoaded', () => {
     type();
   }
 
+  // ---------- About Me Typing Effect ----------
+  const aboutConsole = document.getElementById('aboutConsole');
+  const aboutTypeTargets = document.querySelectorAll('.about-type-target');
+
+  function typeAboutLine(target, done) {
+    const text = target.dataset.text || '';
+    const line = target.closest('.about-type-line');
+    let index = 0;
+
+    function step() {
+      target.textContent = text.slice(0, index);
+      index += 1;
+
+      if (index <= text.length) {
+        const delay = text[index - 1] === ' ' ? 12 : 18;
+        window.setTimeout(step, delay);
+      } else {
+        if (line) {
+          line.classList.add('done');
+        }
+        done();
+      }
+    }
+
+    step();
+  }
+
+  if (aboutConsole && aboutTypeTargets.length) {
+    let aboutAnimated = false;
+    aboutTypeTargets.forEach(target => {
+      target.textContent = '';
+    });
+
+    const aboutObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !aboutAnimated) {
+            aboutAnimated = true;
+            let currentIndex = 0;
+
+            function runNextLine() {
+              const currentTarget = aboutTypeTargets[currentIndex];
+              if (!currentTarget) {
+                aboutObserver.disconnect();
+                return;
+              }
+
+              typeAboutLine(currentTarget, () => {
+                currentIndex += 1;
+                runNextLine();
+              });
+            }
+
+            runNextLine();
+          }
+        });
+      },
+      { threshold: 0.35 }
+    );
+
+    aboutObserver.observe(aboutConsole);
+  }
+
   // ---------- Navbar Scroll Effect ----------
   const navbar = document.getElementById('navbar');
   const navLinks = document.querySelectorAll('.nav-link');
