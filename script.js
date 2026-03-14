@@ -44,6 +44,135 @@ document.addEventListener('DOMContentLoaded', () => {
     type();
   }
 
+  // ---------- Custom Cursor ----------
+  const body = document.body;
+  const cursorDot = document.getElementById('cursorDot');
+  const cursorRing = document.getElementById('cursorRing');
+
+  function setupCustomCursor() {
+    if (!cursorDot || !cursorRing) return;
+
+    const mediaQuery = window.matchMedia('(hover: hover) and (pointer: fine)');
+    const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const surfaceSelector =
+      '.about-console, .stat-card, .techstack-card, .research-card, .pub-card, ' +
+      '.project-card, .award-card, .timeline-content, .contact-card, .contact-map';
+    const actionSelector =
+      'a, button, .btn, .social-btn, .nav-link, .nav-logo, .filter-btn, .back-to-top';
+
+    let enabled = false;
+    let frameId = 0;
+    let targetX = window.innerWidth / 2;
+    let targetY = window.innerHeight / 2;
+    let ringX = targetX;
+    let ringY = targetY;
+
+    function setDotPosition(x, y) {
+      cursorDot.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+    }
+
+    function setRingPosition(x, y) {
+      cursorRing.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+    }
+
+    function clearCursorState() {
+      body.classList.remove(
+        'custom-cursor-visible',
+        'custom-cursor-hover',
+        'custom-cursor-action',
+        'custom-cursor-pressed'
+      );
+    }
+
+    function updateCursorState(target) {
+      const isAction = Boolean(target && target.closest(actionSelector));
+      const isSurface = isAction || Boolean(target && target.closest(surfaceSelector));
+      body.classList.toggle('custom-cursor-hover', isSurface);
+      body.classList.toggle('custom-cursor-action', isAction);
+    }
+
+    function renderRing() {
+      const easing = reduceMotionQuery.matches ? 1 : 0.18;
+      ringX += (targetX - ringX) * easing;
+      ringY += (targetY - ringY) * easing;
+      setRingPosition(ringX, ringY);
+      frameId = window.requestAnimationFrame(renderRing);
+    }
+
+    function handlePointerMove(event) {
+      targetX = event.clientX;
+      targetY = event.clientY;
+      setDotPosition(targetX, targetY);
+      body.classList.add('custom-cursor-visible');
+      updateCursorState(event.target);
+    }
+
+    function handlePointerDown() {
+      body.classList.add('custom-cursor-pressed');
+    }
+
+    function handlePointerUp() {
+      body.classList.remove('custom-cursor-pressed');
+    }
+
+    function handleMouseOut(event) {
+      if (!event.relatedTarget) {
+        clearCursorState();
+      }
+    }
+
+    function enableCursor() {
+      if (enabled) return;
+      enabled = true;
+      body.classList.add('custom-cursor-enabled');
+      targetX = window.innerWidth / 2;
+      targetY = window.innerHeight / 2;
+      ringX = targetX;
+      ringY = targetY;
+      setDotPosition(targetX, targetY);
+      setRingPosition(ringX, ringY);
+      document.addEventListener('pointermove', handlePointerMove, { passive: true });
+      document.addEventListener('pointerdown', handlePointerDown, { passive: true });
+      document.addEventListener('pointerup', handlePointerUp, { passive: true });
+      document.addEventListener('mouseout', handleMouseOut);
+      window.addEventListener('blur', clearCursorState);
+      frameId = window.requestAnimationFrame(renderRing);
+    }
+
+    function disableCursor() {
+      if (!enabled) return;
+      enabled = false;
+      window.cancelAnimationFrame(frameId);
+      document.removeEventListener('pointermove', handlePointerMove);
+      document.removeEventListener('pointerdown', handlePointerDown);
+      document.removeEventListener('pointerup', handlePointerUp);
+      document.removeEventListener('mouseout', handleMouseOut);
+      window.removeEventListener('blur', clearCursorState);
+      body.classList.remove('custom-cursor-enabled');
+      clearCursorState();
+      setDotPosition(-100, -100);
+      setRingPosition(-100, -100);
+    }
+
+    function syncCursorMode(event) {
+      if (event.matches) {
+        enableCursor();
+      } else {
+        disableCursor();
+      }
+    }
+
+    syncCursorMode(mediaQuery);
+
+    if (typeof mediaQuery.addEventListener === 'function') {
+      mediaQuery.addEventListener('change', syncCursorMode);
+    } else if (typeof mediaQuery.addListener === 'function') {
+      mediaQuery.addListener(syncCursorMode);
+    }
+  }
+
+  setupCustomCursor();
+
   // ---------- About Me Typing Effect ----------
   const aboutConsole = document.getElementById('aboutConsole');
   const aboutTypeTargets = document.querySelectorAll('.about-type-target');

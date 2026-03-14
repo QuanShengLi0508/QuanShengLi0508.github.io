@@ -149,6 +149,117 @@ img {
   display: block;
 }
 
+/* ---------- Custom Cursor ---------- */
+.custom-cursor-dot,
+.custom-cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 3000;
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform, opacity;
+  transition: opacity 0.18s ease;
+}
+
+.custom-cursor-dot span,
+.custom-cursor-ring span {
+  display: block;
+  transform: translate(-50%, -50%) scale(1);
+  transform-origin: center;
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.custom-cursor-dot span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow:
+    0 0 0 1px rgba(96, 165, 250, 0.24),
+    0 0 18px rgba(96, 165, 250, 0.18);
+}
+
+.custom-cursor-ring span {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid rgba(191, 219, 254, 0.88);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+}
+
+body.custom-cursor-visible .custom-cursor-dot,
+body.custom-cursor-visible .custom-cursor-ring {
+  opacity: 1;
+}
+
+body.custom-cursor-hover .custom-cursor-dot span {
+  transform: translate(-50%, -50%) scale(0.82);
+  background: rgba(219, 234, 254, 0.98);
+}
+
+body.custom-cursor-hover .custom-cursor-ring span {
+  transform: translate(-50%, -50%) scale(1.24);
+  border-color: rgba(147, 197, 253, 0.96);
+  background: rgba(148, 163, 184, 0.1);
+  box-shadow: 0 12px 30px rgba(59, 130, 246, 0.14);
+}
+
+body.custom-cursor-action .custom-cursor-dot span {
+  transform: translate(-50%, -50%) scale(0.68);
+  background: rgba(255, 255, 255, 1);
+}
+
+body.custom-cursor-action .custom-cursor-ring span {
+  transform: translate(-50%, -50%) scale(1.45);
+  border-color: rgba(96, 165, 250, 1);
+  background: rgba(59, 130, 246, 0.08);
+  box-shadow: 0 14px 34px rgba(59, 130, 246, 0.16);
+}
+
+body.custom-cursor-pressed .custom-cursor-dot span {
+  transform: translate(-50%, -50%) scale(1.08);
+}
+
+body.custom-cursor-pressed .custom-cursor-ring span {
+  transform: translate(-50%, -50%) scale(0.86);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  body.custom-cursor-enabled {
+    cursor: none !important;
+  }
+
+  body.custom-cursor-enabled input,
+  body.custom-cursor-enabled textarea,
+  body.custom-cursor-enabled [contenteditable="true"] {
+    cursor: text !important;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .custom-cursor-dot,
+  .custom-cursor-ring {
+    display: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .custom-cursor-dot,
+  .custom-cursor-ring,
+  .custom-cursor-dot span,
+  .custom-cursor-ring span {
+    transition: none;
+  }
+}
+
 /* ---------- Utilities ---------- */
 .container {
   max-width: var(--container-max);
