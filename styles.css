@@ -3437,6 +3437,147 @@ body.custom-cursor-pressed .custom-cursor-ring span {
     inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
+@keyframes heroAuroraPulse {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.92;
+  }
+  50% {
+    transform: translate3d(18px, -12px, 0) scale(1.08);
+    opacity: 1;
+  }
+}
+
+@keyframes heroGlassSweep {
+  0%, 100% {
+    transform: translateX(-8%) translateY(0);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateX(10%) translateY(-2%);
+    opacity: 1;
+  }
+}
+
+@keyframes publicationShimmer {
+  0%, 100% {
+    background-position: 0% 0%, 100% 0%;
+    opacity: 0.82;
+  }
+  50% {
+    background-position: 100% 0%, 0% 0%;
+    opacity: 1;
+  }
+}
+
+.hero-content::before {
+  animation: heroAuroraPulse 14s ease-in-out infinite;
+}
+
+.hero-content::after {
+  background:
+    linear-gradient(118deg, transparent 10%, rgba(255, 255, 255, 0.18) 28%, rgba(191, 219, 254, 0.08) 36%, transparent 56%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.16), transparent 42%);
+  background-size: 180% 100%, 100% 100%;
+  animation: heroGlassSweep 12s ease-in-out infinite;
+}
+
+#about > .container {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.2), rgba(226, 238, 254, 0.14));
+}
+
+#about > .container::after {
+  background:
+    radial-gradient(circle at 14% 18%, rgba(125, 211, 252, 0.16), transparent 26%),
+    radial-gradient(circle at 88% 82%, rgba(167, 243, 208, 0.12), transparent 24%);
+}
+
+#research > .container {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.22), rgba(224, 231, 255, 0.16));
+}
+
+#research > .container::after {
+  background:
+    radial-gradient(circle at 20% 82%, rgba(96, 165, 250, 0.14), transparent 26%),
+    radial-gradient(circle at 84% 14%, rgba(167, 139, 250, 0.14), transparent 24%);
+}
+
+#publications > .container {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.24), rgba(219, 234, 254, 0.16));
+}
+
+#publications > .container::after {
+  background:
+    radial-gradient(circle at 12% 24%, rgba(191, 219, 254, 0.16), transparent 26%),
+    radial-gradient(circle at 88% 18%, rgba(147, 197, 253, 0.14), transparent 22%);
+}
+
+#projects > .container {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.22), rgba(220, 252, 231, 0.14));
+}
+
+#projects > .container::after {
+  background:
+    radial-gradient(circle at 14% 80%, rgba(134, 239, 172, 0.16), transparent 24%),
+    radial-gradient(circle at 86% 18%, rgba(45, 212, 191, 0.12), transparent 22%);
+}
+
+#competitions > .container {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.22), rgba(255, 237, 213, 0.16));
+}
+
+#competitions > .container::after {
+  background:
+    radial-gradient(circle at 14% 22%, rgba(251, 191, 36, 0.16), transparent 26%),
+    radial-gradient(circle at 88% 78%, rgba(245, 158, 11, 0.1), transparent 24%);
+}
+
+#education > .container {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.22), rgba(226, 232, 240, 0.16));
+}
+
+#education > .container::after {
+  background:
+    radial-gradient(circle at 16% 20%, rgba(191, 219, 254, 0.14), transparent 24%),
+    radial-gradient(circle at 86% 82%, rgba(148, 163, 184, 0.12), transparent 22%);
+}
+
+#contact > .container {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.22), rgba(224, 242, 254, 0.16));
+}
+
+#contact > .container::after {
+  background:
+    radial-gradient(circle at 16% 78%, rgba(125, 211, 252, 0.16), transparent 26%),
+    radial-gradient(circle at 88% 20%, rgba(96, 165, 250, 0.14), transparent 22%);
+}
+
+#publications .pub-card {
+  box-shadow:
+    0 20px 42px rgba(15, 23, 42, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    0 0 24px rgba(191, 219, 254, 0.08);
+}
+
+#publications .pub-card::after {
+  background:
+    linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.22) 18%, rgba(191, 219, 254, 0.18) 34%, transparent 52%),
+    radial-gradient(circle at top right, rgba(191, 219, 254, 0.16), transparent 38%);
+  background-size: 220% 100%, 100% 100%;
+  animation: publicationShimmer 12s ease-in-out infinite;
+}
+
+#publications .pub-card:hover {
+  box-shadow:
+    0 30px 62px rgba(15, 23, 42, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.24),
+    0 0 36px rgba(96, 165, 250, 0.14);
+}
+
+#publications .pub-card:hover::after {
+  opacity: 1;
+}
+
 /* ---------- Responsive Design ---------- */
 @media (max-width: 1024px) {
   .section > .container {
