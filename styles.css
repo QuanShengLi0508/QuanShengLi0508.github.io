@@ -6128,3 +6128,13 @@ body.custom-cursor-pressed .custom-cursor-ring span {
     font-size: 0.95rem;
   }
 }
+
+/* ---------- Hero Name Visibility Safeguard ---------- */
+.hero-name {
+  color: #ffffff !important;
+  background: none !important;
+  -webkit-text-fill-color: #ffffff !important;
+  text-shadow:
+    0 10px 26px rgba(125, 211, 252, 0.16),
+    0 0 22px rgba(255, 255, 255, 0.08);
+}
