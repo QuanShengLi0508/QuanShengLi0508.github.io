@@ -5631,3 +5631,255 @@ body.custom-cursor-pressed .custom-cursor-ring span {
       0 0 56px rgba(125, 211, 252, 0.08);
   }
 }
+
+@keyframes desktopHeroMarkFloat {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.92;
+  }
+  50% {
+    transform: translate3d(12px, -10px, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes desktopPublicationSweep {
+  0%, 100% {
+    background-position: 0% 0%, 100% 0%, center center;
+    opacity: 0.88;
+  }
+  50% {
+    background-position: 100% 0%, 0% 0%, center center;
+    opacity: 1;
+  }
+}
+
+@media (min-width: 1180px) and (hover: hover) and (pointer: fine) {
+  .hero-container {
+    position: relative;
+  }
+
+  .hero-container::before {
+    content: 'RESEARCH PORTFOLIO';
+    position: absolute;
+    top: 34px;
+    right: 26px;
+    padding: 10px 16px;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    color: rgba(226, 232, 240, 0.86);
+    background: rgba(5, 12, 30, 0.44);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow:
+      0 18px 38px rgba(2, 6, 23, 0.18),
+      0 0 24px rgba(125, 211, 252, 0.08);
+    animation: desktopHeroMarkFloat 9s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  .hero-container::after {
+    content: '01';
+    position: absolute;
+    right: -6px;
+    top: 106px;
+    font-size: clamp(6rem, 9vw, 8.8rem);
+    font-weight: 800;
+    line-height: 0.85;
+    color: rgba(255, 255, 255, 0.04);
+    -webkit-text-stroke: 1px rgba(226, 232, 240, 0.12);
+    text-shadow: 0 0 34px rgba(125, 211, 252, 0.08);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .hero-text {
+    position: relative;
+    padding-left: 26px;
+  }
+
+  .hero-text::before {
+    content: 'INFRARED SYSTEMS · ANALOG IC · SCIENTIFIC ML';
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    min-height: 28px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    margin-bottom: 6px;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    color: rgba(191, 219, 254, 0.94);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.08),
+      0 10px 24px rgba(2, 6, 23, 0.14);
+  }
+
+  .hero-text::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 14px;
+    bottom: 14px;
+    width: 1px;
+    background: linear-gradient(180deg, rgba(191, 219, 254, 0), rgba(191, 219, 254, 0.9), rgba(196, 181, 253, 0.8), rgba(191, 219, 254, 0));
+    box-shadow: 0 0 18px rgba(125, 211, 252, 0.18);
+  }
+
+  .hero-greeting {
+    color: rgba(226, 232, 240, 0.6);
+    letter-spacing: 0.28em;
+  }
+
+  .hero-title {
+    font-size: 1.06rem;
+    gap: 12px;
+  }
+
+  .hero-affiliation {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.08),
+      0 12px 28px rgba(2, 6, 23, 0.14);
+  }
+
+  .hero-actions {
+    margin-top: 10px;
+  }
+
+  .hero-actions .btn-primary {
+    background:
+      linear-gradient(135deg, #60a5fa 0%, #2563eb 58%, #1e3a8a 100%);
+    box-shadow:
+      0 20px 40px rgba(37, 99, 235, 0.28),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2),
+      0 0 30px rgba(125, 211, 252, 0.1);
+  }
+
+  .hero-actions .btn-outline {
+    background:
+      linear-gradient(145deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.06));
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.08),
+      0 16px 32px rgba(2, 6, 23, 0.14);
+  }
+
+  #publications .publications-list {
+    position: relative;
+    overflow: visible;
+  }
+
+  #publications .publications-list::before {
+    background:
+      linear-gradient(118deg, transparent 8%, rgba(255, 255, 255, 0.3) 22%, transparent 40%),
+      linear-gradient(72deg, transparent 12%, rgba(191, 219, 254, 0.22) 30%, transparent 48%),
+      radial-gradient(circle at top right, rgba(191, 219, 254, 0.2), transparent 34%);
+    background-size: 220% 100%, 220% 100%, 100% 100%;
+    animation: desktopPublicationSweep 13s ease-in-out infinite;
+  }
+
+  #publications .pub-card {
+    padding: 38px 40px 34px;
+    gap: 34px;
+    border-radius: 34px;
+    box-shadow:
+      0 36px 80px rgba(15, 23, 42, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.24),
+      0 0 48px rgba(96, 165, 250, 0.1);
+  }
+
+  #publications .pub-year {
+    min-width: 128px;
+    padding-right: 26px;
+    position: relative;
+  }
+
+  #publications .pub-year::after {
+    content: '01';
+    display: block;
+    margin-top: 18px;
+    font-size: 4.6rem;
+    font-weight: 800;
+    line-height: 0.82;
+    color: rgba(148, 163, 184, 0.14);
+    letter-spacing: -0.08em;
+  }
+
+  #publications .pub-content {
+    position: relative;
+    gap: 18px;
+  }
+
+  #publications .pub-content::before {
+    content: 'FEATURED PAPER';
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    min-height: 28px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    color: #1d4ed8;
+    background: rgba(219, 234, 254, 0.68);
+    border: 1px solid rgba(147, 197, 253, 0.22);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.4),
+      0 12px 22px rgba(15, 23, 42, 0.08);
+  }
+
+  #publications .pub-topline {
+    gap: 14px;
+    align-items: center;
+  }
+
+  #publications .pub-title {
+    max-width: 22ch;
+    font-size: 1.34rem;
+    line-height: 1.55;
+  }
+
+  #publications .pub-authors {
+    max-width: 72ch;
+    font-size: 0.98rem;
+  }
+
+  #publications .pub-facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px 24px;
+    align-items: start;
+  }
+
+  #publications .pub-fact {
+    padding-top: 12px;
+    border-top: 1px solid rgba(191, 219, 254, 0.16);
+  }
+
+  #publications .pub-links {
+    gap: 18px;
+    align-items: center;
+  }
+
+  #publications .pub-link {
+    position: relative;
+    padding-right: 18px;
+  }
+
+  #publications .pub-link:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 1px;
+    height: 14px;
+    background: rgba(148, 163, 184, 0.28);
+    transform: translateY(-50%);
+  }
+}
