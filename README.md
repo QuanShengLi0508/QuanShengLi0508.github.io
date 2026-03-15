@@ -18,6 +18,7 @@
 ├── .dockerignore                       # Docker 构建忽略项
 ├── .env.example                        # Docker / Compose 环境变量示例
 ├── .github/workflows/deploy-pages.yml  # GitHub Pages 自动部署
+├── DEPLOY_WITH_DOCKER.md               # Docker 部署说明
 ├── Makefile                            # Docker 常用命令入口
 ├── assets/
 │   ├── images/                         # 头像、背景图及其他图片资源
@@ -55,71 +56,33 @@ http://localhost:8000
 
 ### 使用 Docker
 
-项目已提供 `Dockerfile`、`nginx.conf`、`docker-compose.yml` 和 `Makefile`，可以直接用于本地容器化运行。
+这是最简单的 Docker 部署方式：
 
-如果需要自定义镜像名、容器名或端口，可先复制环境变量示例：
+1. 复制环境变量示例
 
 ```bash
 cp .env.example .env
 ```
 
-然后根据需要修改：
-
-```text
-COMPOSE_PROJECT_NAME=academic-homepage
-IMAGE_NAME=academic-homepage
-IMAGE_TAG=latest
-CONTAINER_NAME=academic-homepage
-HOST_PORT=8080
-```
-
-构建镜像：
+2. 启动服务
 
 ```bash
-docker build -t academic-homepage .
+make docker-up
 ```
 
-运行容器：
-
-```bash
-docker run --rm -p 8080:80 academic-homepage
-```
-
-然后访问：
+3. 打开浏览器访问
 
 ```text
 http://localhost:8080
-```
-
-如果你更习惯使用 Compose：
-
-```bash
-docker compose up -d --build
 ```
 
 停止服务：
 
 ```bash
-docker compose down
-```
-
-### 使用 Makefile
-
-为了减少重复输入，也可以直接使用内置命令：
-
-```bash
-make docker-build
-make docker-up
-make docker-logs
-make docker-check
 make docker-down
 ```
 
-默认访问地址仍为：
-
-```text
-http://localhost:8080
-```
+如果需要自定义端口、镜像名、容器名，或者想直接使用 `docker compose` / `docker run`，请看 [`DEPLOY_WITH_DOCKER.md`](DEPLOY_WITH_DOCKER.md)。
 
 ## 内容维护
 
