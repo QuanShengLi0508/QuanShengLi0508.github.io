@@ -3949,6 +3949,261 @@ body.custom-cursor-pressed .custom-cursor-ring span {
     0 0 20px rgba(148, 163, 184, 0.08);
 }
 
+/* ---------- Site-Wide Interactive Portfolio Layer ---------- */
+@keyframes heroCurtainFlow {
+  0%, 100% {
+    background-position: 0% 0%, 100% 0%, 50% 50%;
+    opacity: 0.84;
+  }
+  50% {
+    background-position: 100% 0%, 0% 0%, 46% 54%;
+    opacity: 1;
+  }
+}
+
+@keyframes panelEdgeSweep {
+  0% {
+    background-position: 0% 0%, center center;
+  }
+  50% {
+    background-position: 100% 0%, center center;
+  }
+  100% {
+    background-position: 0% 0%, center center;
+  }
+}
+
+.hero-bg-animation {
+  background:
+    linear-gradient(108deg, transparent 12%, rgba(125, 211, 252, 0.22) 28%, rgba(125, 211, 252, 0.04) 42%, transparent 58%),
+    linear-gradient(76deg, transparent 18%, rgba(196, 181, 253, 0.2) 34%, rgba(196, 181, 253, 0.03) 48%, transparent 62%),
+    radial-gradient(circle at 50% 50%, rgba(191, 219, 254, 0.12), transparent 58%);
+  background-size: 170% 140%, 160% 140%, 100% 100%;
+  animation: heroCurtainFlow 18s ease-in-out infinite;
+}
+
+.hero::after {
+  filter: blur(30px);
+  opacity: 0.92;
+}
+
+.hero-bg-animation::before,
+.hero-bg-animation::after {
+  width: 52vw;
+  max-width: 680px;
+  height: 44vh;
+  max-height: 500px;
+  opacity: 0.84;
+  filter: blur(28px);
+  mix-blend-mode: screen;
+}
+
+.hero-bg-animation::before {
+  background:
+    linear-gradient(128deg, rgba(125, 211, 252, 0.32), rgba(125, 211, 252, 0.06) 42%, transparent 62%),
+    linear-gradient(98deg, transparent 24%, rgba(255, 255, 255, 0.14) 38%, transparent 52%);
+}
+
+.hero-bg-animation::after {
+  background:
+    linear-gradient(308deg, rgba(196, 181, 253, 0.28), rgba(196, 181, 253, 0.06) 42%, transparent 62%),
+    linear-gradient(78deg, transparent 18%, rgba(255, 255, 255, 0.12) 32%, transparent 46%);
+}
+
+#about .about-grid,
+#research .research-grid,
+#projects .projects-grid,
+#contact .contact-grid,
+#publications .publications-list,
+#competitions .awards-grid,
+#education .timeline,
+.footer-content {
+  position: relative;
+  isolation: isolate;
+}
+
+#about .about-grid,
+#research .research-grid,
+#projects .projects-grid,
+#contact .contact-grid {
+  padding: 22px;
+  border-radius: 34px;
+  overflow: hidden;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.26), var(--section-shell-tint));
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow:
+    0 24px 54px rgba(15, 23, 42, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    0 0 34px var(--section-card-glow);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+#about .about-grid {
+  grid-template-columns: minmax(0, 1.12fr) minmax(300px, 0.88fr);
+}
+
+#about .about-stats {
+  gap: 18px;
+}
+
+#publications .publications-list,
+#competitions .awards-grid,
+#education .timeline {
+  border-color: rgba(255, 255, 255, 0.22);
+  box-shadow:
+    0 28px 62px rgba(15, 23, 42, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    0 0 38px var(--section-card-glow);
+}
+
+.footer-content {
+  --section-beam-1: rgba(125, 211, 252, 0.16);
+  --section-beam-2: rgba(196, 181, 253, 0.14);
+  --section-card-glow: rgba(96, 165, 250, 0.12);
+}
+
+.interactive-panel {
+  --pointer-x: 50%;
+  --pointer-y: 50%;
+  --pointer-alpha: 0;
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
+  --beam-angle: 0deg;
+  --panel-hover-lift: -8px;
+  --panel-lift-current: 0px;
+  position: relative;
+  isolation: isolate;
+  transform:
+    perspective(1400px)
+    translate3d(0, var(--panel-lift-current), 0)
+    rotateX(var(--tilt-x))
+    rotateY(var(--tilt-y));
+  transform-style: preserve-3d;
+  transform-origin: center center;
+  backface-visibility: hidden;
+  will-change: transform, box-shadow;
+  transition:
+    transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 260ms ease,
+    border-color 220ms ease;
+}
+
+.interactive-panel > :not(.panel-spotlight):not(.panel-frame) {
+  position: relative;
+  z-index: 1;
+}
+
+.interactive-panel .panel-spotlight,
+.interactive-panel .panel-frame {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.interactive-panel .panel-spotlight {
+  inset: -1px;
+  z-index: 0;
+  background:
+    radial-gradient(circle 180px at var(--pointer-x) var(--pointer-y), rgba(255, 255, 255, 0.36), rgba(255, 255, 255, 0.12) 20%, transparent 58%),
+    radial-gradient(circle 320px at var(--pointer-x) var(--pointer-y), var(--section-beam-1, rgba(125, 211, 252, 0.16)), transparent 62%);
+  opacity: calc(0.14 + var(--pointer-alpha) * 0.82);
+  mix-blend-mode: screen;
+  transition: opacity 220ms ease;
+}
+
+.interactive-panel .panel-frame {
+  z-index: 0;
+  background:
+    linear-gradient(calc(122deg + var(--beam-angle)), rgba(255, 255, 255, 0.24), transparent 22%, transparent 72%, rgba(255, 255, 255, 0.16)),
+    radial-gradient(circle 180px at var(--pointer-x) var(--pointer-y), rgba(255, 255, 255, 0.16), transparent 40%);
+  background-size: 220% 100%, 100% 100%;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 0 0 1px rgba(255, 255, 255, 0.04);
+  opacity: calc(0.34 + var(--pointer-alpha) * 0.44);
+  animation: panelEdgeSweep 9s linear infinite;
+  transition: opacity 220ms ease, box-shadow 220ms ease;
+}
+
+.interactive-panel-enabled:hover {
+  --panel-lift-current: var(--panel-hover-lift);
+}
+
+.interactive-panel-enabled:hover,
+.interactive-panel.is-pointer-active {
+  transform:
+    perspective(1400px)
+    translate3d(0, var(--panel-lift-current), 0)
+    rotateX(var(--tilt-x))
+    rotateY(var(--tilt-y));
+}
+
+.interactive-panel.is-pointer-active .panel-frame {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.12),
+    0 0 28px var(--section-card-glow, rgba(96, 165, 250, 0.14));
+}
+
+.hero-content,
+.about-grid,
+.research-grid,
+.publications-list,
+.projects-grid,
+.awards-grid,
+.timeline,
+.contact-grid,
+.footer-content {
+  --panel-hover-lift: -10px;
+}
+
+.about-console,
+.stat-card,
+.research-card,
+.pub-card,
+.project-card,
+.timeline-content,
+.award-card,
+.contact-card,
+.contact-map {
+  --panel-hover-lift: -12px;
+}
+
+.hero-content .panel-spotlight {
+  background:
+    radial-gradient(circle 260px at var(--pointer-x) var(--pointer-y), rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0.12) 18%, transparent 54%),
+    radial-gradient(circle 420px at var(--pointer-x) var(--pointer-y), rgba(125, 211, 252, 0.22), transparent 64%),
+    radial-gradient(circle at 82% 18%, rgba(196, 181, 253, 0.18), transparent 28%);
+}
+
+.hero-content .panel-frame {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.24),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 0 34px rgba(125, 211, 252, 0.14);
+}
+
+#publications .pub-card .panel-spotlight,
+#education .timeline-content .panel-spotlight,
+#competitions .award-card .panel-spotlight {
+  opacity: calc(0.18 + var(--pointer-alpha) * 0.86);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-bg-animation,
+  .panel-frame {
+    animation: none;
+  }
+
+  .interactive-panel {
+    transform: none;
+    transition: box-shadow 220ms ease, border-color 220ms ease;
+  }
+}
+
 /* ---------- Responsive Design ---------- */
 @media (max-width: 1024px) {
   .section::after {
@@ -4105,6 +4360,10 @@ body.custom-cursor-pressed .custom-cursor-ring span {
   }
 
   #publications .publications-list,
+  #about .about-grid,
+  #research .research-grid,
+  #projects .projects-grid,
+  #contact .contact-grid,
   #competitions .awards-grid,
   #education .timeline {
     padding: 20px;
@@ -4230,6 +4489,10 @@ body.custom-cursor-pressed .custom-cursor-ring span {
   }
 
   #publications .publications-list,
+  #about .about-grid,
+  #research .research-grid,
+  #projects .projects-grid,
+  #contact .contact-grid,
   #competitions .awards-grid,
   #education .timeline {
     padding: 16px;

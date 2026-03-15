@@ -173,6 +173,150 @@ document.addEventListener('DOMContentLoaded', () => {
 
   setupCustomCursor();
 
+  // ---------- Interactive Panel Spotlight ----------
+  function setupInteractivePanels() {
+    const panelSelector = [
+      '.hero-content',
+      '.about-grid',
+      '.about-console',
+      '.research-grid',
+      '.publications-list',
+      '.projects-grid',
+      '.awards-grid',
+      '.timeline',
+      '.contact-grid',
+      '.footer-content',
+      '.stat-card',
+      '.research-card',
+      '.pub-card',
+      '.project-card',
+      '.timeline-content',
+      '.award-card',
+      '.contact-card',
+      '.contact-map'
+    ].join(', ');
+
+    const panels = Array.from(document.querySelectorAll(panelSelector));
+    if (!panels.length) return;
+
+    const finePointerQuery = window.matchMedia('(hover: hover) and (pointer: fine)');
+    const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let enabled = false;
+
+    function ensureOverlay(panel, className) {
+      const exists = Array.from(panel.children).some(
+        child => child.classList && child.classList.contains(className)
+      );
+      if (exists) return;
+
+      const overlay = document.createElement('span');
+      overlay.className = className;
+      overlay.setAttribute('aria-hidden', 'true');
+      panel.appendChild(overlay);
+    }
+
+    function resetPanel(panel) {
+      panel.style.setProperty('--pointer-x', '50%');
+      panel.style.setProperty('--pointer-y', '50%');
+      panel.style.setProperty('--tilt-x', '0deg');
+      panel.style.setProperty('--tilt-y', '0deg');
+      panel.style.setProperty('--pointer-alpha', '0');
+      panel.style.setProperty('--beam-angle', '0deg');
+    }
+
+    function handlePanelEnter(event) {
+      event.currentTarget.classList.add('is-pointer-active');
+    }
+
+    function handlePanelMove(event) {
+      const panel = event.currentTarget;
+      const closestPanel = event.target.closest('.interactive-panel');
+      if (closestPanel && closestPanel !== panel) return;
+
+      const rect = panel.getBoundingClientRect();
+      const rawX = event.clientX - rect.left;
+      const rawY = event.clientY - rect.top;
+      const x = Math.max(0, Math.min(rawX, rect.width));
+      const y = Math.max(0, Math.min(rawY, rect.height));
+      const normalizedX = rect.width ? x / rect.width : 0.5;
+      const normalizedY = rect.height ? y / rect.height : 0.5;
+      const tiltX = ((0.5 - normalizedY) * 6).toFixed(2);
+      const tiltY = ((normalizedX - 0.5) * 8).toFixed(2);
+
+      panel.style.setProperty('--pointer-x', `${(normalizedX * 100).toFixed(2)}%`);
+      panel.style.setProperty('--pointer-y', `${(normalizedY * 100).toFixed(2)}%`);
+      panel.style.setProperty('--tilt-x', `${tiltX}deg`);
+      panel.style.setProperty('--tilt-y', `${tiltY}deg`);
+      panel.style.setProperty('--pointer-alpha', '1');
+      panel.style.setProperty('--beam-angle', `${((normalizedX * 180) - 90).toFixed(2)}deg`);
+      panel.classList.add('is-pointer-active');
+    }
+
+    function handlePanelLeave(event) {
+      const panel = event.currentTarget;
+      panel.classList.remove('is-pointer-active');
+      resetPanel(panel);
+    }
+
+    function enablePanels() {
+      if (enabled) return;
+      enabled = true;
+      panels.forEach(panel => {
+        panel.classList.add('interactive-panel-enabled');
+        panel.addEventListener('pointerenter', handlePanelEnter);
+        panel.addEventListener('pointermove', handlePanelMove, { passive: true });
+        panel.addEventListener('pointerleave', handlePanelLeave);
+      });
+    }
+
+    function disablePanels() {
+      if (!enabled) {
+        panels.forEach(panel => {
+          panel.classList.remove('interactive-panel-enabled', 'is-pointer-active');
+          resetPanel(panel);
+        });
+        return;
+      }
+
+      enabled = false;
+      panels.forEach(panel => {
+        panel.classList.remove('interactive-panel-enabled', 'is-pointer-active');
+        panel.removeEventListener('pointerenter', handlePanelEnter);
+        panel.removeEventListener('pointermove', handlePanelMove);
+        panel.removeEventListener('pointerleave', handlePanelLeave);
+        resetPanel(panel);
+      });
+    }
+
+    function syncPanelMode() {
+      if (finePointerQuery.matches && !reduceMotionQuery.matches) {
+        enablePanels();
+      } else {
+        disablePanels();
+      }
+    }
+
+    panels.forEach(panel => {
+      panel.classList.add('interactive-panel');
+      ensureOverlay(panel, 'panel-spotlight');
+      ensureOverlay(panel, 'panel-frame');
+      resetPanel(panel);
+    });
+
+    syncPanelMode();
+
+    const syncHandler = () => syncPanelMode();
+    if (typeof finePointerQuery.addEventListener === 'function') {
+      finePointerQuery.addEventListener('change', syncHandler);
+      reduceMotionQuery.addEventListener('change', syncHandler);
+    } else {
+      finePointerQuery.addListener(syncHandler);
+      reduceMotionQuery.addListener(syncHandler);
+    }
+  }
+
+  setupInteractivePanels();
+
   // ---------- About Me Typing Effect ----------
   const aboutConsole = document.getElementById('aboutConsole');
   const aboutTypeTargets = document.querySelectorAll('.about-type-target');
