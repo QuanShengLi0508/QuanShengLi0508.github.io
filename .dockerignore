@@ -3,7 +3,11 @@
 .claude
 .DS_Store
 _site
+.env
+.env.example
+Makefile
 README.md
 TEMPLATE_GUIDE.md
 LICENSE
+docker-compose.yml
 李泉胜简历刘丽丽版.pptx

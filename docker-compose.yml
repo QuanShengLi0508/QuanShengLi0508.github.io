@@ -1,9 +1,17 @@
+name: ${COMPOSE_PROJECT_NAME:-academic-homepage}
+
 services:
   homepage:
+    image: ${IMAGE_NAME:-academic-homepage}:${IMAGE_TAG:-latest}
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: academic-homepage
+    container_name: ${CONTAINER_NAME:-academic-homepage}
     ports:
-      - "8080:80"
+      - "${HOST_PORT:-8080}:80"
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O /dev/null http://127.0.0.1/healthz || exit 1"]
+      interval: 30s
+      timeout: 3s
+      retries: 3

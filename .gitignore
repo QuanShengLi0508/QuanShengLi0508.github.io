@@ -7,3 +7,6 @@
 # 本地构建产物
 _site/
 .DS_Store
+
+# Docker 本地环境变量
+.env

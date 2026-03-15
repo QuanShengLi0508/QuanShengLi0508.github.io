@@ -16,7 +16,9 @@
 ```text
 .
 ├── .dockerignore                       # Docker 构建忽略项
+├── .env.example                        # Docker / Compose 环境变量示例
 ├── .github/workflows/deploy-pages.yml  # GitHub Pages 自动部署
+├── Makefile                            # Docker 常用命令入口
 ├── assets/
 │   ├── images/                         # 头像、背景图及其他图片资源
 │   └── papers/                         # 论文 PDF 等附件
@@ -53,7 +55,23 @@ http://localhost:8000
 
 ### 使用 Docker
 
-项目已提供 `Dockerfile`、`nginx.conf` 和 `docker-compose.yml`，可直接容器化运行。
+项目已提供 `Dockerfile`、`nginx.conf`、`docker-compose.yml` 和 `Makefile`，可以直接用于本地容器化运行。
+
+如果需要自定义镜像名、容器名或端口，可先复制环境变量示例：
+
+```bash
+cp .env.example .env
+```
+
+然后根据需要修改：
+
+```text
+COMPOSE_PROJECT_NAME=academic-homepage
+IMAGE_NAME=academic-homepage
+IMAGE_TAG=latest
+CONTAINER_NAME=academic-homepage
+HOST_PORT=8080
+```
 
 构建镜像：
 
@@ -83,6 +101,24 @@ docker compose up -d --build
 
 ```bash
 docker compose down
+```
+
+### 使用 Makefile
+
+为了减少重复输入，也可以直接使用内置命令：
+
+```bash
+make docker-build
+make docker-up
+make docker-logs
+make docker-check
+make docker-down
+```
+
+默认访问地址仍为：
+
+```text
+http://localhost:8080
 ```
 
 ## 内容维护
