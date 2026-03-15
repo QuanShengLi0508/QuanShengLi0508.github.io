@@ -133,6 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
     heroName.classList.remove('animate-fade-up', 'delay-1');
     heroName.classList.add('hero-name-floating');
     heroName.setAttribute('aria-label', heroNameLabel);
+    heroName.setAttribute('data-title', heroNameLabel);
     heroName.style.setProperty('opacity', '1', 'important');
     heroName.style.setProperty('visibility', 'visible', 'important');
     heroName.style.setProperty('background', 'none', 'important');

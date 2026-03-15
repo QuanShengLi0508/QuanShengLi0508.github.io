@@ -6410,6 +6410,8 @@ body.custom-cursor-pressed .custom-cursor-ring span {
 }
 
 .hero-name-floating {
+  position: relative;
+  isolation: isolate;
   display: inline-flex !important;
   align-items: flex-end;
   gap: 0.08em;
@@ -6421,9 +6423,48 @@ body.custom-cursor-pressed .custom-cursor-ring span {
   animation: heroNameFloat 5.6s ease-in-out infinite !important;
 }
 
+.hero-name-floating::before {
+  content: attr(data-title);
+  position: absolute;
+  left: 0.02em;
+  top: 0.08em;
+  z-index: 0;
+  font: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  color: rgba(125, 211, 252, 0.18);
+  opacity: 0.95;
+  filter: blur(12px);
+  transform: scale(1.02);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.hero-name-floating::after {
+  content: '';
+  position: absolute;
+  left: 0.12em;
+  right: 26%;
+  top: 0.16em;
+  height: 1px;
+  z-index: 0;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.72), rgba(191, 219, 254, 0.18), transparent);
+  opacity: 0.72;
+  pointer-events: none;
+}
+
 .hero-name-text {
   display: inline-block;
   min-width: 3.05ch;
+  position: relative;
+  z-index: 1;
+  color: #f9fbff;
+  text-rendering: optimizeLegibility;
+  -webkit-text-stroke: 0.35px rgba(255, 255, 255, 0.18);
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.32),
+    0 14px 26px rgba(15, 23, 42, 0.22),
+    0 0 22px rgba(191, 219, 254, 0.08);
 }
 
 .hero-name-caret {
@@ -6458,6 +6499,23 @@ body.custom-cursor-pressed .custom-cursor-ring span {
   font-family: var(--font-display-zh) !important;
   font-weight: 800;
   letter-spacing: -0.085em !important;
+}
+
+@media (min-width: 769px) and (hover: hover) and (pointer: fine) {
+  .hero-name-text {
+    -webkit-text-stroke: 0.45px rgba(255, 255, 255, 0.2);
+    text-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.34),
+      0 18px 34px rgba(15, 23, 42, 0.24),
+      0 0 28px rgba(191, 219, 254, 0.1);
+  }
+
+  .hero-name-floating::before {
+    left: 0.03em;
+    top: 0.1em;
+    color: rgba(167, 139, 250, 0.16);
+    filter: blur(14px);
+  }
 }
 
 .section-title,
