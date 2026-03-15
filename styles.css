@@ -4584,19 +4584,59 @@ body.custom-cursor-pressed .custom-cursor-ring span {
   .interactive-panel {
     transform: none !important;
     will-change: auto;
+    transition: none !important;
   }
 
   .panel-spotlight,
   .panel-frame {
-    animation: none;
+    animation: none !important;
+    transition: none !important;
   }
 
   .panel-spotlight {
-    opacity: 0.2 !important;
+    display: none !important;
   }
 
   .panel-frame {
-    opacity: 0.28 !important;
+    display: none !important;
+  }
+
+  .floating-shape,
+  .section::after,
+  .hero::after,
+  .hero-bg-animation::before,
+  .hero-bg-animation::after,
+  #publications .pub-card::after,
+  #publications .publications-list::before,
+  #publications .publications-list::after {
+    display: none !important;
+  }
+
+  .hero-bg-animation,
+  .hero-content::before,
+  .hero-content::after,
+  #publications .publications-list {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .hero-bg-animation {
+    background:
+      radial-gradient(circle at 22% 20%, rgba(125, 211, 252, 0.14), transparent 34%),
+      radial-gradient(circle at 78% 24%, rgba(196, 181, 253, 0.12), transparent 30%) !important;
+    opacity: 0.72;
+  }
+
+  .hero-content::before,
+  .hero-content::after {
+    opacity: 0.36 !important;
+  }
+
+  #publications .publications-list {
+    box-shadow:
+      0 22px 46px rgba(15, 23, 42, 0.14),
+      inset 0 1px 0 rgba(255, 255, 255, 0.14),
+      0 0 18px rgba(96, 165, 250, 0.06) !important;
   }
 
   .section > .container {
