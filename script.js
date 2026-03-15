@@ -49,18 +49,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const heroMotto = document.querySelector('.hero-motto');
   const heroMottoState = document.querySelector('.hero-motto-state');
   const heroMottoQuotes = [
-    '“世界上有些悲剧，没有解法。”',
-    '“每个人心里都住着一个死小孩。”',
-    '“你不懂那种看着一个人离开，却无能为力的感觉。”',
-    '“命运这种东西，生来就是要被踏于足下的。”',
-    '“有些时间点错过一次，就好比错过了一生。”',
-    '“孤独是与生俱来的。”',
-    '“真正重要的东西，往往是没有的人比拥有的人更清楚。”',
-    '“人总要抱着点什么，才知道自己为什么活着。”',
-    '“所谓弃族的命运，就是要穿越荒原，再次竖起战旗。”',
-    '“如果喜欢谁，就满世界去找她，别等她来找你。”',
-    '“你要去变得很强，强到足够保护你想保护的人。”',
-    '“有些事不是看到了希望才坚持，而是坚持了才能看到希望。”'
+    '世界上有些悲剧，没有解法。',
+    '每个人心里都住着一个死小孩。',
+    '你不懂那种看着一个人离开，却无能为力的感觉。',
+    '命运这种东西，生来就是要被踏于足下的。',
+    '有些时间点错过一次，就好比错过了一生。',
+    '孤独是与生俱来的。',
+    '真正重要的东西，往往是没有的人比拥有的人更清楚。',
+    '人总要抱着点什么，才知道自己为什么活着。',
+    '所谓弃族的命运，就是要穿越荒原，再次竖起战旗。',
+    '如果喜欢谁，就满世界去找她，别等她来找你。',
+    '你要去变得很强，强到足够保护你想保护的人。',
+    '有些事不是看到了希望才坚持，而是坚持了才能看到希望。'
   ];
 
   if (heroMottoText && heroMotto) {
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
       heroMottoText.textContent = heroMottoQuotes[0];
       heroMotto.classList.add('is-idle');
       if (heroMottoState) {
-        heroMottoState.textContent = 'STILL';
+        heroMottoState.textContent = 'STABLE';
       }
     } else {
       let heroMottoIndex = 0;
@@ -91,11 +91,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (heroMottoDeleting) {
           heroMottoText.textContent = currentQuote.slice(0, Math.max(0, heroMottoCharIndex - 1));
           heroMottoCharIndex -= 1;
-          updateHeroMottoState('CLEAR');
+          updateHeroMottoState('PURGE');
         } else {
           heroMottoText.textContent = currentQuote.slice(0, heroMottoCharIndex + 1);
           heroMottoCharIndex += 1;
-          updateHeroMottoState('TYPE');
+          updateHeroMottoState('WRITE');
         }
 
         let nextDelay = heroMottoDeleting ? 42 : 115;
@@ -104,13 +104,13 @@ document.addEventListener('DOMContentLoaded', () => {
           heroMottoDeleting = true;
           heroMotto.classList.remove('is-typing');
           heroMotto.classList.add('is-idle');
-          updateHeroMottoState('HOLD');
+          updateHeroMottoState('LOCK');
           nextDelay = 2600;
         } else if (heroMottoDeleting && heroMottoCharIndex <= 0) {
           heroMottoDeleting = false;
           heroMottoIndex = (heroMottoIndex + 1) % heroMottoQuotes.length;
           heroMotto.classList.remove('is-deleting', 'is-idle');
-          updateHeroMottoState('NEXT');
+          updateHeroMottoState('SHIFT');
           nextDelay = 560;
         } else {
           heroMotto.classList.remove('is-idle');

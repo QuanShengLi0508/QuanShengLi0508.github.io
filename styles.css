@@ -819,7 +819,7 @@ body.custom-cursor-pressed .custom-cursor-ring span {
 }
 
 .hero-motto {
-  width: min(100%, 620px);
+  width: min(100%, 628px);
   display: grid;
   gap: 8px;
   margin-top: 10px;
@@ -831,9 +831,9 @@ body.custom-cursor-pressed .custom-cursor-ring span {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 10px;
+  gap: 12px;
   min-width: 0;
-  padding-inline: 2px;
+  padding-inline: 2px 4px;
 }
 
 .hero-motto-kicker,
@@ -842,11 +842,11 @@ body.custom-cursor-pressed .custom-cursor-ring span {
   align-items: center;
   min-height: 0;
   padding: 0;
-  border-radius: 999px;
+  border-radius: 0;
   font-family: var(--font-mono);
-  font-size: 0.66rem;
+  font-size: 0.64rem;
   font-weight: 700;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   background: none;
   border: none;
@@ -854,34 +854,34 @@ body.custom-cursor-pressed .custom-cursor-ring span {
 }
 
 .hero-motto-kicker {
-  color: rgba(191, 219, 254, 0.76);
+  color: rgba(125, 211, 252, 0.72);
 }
 
 .hero-motto-kicker::before {
   content: '';
-  width: 18px;
+  width: 22px;
   height: 1px;
-  margin-right: 10px;
-  background: linear-gradient(90deg, rgba(125, 211, 252, 0.86), rgba(125, 211, 252, 0));
+  margin-right: 12px;
+  background: linear-gradient(90deg, rgba(56, 189, 248, 0.92), rgba(56, 189, 248, 0));
 }
 
 .hero-motto-state {
   margin-left: auto;
-  gap: 8px;
-  padding: 4px 10px 4px 8px;
+  gap: 7px;
+  padding: 4px 0 4px 12px;
   border-radius: 999px;
-  background: rgba(8, 18, 38, 0.28);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: rgba(219, 234, 254, 0.74);
+  background: none;
+  border: none;
+  color: rgba(148, 163, 184, 0.82);
 }
 
 .hero-motto-state::before {
   content: '';
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
   background: currentColor;
-  box-shadow: 0 0 12px currentColor;
+  box-shadow: 0 0 10px currentColor;
 }
 
 .hero-motto-shell {
@@ -889,18 +889,19 @@ body.custom-cursor-pressed .custom-cursor-ring span {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: start;
-  gap: 12px;
-  min-height: 72px;
-  padding: 16px 18px 15px 18px;
-  border-radius: 24px;
+  gap: 14px;
+  min-height: 78px;
+  padding: 17px 20px 16px 20px;
+  border-radius: 18px;
   background:
-    linear-gradient(155deg, rgba(8, 18, 38, 0.62), rgba(10, 22, 44, 0.44)),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 40%);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+    linear-gradient(180deg, rgba(5, 11, 24, 0.92), rgba(10, 19, 35, 0.88)),
+    linear-gradient(135deg, rgba(21, 32, 54, 0.8), rgba(7, 12, 24, 0.4));
+  border: 1px solid rgba(125, 211, 252, 0.12);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.08),
-    0 18px 36px rgba(2, 6, 23, 0.16),
-    0 0 0 1px rgba(125, 211, 252, 0.04);
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    inset 0 0 0 1px rgba(148, 163, 184, 0.05),
+    0 18px 34px rgba(2, 6, 23, 0.18),
+    0 0 26px rgba(56, 189, 248, 0.06);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   overflow: hidden;
@@ -909,26 +910,24 @@ body.custom-cursor-pressed .custom-cursor-ring span {
 .hero-motto-shell::before {
   content: '';
   position: absolute;
-  top: 14px;
-  bottom: 14px;
-  left: 14px;
-  width: 2px;
-  border-radius: 999px;
-  background: linear-gradient(180deg, rgba(125, 211, 252, 0.92), rgba(196, 181, 253, 0.52));
-  box-shadow: 0 0 18px rgba(125, 211, 252, 0.18);
-  opacity: 0.9;
+  left: 18px;
+  right: 18px;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(56, 189, 248, 0.55), rgba(56, 189, 248, 0.08) 35%, rgba(167, 139, 250, 0.16) 72%, rgba(255, 255, 255, 0.02));
+  opacity: 0.88;
   pointer-events: none;
 }
 
 .hero-motto-shell::after {
   content: '';
   position: absolute;
-  inset: 1px;
+  inset: 0;
   border-radius: inherit;
   background:
-    linear-gradient(118deg, transparent 10%, rgba(255, 255, 255, 0.08) 30%, transparent 52%),
-    radial-gradient(circle at 88% 0%, rgba(125, 211, 252, 0.12), transparent 30%);
-  opacity: 0.72;
+    linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 26%),
+    repeating-linear-gradient(180deg, rgba(148, 163, 184, 0.03) 0 1px, transparent 1px 6px);
+  opacity: 0.9;
   pointer-events: none;
 }
 
@@ -941,13 +940,14 @@ body.custom-cursor-pressed .custom-cursor-ring span {
 }
 
 .hero-motto-prefix {
-  margin-top: 2px;
-  margin-left: 8px;
+  margin-top: 3px;
+  margin-left: 2px;
   font-family: var(--font-mono);
-  font-size: 0.74rem;
+  font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.18em;
-  color: rgba(125, 211, 252, 0.72);
+  letter-spacing: 0.16em;
+  color: rgba(56, 189, 248, 0.74);
+  text-shadow: 0 0 12px rgba(56, 189, 248, 0.18);
 }
 
 .hero-motto-text {
@@ -955,44 +955,47 @@ body.custom-cursor-pressed .custom-cursor-ring span {
   z-index: 1;
   flex: 1;
   min-width: 0;
-  padding-right: 8px;
-  color: rgba(248, 250, 252, 0.94);
+  padding-right: 10px;
+  color: rgba(226, 232, 240, 0.94);
   font-size: 0.92rem;
-  line-height: 1.78;
+  line-height: 1.82;
   font-weight: 500;
   text-wrap: pretty;
+  text-shadow: 0 0 18px rgba(148, 163, 184, 0.06);
 }
 
 .hero-motto-caret {
-  width: 2px;
-  min-height: 1.5em;
-  margin-top: 3px;
+  width: 1px;
+  min-height: 1.45em;
+  margin-top: 4px;
   border-radius: 999px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(125, 211, 252, 0.68));
-  box-shadow: 0 0 14px rgba(125, 211, 252, 0.16);
+  background: linear-gradient(180deg, rgba(186, 230, 253, 0.95), rgba(56, 189, 248, 0.62));
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.18);
   animation: heroNameCaretBlink 1s step-end infinite;
 }
 
 .hero-motto.is-idle .hero-motto-shell {
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.08),
-    0 20px 42px rgba(2, 6, 23, 0.16),
-    0 0 26px rgba(125, 211, 252, 0.08);
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    inset 0 0 0 1px rgba(148, 163, 184, 0.05),
+    0 18px 32px rgba(2, 6, 23, 0.18),
+    0 0 20px rgba(56, 189, 248, 0.05);
 }
 
 .hero-motto.is-deleting .hero-motto-state {
-  color: rgba(196, 181, 253, 0.82);
+  color: rgba(196, 181, 253, 0.8);
 }
 
 .hero-motto.is-typing .hero-motto-state {
-  color: rgba(125, 211, 252, 0.9);
+  color: rgba(56, 189, 248, 0.88);
 }
 
 .hero-motto.is-typing .hero-motto-shell {
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.08),
-    0 20px 40px rgba(2, 6, 23, 0.16),
-    0 0 24px rgba(125, 211, 252, 0.08);
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    inset 0 0 0 1px rgba(148, 163, 184, 0.05),
+    0 18px 34px rgba(2, 6, 23, 0.18),
+    0 0 24px rgba(56, 189, 248, 0.07);
 }
 
 .btn {
@@ -5074,7 +5077,7 @@ body.custom-cursor-pressed .custom-cursor-ring span {
   .hero-motto-shell {
     min-height: 72px;
     padding: 14px 14px 14px 16px;
-    border-radius: 20px;
+    border-radius: 16px;
     gap: 10px;
   }
 
@@ -5084,12 +5087,12 @@ body.custom-cursor-pressed .custom-cursor-ring span {
   }
 
   .hero-motto-prefix {
-    margin-left: 6px;
+    margin-left: 0;
     font-size: 0.66rem;
   }
 
   .hero-motto-state {
-    padding: 4px 8px 4px 7px;
+    padding: 4px 0 4px 8px;
   }
 
   .hero-actions .btn {
@@ -5713,14 +5716,14 @@ body.custom-cursor-pressed .custom-cursor-ring span {
   }
 
   .hero-motto-shell {
-    min-height: 74px;
-    padding: 17px 20px 16px 18px;
-    border-radius: 24px;
+    min-height: 78px;
+    padding: 18px 22px 17px 20px;
+    border-radius: 18px;
   }
 
   .hero-motto-text {
-    font-size: 0.95rem;
-    line-height: 1.8;
+    font-size: 0.94rem;
+    line-height: 1.82;
   }
 
   .section {
