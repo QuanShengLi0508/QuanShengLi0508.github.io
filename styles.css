@@ -3305,6 +3305,138 @@ body.custom-cursor-pressed .custom-cursor-ring span {
   transform: translateY(0);
 }
 
+/* ---------- Final Visual Overrides ---------- */
+.hero {
+  position: relative;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 8% 6% auto;
+  height: 72%;
+  border-radius: 42px;
+  background:
+    radial-gradient(circle at 18% 24%, rgba(191, 219, 254, 0.18), transparent 26%),
+    radial-gradient(circle at 82% 18%, rgba(196, 181, 253, 0.16), transparent 24%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 62%);
+  filter: blur(18px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-content {
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow:
+    0 32px 72px rgba(2, 6, 23, 0.28),
+    0 0 0 1px rgba(255, 255, 255, 0.03);
+}
+
+.hero-greeting {
+  text-shadow: 0 0 16px rgba(191, 219, 254, 0.12);
+}
+
+.hero-name {
+  filter: drop-shadow(0 12px 26px rgba(191, 219, 254, 0.12));
+}
+
+.hero-description {
+  color: rgba(255, 255, 255, 0.94);
+}
+
+.typed-text {
+  text-shadow: 0 0 18px rgba(96, 165, 250, 0.2);
+}
+
+.section > .container {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.26);
+  box-shadow:
+    0 26px 64px rgba(15, 23, 42, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.section-alt > .container {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.section > .container::before {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent 34%),
+    radial-gradient(circle at top right, rgba(191, 219, 254, 0.14), transparent 30%),
+    radial-gradient(circle at bottom left, rgba(196, 181, 253, 0.08), transparent 28%);
+}
+
+.section-tag {
+  background: rgba(255, 255, 255, 0.66);
+  border-color: rgba(255, 255, 255, 0.44);
+  box-shadow:
+    0 10px 22px rgba(15, 23, 42, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.section-title {
+  text-shadow:
+    0 8px 24px rgba(255, 255, 255, 0.26),
+    0 0 18px rgba(191, 219, 254, 0.08);
+}
+
+.stat-card,
+.research-card,
+.pub-card,
+.project-card,
+.timeline-content,
+.award-card,
+.contact-card,
+.contact-map {
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow:
+    0 18px 38px rgba(15, 23, 42, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+
+.stat-card:hover,
+.research-card:hover,
+.pub-card:hover,
+.project-card:hover,
+.timeline-content:hover,
+.award-card:hover,
+.contact-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255, 255, 255, 0.62);
+  box-shadow:
+    0 26px 54px rgba(15, 23, 42, 0.18),
+    0 0 26px rgba(96, 165, 250, 0.1);
+}
+
+.pub-card {
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.pub-card::before {
+  background: linear-gradient(180deg, rgba(59, 130, 246, 0.92), rgba(167, 139, 250, 0.5));
+}
+
+.project-card,
+.research-card,
+.award-card {
+  background: rgba(252, 253, 255, 0.84);
+}
+
+.btn-primary,
+.btn-outline,
+.social-btn,
+.footer-social a,
+.back-to-top {
+  will-change: transform;
+}
+
+.footer-content {
+  box-shadow:
+    0 22px 52px rgba(2, 6, 23, 0.26),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
 /* ---------- Responsive Design ---------- */
 @media (max-width: 1024px) {
   .section > .container {
