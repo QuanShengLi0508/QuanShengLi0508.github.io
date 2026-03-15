@@ -15,11 +15,15 @@
 
 ```text
 .
+├── .dockerignore                       # Docker 构建忽略项
 ├── .github/workflows/deploy-pages.yml  # GitHub Pages 自动部署
 ├── assets/
 │   ├── images/                         # 头像、背景图及其他图片资源
 │   └── papers/                         # 论文 PDF 等附件
+├── docker-compose.yml                  # Docker Compose 启动配置
+├── Dockerfile                          # Docker 镜像定义
 ├── index.html                          # 页面结构与内容
+├── nginx.conf                          # Nginx 静态站点配置
 ├── styles.css                          # 视觉样式与响应式布局
 ├── script.js                           # 交互逻辑与动画效果
 ├── TEMPLATE_GUIDE.md                   # 模板复用说明
@@ -45,6 +49,40 @@ python3 -m http.server 8000
 
 ```text
 http://localhost:8000
+```
+
+### 使用 Docker
+
+项目已提供 `Dockerfile`、`nginx.conf` 和 `docker-compose.yml`，可直接容器化运行。
+
+构建镜像：
+
+```bash
+docker build -t academic-homepage .
+```
+
+运行容器：
+
+```bash
+docker run --rm -p 8080:80 academic-homepage
+```
+
+然后访问：
+
+```text
+http://localhost:8080
+```
+
+如果你更习惯使用 Compose：
+
+```bash
+docker compose up -d --build
+```
+
+停止服务：
+
+```bash
+docker compose down
 ```
 
 ## 内容维护
