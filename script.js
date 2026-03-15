@@ -48,11 +48,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const heroName = document.querySelector('.hero-name');
 
   if (heroName) {
-    heroName.classList.remove('animate-fade-up');
+    const heroNameLabel = heroName.textContent.trim();
+    const heroNameReduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    heroName.classList.remove('animate-fade-up', 'delay-1');
+    heroName.classList.add('hero-name-floating');
+    heroName.setAttribute('aria-label', heroNameLabel);
     heroName.style.setProperty('opacity', '1', 'important');
     heroName.style.setProperty('visibility', 'visible', 'important');
-    heroName.style.setProperty('transform', 'none', 'important');
-    heroName.style.setProperty('animation', 'none', 'important');
     heroName.style.setProperty('background', 'none', 'important');
     heroName.style.setProperty('color', '#ffffff', 'important');
     heroName.style.setProperty('-webkit-text-fill-color', '#ffffff', 'important');
@@ -61,6 +64,36 @@ document.addEventListener('DOMContentLoaded', () => {
       '0 10px 26px rgba(125, 211, 252, 0.16), 0 0 22px rgba(255, 255, 255, 0.08)',
       'important'
     );
+
+    heroName.innerHTML =
+      '<span class="hero-name-text" aria-hidden="true"></span>' +
+      '<span class="hero-name-caret" aria-hidden="true"></span>';
+
+    const heroNameText = heroName.querySelector('.hero-name-text');
+
+    if (heroNameText) {
+      if (heroNameReduceMotionQuery.matches) {
+        heroNameText.textContent = heroNameLabel;
+        heroName.classList.add('is-typed');
+      } else {
+        let heroNameIndex = 0;
+        heroName.classList.add('is-typing');
+
+        const typeHeroName = () => {
+          heroNameText.textContent = heroNameLabel.slice(0, heroNameIndex + 1);
+          heroNameIndex += 1;
+
+          if (heroNameIndex < heroNameLabel.length) {
+            window.setTimeout(typeHeroName, 150);
+          } else {
+            heroName.classList.remove('is-typing');
+            heroName.classList.add('is-typed');
+          }
+        };
+
+        window.setTimeout(typeHeroName, 220);
+      }
+    }
   }
 
   // ---------- Custom Cursor ----------

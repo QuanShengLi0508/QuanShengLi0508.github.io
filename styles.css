@@ -6139,6 +6139,79 @@ body.custom-cursor-pressed .custom-cursor-ring span {
     0 0 22px rgba(255, 255, 255, 0.08);
 }
 
+@keyframes heroNameFloat {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -6px, 0);
+  }
+}
+
+@keyframes heroNameCaretBlink {
+  0%, 48% {
+    opacity: 1;
+  }
+  50%, 100% {
+    opacity: 0.22;
+  }
+}
+
+.hero-name-floating {
+  display: inline-flex !important;
+  align-items: flex-end;
+  gap: 0.08em;
+  min-height: 1.08em;
+  white-space: nowrap;
+  font-size: clamp(2.7rem, 4.35vw, 3.95rem) !important;
+  line-height: 0.96 !important;
+  letter-spacing: -0.045em !important;
+  animation: heroNameFloat 4.8s ease-in-out infinite !important;
+}
+
+.hero-name-text {
+  display: inline-block;
+  min-width: 3.05ch;
+}
+
+.hero-name-caret {
+  width: 0.08em;
+  height: 0.9em;
+  margin-bottom: 0.08em;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(191, 219, 254, 0.72));
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 0 18px rgba(125, 211, 252, 0.18);
+  animation: heroNameCaretBlink 1.05s step-end infinite;
+}
+
+.hero-name-floating.is-typing .hero-name-caret {
+  opacity: 1;
+}
+
+.hero-name-floating.is-typed .hero-name-caret {
+  opacity: 0.76;
+}
+
+@media (min-width: 769px) and (hover: hover) and (pointer: fine) {
+  .hero-name-floating {
+    font-size: clamp(2.95rem, 4.6vw, 4.25rem) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-name-floating {
+    font-size: clamp(1.72rem, 7.4vw, 2.08rem) !important;
+    gap: 0.06em;
+  }
+
+  .hero-name-caret {
+    height: 0.84em;
+    margin-bottom: 0.06em;
+  }
+}
+
 @keyframes educationAmbientGlow {
   0%, 100% {
     opacity: 0.4;
