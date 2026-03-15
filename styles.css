@@ -75,6 +75,8 @@
 
   /* Typography */
   --font-sans: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display-zh: 'Noto Serif SC', 'STSong', 'Songti SC', serif;
+  --font-display: 'Cormorant Garamond', 'Noto Serif SC', serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 
   /* Spacing */
@@ -678,16 +680,18 @@ body.custom-cursor-pressed .custom-cursor-ring span {
 .hero-greeting {
   font-size: 0.9rem;
   font-weight: 600;
+  font-family: var(--font-display);
   color: rgba(255, 255, 255, 0.64);
-  letter-spacing: 0.24em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   margin-bottom: 0;
 }
 
 .hero-name {
+  font-family: var(--font-display-zh);
   font-size: clamp(2.8rem, 5vw, 4.35rem);
   font-weight: 800;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.08em;
   line-height: 1.02;
   margin-bottom: 0;
   color: #ffffff;
@@ -1303,11 +1307,12 @@ body.custom-cursor-pressed .custom-cursor-ring span {
 }
 
 .section-title {
+  font-family: var(--font-display);
   font-size: clamp(2rem, 4vw, 2.5rem);
-  font-weight: 800;
+  font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 16px;
-  letter-spacing: -0.5px;
+  letter-spacing: 0.01em;
   text-shadow: 0 4px 20px rgba(255, 255, 255, 0.38);
 }
 
@@ -2062,11 +2067,13 @@ body.custom-cursor-pressed .custom-cursor-ring span {
 }
 
 .pub-title {
+  font-family: var(--font-display);
   font-size: 1.1rem;
   font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 8px;
-  line-height: 1.5;
+  line-height: 1.42;
+  letter-spacing: 0.01em;
 }
 
 .pub-authors {
@@ -2175,10 +2182,12 @@ body.custom-cursor-pressed .custom-cursor-ring span {
 }
 
 .project-name {
+  font-family: var(--font-display);
   font-size: 1.2rem;
   font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 10px;
+  letter-spacing: 0.01em;
 }
 
 .project-desc {
@@ -2303,10 +2312,12 @@ body.custom-cursor-pressed .custom-cursor-ring span {
 }
 
 .timeline-title {
+  font-family: var(--font-display);
   font-size: 1.15rem;
   font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 6px;
+  letter-spacing: 0.01em;
 }
 
 .timeline-subtitle {
@@ -2359,10 +2370,12 @@ body.custom-cursor-pressed .custom-cursor-ring span {
 }
 
 .award-name {
+  font-family: var(--font-display);
   font-size: 1rem;
   font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 4px;
+  letter-spacing: 0.01em;
 }
 
 .award-org {
@@ -6431,6 +6444,30 @@ body.custom-cursor-pressed .custom-cursor-ring span {
 
 .hero-name-floating.is-typed .hero-name-caret {
   opacity: 0.76;
+}
+
+.logo-text {
+  font-family: var(--font-display-zh);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.hero-name,
+.hero-name-floating,
+.hero-name-text {
+  font-family: var(--font-display-zh) !important;
+  font-weight: 800;
+  letter-spacing: -0.085em !important;
+}
+
+.section-title,
+.pub-title,
+.project-name,
+.timeline-title,
+.award-name {
+  font-family: var(--font-display) !important;
+  font-weight: 700;
+  letter-spacing: 0.01em;
 }
 
 @media (min-width: 769px) and (hover: hover) and (pointer: fine) {
