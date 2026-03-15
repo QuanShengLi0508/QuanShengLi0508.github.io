@@ -819,62 +819,88 @@ body.custom-cursor-pressed .custom-cursor-ring span {
 }
 
 .hero-motto {
-  width: min(100%, 640px);
+  width: min(100%, 620px);
   display: grid;
-  gap: 10px;
-  margin-top: 8px;
+  gap: 8px;
+  margin-top: 10px;
   position: relative;
   z-index: 5;
-  animation: heroNameFloat 8.5s ease-in-out infinite;
 }
 
 .hero-motto-label {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
+  justify-content: flex-start;
+  gap: 10px;
   min-width: 0;
+  padding-inline: 2px;
 }
 
 .hero-motto-kicker,
 .hero-motto-state {
   display: inline-flex;
   align-items: center;
-  min-height: 28px;
-  padding: 6px 12px;
+  min-height: 0;
+  padding: 0;
   border-radius: 999px;
-  font-size: 0.68rem;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: rgba(219, 234, 254, 0.92);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.08),
-    0 10px 24px rgba(2, 6, 23, 0.12);
+  background: none;
+  border: none;
+  box-shadow: none;
+}
+
+.hero-motto-kicker {
+  color: rgba(191, 219, 254, 0.76);
+}
+
+.hero-motto-kicker::before {
+  content: '';
+  width: 18px;
+  height: 1px;
+  margin-right: 10px;
+  background: linear-gradient(90deg, rgba(125, 211, 252, 0.86), rgba(125, 211, 252, 0));
 }
 
 .hero-motto-state {
-  color: rgba(191, 219, 254, 0.82);
+  margin-left: auto;
+  gap: 8px;
+  padding: 4px 10px 4px 8px;
+  border-radius: 999px;
+  background: rgba(8, 18, 38, 0.28);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(219, 234, 254, 0.74);
+}
+
+.hero-motto-state::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 12px currentColor;
 }
 
 .hero-motto-shell {
   position: relative;
-  display: flex;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: start;
   gap: 12px;
-  min-height: 78px;
-  padding: 14px 16px;
-  border-radius: 22px;
+  min-height: 72px;
+  padding: 16px 18px 15px 18px;
+  border-radius: 24px;
   background:
-    linear-gradient(145deg, rgba(9, 20, 38, 0.56), rgba(255, 255, 255, 0.08)),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent 42%);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+    linear-gradient(155deg, rgba(8, 18, 38, 0.62), rgba(10, 22, 44, 0.44)),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 40%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.08),
-    0 18px 36px rgba(2, 6, 23, 0.18),
-    0 0 28px rgba(96, 165, 250, 0.08);
+    0 18px 36px rgba(2, 6, 23, 0.16),
+    0 0 0 1px rgba(125, 211, 252, 0.04);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   overflow: hidden;
@@ -883,14 +909,27 @@ body.custom-cursor-pressed .custom-cursor-ring span {
 .hero-motto-shell::before {
   content: '';
   position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(110deg, transparent 10%, rgba(255, 255, 255, 0.14) 30%, transparent 54%),
-    radial-gradient(circle at top right, rgba(125, 211, 252, 0.18), transparent 34%);
-  background-size: 220% 100%, 100% 100%;
-  opacity: 0.62;
+  top: 14px;
+  bottom: 14px;
+  left: 14px;
+  width: 2px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(125, 211, 252, 0.92), rgba(196, 181, 253, 0.52));
+  box-shadow: 0 0 18px rgba(125, 211, 252, 0.18);
+  opacity: 0.9;
   pointer-events: none;
-  animation: heroGlassSweep 8.5s ease-in-out infinite;
+}
+
+.hero-motto-shell::after {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  background:
+    linear-gradient(118deg, transparent 10%, rgba(255, 255, 255, 0.08) 30%, transparent 52%),
+    radial-gradient(circle at 88% 0%, rgba(125, 211, 252, 0.12), transparent 30%);
+  opacity: 0.72;
+  pointer-events: none;
 }
 
 .hero-motto-prefix,
@@ -902,10 +941,13 @@ body.custom-cursor-pressed .custom-cursor-ring span {
 }
 
 .hero-motto-prefix {
-  margin-top: 3px;
-  font-size: 1rem;
-  font-weight: 800;
-  color: rgba(125, 211, 252, 0.84);
+  margin-top: 2px;
+  margin-left: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: rgba(125, 211, 252, 0.72);
 }
 
 .hero-motto-text {
@@ -913,36 +955,44 @@ body.custom-cursor-pressed .custom-cursor-ring span {
   z-index: 1;
   flex: 1;
   min-width: 0;
-  color: rgba(248, 250, 252, 0.96);
-  font-size: 0.94rem;
-  line-height: 1.82;
+  padding-right: 8px;
+  color: rgba(248, 250, 252, 0.94);
+  font-size: 0.92rem;
+  line-height: 1.78;
   font-weight: 500;
   text-wrap: pretty;
 }
 
 .hero-motto-caret {
   width: 2px;
-  min-height: 1.55em;
-  margin-top: 2px;
+  min-height: 1.5em;
+  margin-top: 3px;
   border-radius: 999px;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(125, 211, 252, 0.68));
-  box-shadow: 0 0 16px rgba(125, 211, 252, 0.16);
+  box-shadow: 0 0 14px rgba(125, 211, 252, 0.16);
   animation: heroNameCaretBlink 1s step-end infinite;
 }
 
 .hero-motto.is-idle .hero-motto-shell {
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.08),
-    0 20px 42px rgba(2, 6, 23, 0.18),
-    0 0 34px rgba(125, 211, 252, 0.1);
+    0 20px 42px rgba(2, 6, 23, 0.16),
+    0 0 26px rgba(125, 211, 252, 0.08);
 }
 
 .hero-motto.is-deleting .hero-motto-state {
-  color: rgba(196, 181, 253, 0.86);
+  color: rgba(196, 181, 253, 0.82);
 }
 
 .hero-motto.is-typing .hero-motto-state {
   color: rgba(125, 211, 252, 0.9);
+}
+
+.hero-motto.is-typing .hero-motto-shell {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 20px 40px rgba(2, 6, 23, 0.16),
+    0 0 24px rgba(125, 211, 252, 0.08);
 }
 
 .btn {
@@ -5007,32 +5057,39 @@ body.custom-cursor-pressed .custom-cursor-ring span {
 
   .hero-motto {
     width: 100%;
-    gap: 8px;
+    gap: 6px;
   }
 
   .hero-motto-label {
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 8px;
   }
 
   .hero-motto-kicker,
   .hero-motto-state {
-    min-height: 24px;
-    padding: 5px 10px;
-    font-size: 0.6rem;
-    letter-spacing: 0.12em;
+    font-size: 0.58rem;
+    letter-spacing: 0.14em;
   }
 
   .hero-motto-shell {
-    min-height: 76px;
-    padding: 14px 14px 14px 15px;
-    border-radius: 18px;
+    min-height: 72px;
+    padding: 14px 14px 14px 16px;
+    border-radius: 20px;
     gap: 10px;
   }
 
   .hero-motto-text {
-    font-size: 0.88rem;
-    line-height: 1.75;
+    font-size: 0.84rem;
+    line-height: 1.72;
+  }
+
+  .hero-motto-prefix {
+    margin-left: 6px;
+    font-size: 0.66rem;
+  }
+
+  .hero-motto-state {
+    padding: 4px 8px 4px 7px;
   }
 
   .hero-actions .btn {
@@ -5651,19 +5708,19 @@ body.custom-cursor-pressed .custom-cursor-ring span {
   }
 
   .hero-motto {
-    width: min(100%, 700px);
-    margin-top: 10px;
+    width: min(100%, 650px);
+    margin-top: 12px;
   }
 
   .hero-motto-shell {
-    min-height: 84px;
-    padding: 16px 18px;
+    min-height: 74px;
+    padding: 17px 20px 16px 18px;
     border-radius: 24px;
   }
 
   .hero-motto-text {
-    font-size: 0.98rem;
-    line-height: 1.86;
+    font-size: 0.95rem;
+    line-height: 1.8;
   }
 
   .section {

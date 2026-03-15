@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
       heroMottoText.textContent = heroMottoQuotes[0];
       heroMotto.classList.add('is-idle');
       if (heroMottoState) {
-        heroMottoState.textContent = 'Still';
+        heroMottoState.textContent = 'STILL';
       }
     } else {
       let heroMottoIndex = 0;
@@ -91,11 +91,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (heroMottoDeleting) {
           heroMottoText.textContent = currentQuote.slice(0, Math.max(0, heroMottoCharIndex - 1));
           heroMottoCharIndex -= 1;
-          updateHeroMottoState('Clearing');
+          updateHeroMottoState('CLEAR');
         } else {
           heroMottoText.textContent = currentQuote.slice(0, heroMottoCharIndex + 1);
           heroMottoCharIndex += 1;
-          updateHeroMottoState('Typing');
+          updateHeroMottoState('TYPE');
         }
 
         let nextDelay = heroMottoDeleting ? 42 : 115;
@@ -104,13 +104,13 @@ document.addEventListener('DOMContentLoaded', () => {
           heroMottoDeleting = true;
           heroMotto.classList.remove('is-typing');
           heroMotto.classList.add('is-idle');
-          updateHeroMottoState('Holding');
+          updateHeroMottoState('HOLD');
           nextDelay = 2600;
         } else if (heroMottoDeleting && heroMottoCharIndex <= 0) {
           heroMottoDeleting = false;
           heroMottoIndex = (heroMottoIndex + 1) % heroMottoQuotes.length;
           heroMotto.classList.remove('is-deleting', 'is-idle');
-          updateHeroMottoState('Switching');
+          updateHeroMottoState('NEXT');
           nextDelay = 560;
         } else {
           heroMotto.classList.remove('is-idle');
