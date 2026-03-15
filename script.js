@@ -76,22 +76,35 @@ document.addEventListener('DOMContentLoaded', () => {
         heroNameText.textContent = heroNameLabel;
         heroName.classList.add('is-typed');
       } else {
-        let heroNameIndex = 0;
-        heroName.classList.add('is-typing');
+        const startHeroNameCycle = () => {
+          let heroNameIndex = 0;
+          heroNameText.textContent = '';
+          heroName.classList.add('is-typing');
+          heroName.classList.remove('is-typed');
 
-        const typeHeroName = () => {
-          heroNameText.textContent = heroNameLabel.slice(0, heroNameIndex + 1);
-          heroNameIndex += 1;
+          const typeHeroName = () => {
+            heroNameText.textContent = heroNameLabel.slice(0, heroNameIndex + 1);
+            heroNameIndex += 1;
 
-          if (heroNameIndex < heroNameLabel.length) {
-            window.setTimeout(typeHeroName, 150);
-          } else {
-            heroName.classList.remove('is-typing');
-            heroName.classList.add('is-typed');
-          }
+            if (heroNameIndex < heroNameLabel.length) {
+              window.setTimeout(typeHeroName, 260);
+            } else {
+              heroName.classList.remove('is-typing');
+              heroName.classList.add('is-typed');
+
+              window.setTimeout(() => {
+                heroNameText.textContent = '';
+                heroName.classList.add('is-typing');
+                heroName.classList.remove('is-typed');
+                window.setTimeout(startHeroNameCycle, 280);
+              }, 2200);
+            }
+          };
+
+          typeHeroName();
         };
 
-        window.setTimeout(typeHeroName, 220);
+        window.setTimeout(startHeroNameCycle, 260);
       }
     }
   }
