@@ -6138,3 +6138,49 @@ body.custom-cursor-pressed .custom-cursor-ring span {
     0 10px 26px rgba(125, 211, 252, 0.16),
     0 0 22px rgba(255, 255, 255, 0.08);
 }
+
+/* ---------- Education Desktop Stability ---------- */
+#education > .container::before,
+#education > .container::after,
+#education .section-title,
+#education .section-tag,
+#education .timeline,
+#education .timeline::before,
+#education .timeline-content,
+#education .timeline-content::after {
+  animation: none !important;
+}
+
+#education > .container::before,
+#education > .container::after {
+  opacity: 0.34 !important;
+  filter: none !important;
+  transform: none !important;
+}
+
+#education .section-title {
+  background: none !important;
+  color: #f8fafc !important;
+  -webkit-text-fill-color: #f8fafc !important;
+  filter: none !important;
+  text-shadow: 0 12px 30px rgba(15, 23, 42, 0.18) !important;
+}
+
+#education .section-tag {
+  box-shadow:
+    0 12px 24px rgba(15, 23, 42, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.42) !important;
+  transform: none !important;
+}
+
+#education .timeline,
+#education .timeline-content {
+  transform: none !important;
+}
+
+#education .timeline .panel-spotlight,
+#education .timeline .panel-frame,
+#education .timeline-content .panel-spotlight,
+#education .timeline-content .panel-frame {
+  display: none !important;
+}

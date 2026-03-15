@@ -44,6 +44,25 @@ document.addEventListener('DOMContentLoaded', () => {
     type();
   }
 
+  // ---------- Hero Name Visibility Safeguard ----------
+  const heroName = document.querySelector('.hero-name');
+
+  if (heroName) {
+    heroName.classList.remove('animate-fade-up');
+    heroName.style.setProperty('opacity', '1', 'important');
+    heroName.style.setProperty('visibility', 'visible', 'important');
+    heroName.style.setProperty('transform', 'none', 'important');
+    heroName.style.setProperty('animation', 'none', 'important');
+    heroName.style.setProperty('background', 'none', 'important');
+    heroName.style.setProperty('color', '#ffffff', 'important');
+    heroName.style.setProperty('-webkit-text-fill-color', '#ffffff', 'important');
+    heroName.style.setProperty(
+      'text-shadow',
+      '0 10px 26px rgba(125, 211, 252, 0.16), 0 0 22px rgba(255, 255, 255, 0.08)',
+      'important'
+    );
+  }
+
   // ---------- Custom Cursor ----------
   const body = document.body;
   const cursorDot = document.getElementById('cursorDot');
@@ -196,7 +215,9 @@ document.addEventListener('DOMContentLoaded', () => {
       '.contact-map'
     ].join(', ');
 
-    const panels = Array.from(document.querySelectorAll(panelSelector));
+    const panels = Array.from(document.querySelectorAll(panelSelector)).filter(
+      panel => !panel.closest('#education')
+    );
     if (!panels.length) return;
 
     const finePointerQuery = window.matchMedia('(hover: hover) and (pointer: fine)');
