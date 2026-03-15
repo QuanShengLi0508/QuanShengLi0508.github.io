@@ -350,6 +350,7 @@ body.custom-cursor-pressed .custom-cursor-ring span {
   align-items: center;
   gap: 8px;
   list-style: none;
+  pointer-events: auto;
 }
 
 .nav-link {
@@ -460,6 +461,7 @@ body.custom-cursor-pressed .custom-cursor-ring span {
   position: absolute;
   inset: 0;
   overflow: hidden;
+  pointer-events: none;
 }
 
 .floating-shape {
@@ -468,6 +470,7 @@ body.custom-cursor-pressed .custom-cursor-ring span {
   filter: blur(80px);
   opacity: 0.12;
   animation: floatShape 20s ease-in-out infinite;
+  pointer-events: none;
 }
 
 .shape-1 {
@@ -654,6 +657,7 @@ body.custom-cursor-pressed .custom-cursor-ring span {
     0 0 0 10px rgba(255, 255, 255, 0.04),
     0 0 24px rgba(96, 165, 250, 0.14);
   animation: spin 30s linear infinite;
+  pointer-events: none;
 }
 
 @keyframes spin {
@@ -667,6 +671,8 @@ body.custom-cursor-pressed .custom-cursor-ring span {
   gap: 14px;
   align-content: center;
   justify-items: start;
+  position: relative;
+  z-index: 4;
 }
 
 .hero-greeting {
@@ -761,6 +767,8 @@ body.custom-cursor-pressed .custom-cursor-ring span {
   display: flex;
   gap: 12px;
   margin-bottom: 0;
+  position: relative;
+  z-index: 6;
 }
 
 .social-btn {
@@ -780,6 +788,11 @@ body.custom-cursor-pressed .custom-cursor-ring span {
   transition: transform var(--transition-base), background var(--transition-base),
     border-color var(--transition-base), box-shadow var(--transition-base),
     color var(--transition-base);
+  position: relative;
+  z-index: 6;
+  pointer-events: auto;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .social-btn:hover {
@@ -4701,9 +4714,37 @@ body.custom-cursor-pressed .custom-cursor-ring span {
     flex-direction: column !important;
     align-items: stretch !important;
     text-align: left !important;
-    gap: 22px !important;
-    padding: 24px 18px !important;
+    gap: 18px !important;
+    padding: 20px 16px !important;
     border-radius: 22px !important;
+  }
+
+  .hero-avatar-wrapper {
+    margin-bottom: 2px;
+  }
+
+  .hero-avatar {
+    width: 118px !important;
+    height: 118px !important;
+  }
+
+  .avatar-ring {
+    inset: -6px;
+  }
+
+  .hero-text {
+    gap: 10px !important;
+    justify-items: start !important;
+  }
+
+  .hero-greeting {
+    font-size: 0.76rem;
+    letter-spacing: 0.18em;
+  }
+
+  .hero-name {
+    font-size: clamp(2rem, 9vw, 2.45rem) !important;
+    line-height: 0.98;
   }
 
   .hero-text,
@@ -4825,16 +4866,30 @@ body.custom-cursor-pressed .custom-cursor-ring span {
 
   .hero-actions {
     width: 100%;
+    margin-top: 2px;
+    gap: 10px !important;
   }
 
   .hero-actions .btn {
     width: 100%;
     justify-content: center;
+    min-height: 42px;
+    padding: 10px 16px;
+    font-size: 0.88rem;
   }
 
   .hero-social {
     justify-content: flex-start !important;
     flex-wrap: wrap;
+    gap: 10px !important;
+    z-index: 12;
+  }
+
+  .social-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    font-size: 1rem;
   }
 
   .hero-title,
@@ -4843,8 +4898,28 @@ body.custom-cursor-pressed .custom-cursor-ring span {
     margin-inline: 0 !important;
   }
 
+  .hero-title {
+    gap: 8px;
+    font-size: 0.88rem;
+  }
+
+  .title-highlight {
+    min-height: 30px;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+  }
+
+  .hero-affiliation {
+    min-height: 0;
+    padding: 7px 11px;
+    font-size: 0.82rem;
+    line-height: 1.5;
+  }
+
   .hero-description {
     max-width: 100% !important;
+    font-size: 0.94rem !important;
+    line-height: 1.7;
   }
 
   .project-facts,
@@ -4919,6 +4994,12 @@ body.custom-cursor-pressed .custom-cursor-ring span {
     max-width: none;
     padding: 12px;
     gap: 6px;
+    pointer-events: none;
+    z-index: 30;
+  }
+
+  .nav-links.active {
+    pointer-events: auto;
   }
 
   .nav-link {
@@ -4948,8 +5029,30 @@ body.custom-cursor-pressed .custom-cursor-ring span {
 
   .hero-content,
   .footer-content {
-    padding: 20px 14px !important;
+    padding: 18px 12px !important;
     border-radius: 18px !important;
+  }
+
+  .hero-avatar {
+    width: 104px !important;
+    height: 104px !important;
+  }
+
+  .hero-text {
+    gap: 8px !important;
+  }
+
+  .hero-name {
+    font-size: 1.82rem !important;
+  }
+
+  .hero-affiliation {
+    font-size: 0.78rem;
+    padding: 6px 10px;
+  }
+
+  .hero-description {
+    font-size: 0.9rem !important;
   }
 
   #about .about-grid,
@@ -4987,6 +5090,12 @@ body.custom-cursor-pressed .custom-cursor-ring span {
   .pub-links,
   .footer-social {
     gap: 8px !important;
+  }
+
+  .social-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 11px;
   }
 
   .hero-title,
