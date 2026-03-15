@@ -3578,8 +3578,384 @@ body.custom-cursor-pressed .custom-cursor-ring span {
   opacity: 1;
 }
 
+@keyframes sectionBeamSweep {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.82;
+  }
+  50% {
+    transform: translate3d(16px, -10px, 0) scale(1.06);
+    opacity: 1;
+  }
+}
+
+@keyframes heroBeamDrift {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) rotate(-10deg);
+    opacity: 0.72;
+  }
+  50% {
+    transform: translate3d(18px, -18px, 0) rotate(-6deg);
+    opacity: 0.94;
+  }
+}
+
+@keyframes pubPanelPulse {
+  0%, 100% {
+    box-shadow:
+      0 28px 64px rgba(15, 23, 42, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.14),
+      0 0 34px rgba(191, 219, 254, 0.12);
+  }
+  50% {
+    box-shadow:
+      0 34px 72px rgba(15, 23, 42, 0.24),
+      inset 0 1px 0 rgba(255, 255, 255, 0.18),
+      0 0 48px rgba(147, 197, 253, 0.18);
+  }
+}
+
+.section {
+  isolation: isolate;
+  --section-shell-tint: rgba(255, 255, 255, 0.16);
+  --section-beam-1: rgba(191, 219, 254, 0.16);
+  --section-beam-2: rgba(167, 139, 250, 0.12);
+  --section-card-glow: rgba(96, 165, 250, 0.12);
+  --section-card-edge: rgba(191, 219, 254, 0.16);
+}
+
+#about {
+  --section-shell-tint: rgba(224, 242, 254, 0.16);
+  --section-beam-1: rgba(125, 211, 252, 0.18);
+  --section-beam-2: rgba(167, 243, 208, 0.14);
+  --section-card-glow: rgba(125, 211, 252, 0.14);
+  --section-card-edge: rgba(125, 211, 252, 0.18);
+}
+
+#research {
+  --section-shell-tint: rgba(224, 231, 255, 0.18);
+  --section-beam-1: rgba(96, 165, 250, 0.18);
+  --section-beam-2: rgba(167, 139, 250, 0.16);
+  --section-card-glow: rgba(96, 165, 250, 0.14);
+  --section-card-edge: rgba(167, 139, 250, 0.16);
+}
+
+#publications {
+  --section-shell-tint: rgba(219, 234, 254, 0.18);
+  --section-beam-1: rgba(191, 219, 254, 0.2);
+  --section-beam-2: rgba(147, 197, 253, 0.16);
+  --section-card-glow: rgba(96, 165, 250, 0.16);
+  --section-card-edge: rgba(147, 197, 253, 0.22);
+}
+
+#projects {
+  --section-shell-tint: rgba(220, 252, 231, 0.16);
+  --section-beam-1: rgba(134, 239, 172, 0.18);
+  --section-beam-2: rgba(45, 212, 191, 0.14);
+  --section-card-glow: rgba(45, 212, 191, 0.12);
+  --section-card-edge: rgba(134, 239, 172, 0.18);
+}
+
+#competitions {
+  --section-shell-tint: rgba(255, 237, 213, 0.18);
+  --section-beam-1: rgba(251, 191, 36, 0.2);
+  --section-beam-2: rgba(249, 115, 22, 0.14);
+  --section-card-glow: rgba(245, 158, 11, 0.14);
+  --section-card-edge: rgba(251, 191, 36, 0.18);
+}
+
+#education {
+  --section-shell-tint: rgba(226, 232, 240, 0.18);
+  --section-beam-1: rgba(191, 219, 254, 0.16);
+  --section-beam-2: rgba(148, 163, 184, 0.14);
+  --section-card-glow: rgba(148, 163, 184, 0.14);
+  --section-card-edge: rgba(191, 219, 254, 0.16);
+}
+
+#contact {
+  --section-shell-tint: rgba(224, 242, 254, 0.18);
+  --section-beam-1: rgba(125, 211, 252, 0.18);
+  --section-beam-2: rgba(96, 165, 250, 0.14);
+  --section-card-glow: rgba(96, 165, 250, 0.12);
+  --section-card-edge: rgba(125, 211, 252, 0.16);
+}
+
+.section::after {
+  content: '';
+  position: absolute;
+  inset: 10% 4% auto;
+  height: 48%;
+  border-radius: 42px;
+  background:
+    linear-gradient(118deg, transparent 8%, var(--section-beam-1) 26%, transparent 44%),
+    linear-gradient(72deg, transparent 14%, var(--section-beam-2) 30%, transparent 46%);
+  filter: blur(28px);
+  opacity: 0.9;
+  animation: sectionBeamSweep 18s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.section > .container {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.24), var(--section-shell-tint));
+  box-shadow:
+    0 28px 68px rgba(15, 23, 42, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 0 38px var(--section-card-glow);
+}
+
+.section > .container::before {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.22), transparent 32%),
+    radial-gradient(circle at top right, var(--section-beam-1), transparent 30%),
+    radial-gradient(circle at bottom left, var(--section-beam-2), transparent 28%);
+}
+
+#about .stat-card,
+#research .research-card,
+#publications .pub-card,
+#projects .project-card,
+#competitions .award-card,
+#education .timeline-content,
+#contact .contact-card,
+#contact .contact-map {
+  box-shadow:
+    0 22px 42px rgba(15, 23, 42, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 0 26px var(--section-card-glow);
+  border-color: rgba(255, 255, 255, 0.56);
+}
+
+#about .stat-card:hover,
+#research .research-card:hover,
+#publications .pub-card:hover,
+#projects .project-card:hover,
+#competitions .award-card:hover,
+#education .timeline-content:hover,
+#contact .contact-card:hover {
+  box-shadow:
+    0 30px 58px rgba(15, 23, 42, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.24),
+    0 0 42px var(--section-card-glow);
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: -8% -4% auto 10%;
+  height: 96%;
+  background:
+    linear-gradient(112deg, transparent 18%, rgba(125, 211, 252, 0.2) 34%, rgba(125, 211, 252, 0.04) 48%, transparent 62%),
+    linear-gradient(78deg, transparent 8%, rgba(196, 181, 253, 0.16) 24%, transparent 42%);
+  filter: blur(24px);
+  animation: heroBeamDrift 16s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-bg-animation::before,
+.hero-bg-animation::after {
+  content: '';
+  position: absolute;
+  inset: auto;
+  width: 44vw;
+  max-width: 580px;
+  height: 38vh;
+  max-height: 420px;
+  pointer-events: none;
+  filter: blur(26px);
+  opacity: 0.7;
+}
+
+.hero-bg-animation::before {
+  top: -8%;
+  left: -10%;
+  background: linear-gradient(130deg, rgba(125, 211, 252, 0.24), transparent 56%);
+  animation: heroBeamDrift 20s ease-in-out infinite reverse;
+}
+
+.hero-bg-animation::after {
+  bottom: -10%;
+  right: -8%;
+  background: linear-gradient(310deg, rgba(196, 181, 253, 0.22), transparent 58%);
+  animation: heroBeamDrift 22s ease-in-out infinite;
+}
+
+#publications .publications-list {
+  position: relative;
+  padding: 28px;
+  border-radius: 34px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.3), rgba(219, 234, 254, 0.16));
+  border: 1px solid rgba(191, 219, 254, 0.2);
+  overflow: hidden;
+  animation: pubPanelPulse 12s ease-in-out infinite;
+}
+
+#publications .publications-list::before,
+#publications .publications-list::after {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+}
+
+#publications .publications-list::before {
+  inset: 0;
+  background:
+    linear-gradient(120deg, transparent 10%, rgba(255, 255, 255, 0.28) 24%, transparent 40%),
+    radial-gradient(circle at top right, rgba(191, 219, 254, 0.18), transparent 34%);
+}
+
+#publications .publications-list::after {
+  inset: auto -8% -18% auto;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(96, 165, 250, 0.16), transparent 66%);
+  filter: blur(10px);
+}
+
+#publications .pub-card {
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.92), rgba(235, 244, 255, 0.78));
+  border-color: rgba(191, 219, 254, 0.28);
+}
+
+#publications .pub-year {
+  min-width: 94px;
+  padding-right: 22px;
+  border-right-color: rgba(191, 219, 254, 0.3);
+}
+
+#publications .pub-links {
+  padding-top: 14px;
+  border-top: 1px solid rgba(191, 219, 254, 0.18);
+}
+
+#publications .pub-link {
+  position: relative;
+  padding-bottom: 2px;
+}
+
+#publications .pub-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(59, 130, 246, 0.7), rgba(167, 139, 250, 0.38));
+  transform: scaleX(0.4);
+  transform-origin: left center;
+  transition: transform var(--transition-base);
+}
+
+#publications .pub-link:hover::after {
+  transform: scaleX(1);
+}
+
+#competitions .awards-grid {
+  position: relative;
+  padding: 18px;
+  border-radius: 30px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.22), rgba(255, 237, 213, 0.14));
+  border: 1px solid rgba(251, 191, 36, 0.12);
+  box-shadow:
+    0 18px 42px rgba(15, 23, 42, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    0 0 30px rgba(245, 158, 11, 0.08);
+  overflow: hidden;
+}
+
+#competitions .awards-grid::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.16), transparent 42%),
+    radial-gradient(circle at top right, rgba(251, 191, 36, 0.14), transparent 34%);
+  pointer-events: none;
+}
+
+#competitions .award-card-national,
+#competitions .award-card-regional,
+#competitions .award-card-honor {
+  border-width: 1px;
+}
+
+#competitions .award-card-national {
+  box-shadow:
+    0 18px 34px rgba(180, 83, 9, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    0 0 24px rgba(245, 158, 11, 0.12);
+}
+
+#competitions .award-card-regional {
+  box-shadow:
+    0 18px 34px rgba(37, 99, 235, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    0 0 22px rgba(96, 165, 250, 0.1);
+}
+
+#competitions .award-card-honor {
+  box-shadow:
+    0 16px 32px rgba(71, 85, 105, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    0 0 20px rgba(148, 163, 184, 0.08);
+}
+
+#education .timeline {
+  padding: 24px 20px 24px 76px;
+  border-radius: 34px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.22), rgba(226, 232, 240, 0.16));
+  border: 1px solid rgba(191, 219, 254, 0.16);
+  box-shadow:
+    0 22px 46px rgba(15, 23, 42, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    0 0 28px rgba(148, 163, 184, 0.08);
+  overflow: hidden;
+}
+
+#education .timeline::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.14), transparent 42%),
+    radial-gradient(circle at bottom right, rgba(148, 163, 184, 0.1), transparent 28%);
+  pointer-events: none;
+}
+
+#education .timeline-item-research .timeline-content {
+  border-color: rgba(125, 211, 252, 0.22);
+  box-shadow:
+    0 20px 38px rgba(15, 23, 42, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    0 0 24px rgba(125, 211, 252, 0.12);
+}
+
+#education .timeline-item-chip .timeline-content {
+  border-color: rgba(96, 165, 250, 0.22);
+  box-shadow:
+    0 20px 38px rgba(15, 23, 42, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    0 0 24px rgba(96, 165, 250, 0.12);
+}
+
+#education .timeline-item-transition .timeline-content,
+#education .timeline-item-foundation .timeline-content {
+  border-color: rgba(148, 163, 184, 0.18);
+  box-shadow:
+    0 18px 34px rgba(15, 23, 42, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    0 0 20px rgba(148, 163, 184, 0.08);
+}
+
 /* ---------- Responsive Design ---------- */
 @media (max-width: 1024px) {
+  .section::after {
+    opacity: 0.78;
+    filter: blur(24px);
+  }
+
   .section > .container {
     padding: 46px 24px;
     border-radius: 32px;
@@ -3614,6 +3990,19 @@ body.custom-cursor-pressed .custom-cursor-ring span {
 @media (max-width: 768px) {
   :root {
     --section-padding: 70px 0;
+  }
+
+  .hero::after,
+  .hero-bg-animation::before,
+  .hero-bg-animation::after {
+    opacity: 0.58;
+  }
+
+  .section::after {
+    inset: 12% 2% auto;
+    height: 42%;
+    opacity: 0.62;
+    filter: blur(22px);
   }
 
   .section > .container {
@@ -3715,6 +4104,13 @@ body.custom-cursor-pressed .custom-cursor-ring span {
     gap: 16px;
   }
 
+  #publications .publications-list,
+  #competitions .awards-grid,
+  #education .timeline {
+    padding: 20px;
+    border-radius: 26px;
+  }
+
   .pub-year {
     width: 100%;
     min-width: 0;
@@ -3791,6 +4187,11 @@ body.custom-cursor-pressed .custom-cursor-ring span {
 }
 
 @media (max-width: 480px) {
+  .section::after {
+    opacity: 0.46;
+    filter: blur(18px);
+  }
+
   .section > .container {
     padding: 32px 16px;
     border-radius: 24px;
@@ -3826,6 +4227,13 @@ body.custom-cursor-pressed .custom-cursor-ring span {
   .award-card,
   .contact-card {
     padding: 20px 18px;
+  }
+
+  #publications .publications-list,
+  #competitions .awards-grid,
+  #education .timeline {
+    padding: 16px;
+    border-radius: 22px;
   }
 
   .pub-year {
