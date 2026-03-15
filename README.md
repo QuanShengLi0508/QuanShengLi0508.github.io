@@ -1,26 +1,15 @@
 # 个人学术主页
 
-一个基于 `HTML + CSS + JavaScript` 的静态个人学术主页，适合展示个人简介、研究方向、论文、项目、获奖经历、教育背景和联系方式。仓库已经配置好 GitHub Pages 工作流，修改后可直接部署上线。
+一个基于 `HTML`、`CSS` 和 `JavaScript` 的静态个人学术主页，用于展示个人简介、研究方向、论文成果、项目经历、获奖信息、教育背景和联系方式。仓库已内置 GitHub Pages 自动部署配置，可直接作为个人主页站点或模板仓库使用。
 
-## 功能特点
+## 主要特性
 
-- 纯静态站点，无需后端，部署简单
-- 响应式布局，适配桌面端和移动端
-- 首页包含头像、打字效果和滚动动画
-- 支持展示研究方向、论文、项目、竞赛获奖和教育经历
-- 论文 PDF、头像和图片资源可独立管理
-- 已配置 GitHub Pages 自动部署流程
-
-## 页面模块
-
-- 首页 Hero
-- About Me
-- Research Interests
-- Publications
-- Projects
-- Awards
-- Education
-- Contact
+- 纯静态架构，无需后端即可部署
+- 桌面端与移动端响应式适配
+- 首页包含头像、动态标题、研究方向打字效果和座右铭轮播
+- 支持展示研究方向、论文、项目、获奖和教育经历
+- 图片与论文附件独立存放，便于维护和替换
+- 已配置 GitHub Pages 工作流，推送后可自动部署
 
 ## 项目结构
 
@@ -28,25 +17,25 @@
 .
 ├── .github/workflows/deploy-pages.yml  # GitHub Pages 自动部署
 ├── assets/
-│   ├── images/                         # 头像和图片资源
-│   └── papers/                         # 论文 PDF
-├── index.html                          # 页面结构与主要内容
-├── styles.css                          # 页面样式
-├── script.js                           # 动画与交互逻辑
-├── TEMPLATE_GUIDE.md                   # 模板仓库使用说明
+│   ├── images/                         # 头像、背景图及其他图片资源
+│   └── papers/                         # 论文 PDF 等附件
+├── index.html                          # 页面结构与内容
+├── styles.css                          # 视觉样式与响应式布局
+├── script.js                           # 交互逻辑与动画效果
+├── TEMPLATE_GUIDE.md                   # 模板复用说明
 ├── LICENSE                             # 授权说明
 └── README.md                           # 项目说明
 ```
 
-## 本地使用
+## 本地预览
 
-### 方式一：直接打开
+### 直接打开
 
-这是一个纯静态页面，直接双击 `index.html` 就可以在浏览器中预览。
+这是一个纯静态站点，直接在浏览器中打开 `index.html` 即可预览。
 
-### 方式二：本地启动静态服务器
+### 启动本地静态服务器
 
-如果你希望更接近实际部署环境，可以在项目目录运行：
+如果需要更接近实际部署环境的预览方式，可在项目根目录运行：
 
 ```bash
 python3 -m http.server 8000
@@ -58,83 +47,54 @@ python3 -m http.server 8000
 http://localhost:8000
 ```
 
-## 自定义方法
+## 内容维护
 
-### 1. 修改个人信息
+### 个人信息与页面内容
 
-编辑 `index.html`，可调整：
+编辑 `index.html` 可更新以下内容：
 
-- 姓名、单位、邮箱
-- 个人简介
-- 研究方向
-- 论文列表
-- 项目经历
-- 获奖与教育背景
-- 社交链接和联系方式
+- 姓名、单位、邮箱与社交链接
+- 个人简介与研究方向
+- 论文、项目、获奖与教育经历
+- 联系方式与页脚信息
 
-### 2. 修改头像和图片
+### 图片与附件
 
-- 头像图片放在 `assets/images/`
-- 当前首页头像文件为 `assets/images/avatar.jpg`
-- 备用图片为 `assets/images/image.png`
+- 头像和其他图片资源位于 `assets/images/`
+- 首页头像默认文件为 `assets/images/avatar.jpg`
+- 论文 PDF 位于 `assets/papers/`
 
-如果要替换头像，直接用你的图片覆盖 `assets/images/avatar.jpg`，或者修改 `index.html` 中的图片路径。
+替换头像时，可直接覆盖 `assets/images/avatar.jpg`，或在 `index.html` 中修改对应路径。
 
-### 3. 修改论文附件
+### 样式与交互
 
-- 论文 PDF 放在 `assets/papers/`
-- 当前页面中的论文链接已经指向该目录
-
-新增论文时：
-
-1. 把 PDF 放到 `assets/papers/`
-2. 在 `index.html` 的论文区域添加对应条目
-3. 把链接改成对应文件路径
-
-### 4. 修改样式
-
-编辑 `styles.css`，可调整：
-
-- 颜色
-- 字体
-- 间距
-- 卡片样式
-- 动画效果
-- 响应式布局
-
-### 5. 修改交互效果
-
-编辑 `script.js`，可调整：
-
-- 打字机文字内容
-- 滚动触发动画
-- 导航交互
-- 数字统计动画
+- 编辑 `styles.css` 可调整颜色、字体、卡片样式、动画与响应式布局
+- 编辑 `script.js` 可修改打字机内容、滚动交互、导航行为和数字统计动画
 
 ## 部署到 GitHub Pages
 
 仓库已包含 GitHub Pages 工作流文件 `.github/workflows/deploy-pages.yml`。
 
-### 部署步骤
+部署步骤：
 
 1. 将代码推送到 GitHub 仓库
-2. 打开仓库 `Settings -> Pages`
+2. 打开 `Settings -> Pages`
 3. 在 `Build and deployment` 中选择 `GitHub Actions`
 4. 推送到 `main` 分支后，GitHub 会自动构建并部署
 
-## 作为模板仓库使用
+## 模板复用
 
-如果你想把这个项目作为模板继续复用：
+如果你希望把这个项目作为模板继续复用：
 
 1. 打开仓库 `Settings`
 2. 勾选 `Template repository`
 3. 返回仓库首页
 4. 点击 `Use this template`
 
-更详细的模板说明见 [`TEMPLATE_GUIDE.md`](TEMPLATE_GUIDE.md)。
+详细说明见 [`TEMPLATE_GUIDE.md`](TEMPLATE_GUIDE.md)。
 
-## 说明
+## 版权与说明
 
-- 这是静态网站，浏览器加载到的前端资源本身是可见的
-- 如果仓库是公开的，仓库中的图片和 PDF 资源也会在 GitHub 上可见
-- 授权方式请以 [`LICENSE`](LICENSE) 为准
+- 这是一个静态网站，浏览器可直接访问加载到前端的 `HTML`、`CSS`、`JavaScript`、图片和 PDF 资源
+- 如果仓库为公开状态，仓库中的图片和附件也会在 GitHub 上可见
+- 具体授权方式请以 [`LICENSE`](LICENSE) 为准
