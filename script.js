@@ -129,11 +129,14 @@ document.addEventListener('DOMContentLoaded', () => {
   if (heroName) {
     const heroNameLabel = heroName.textContent.trim();
     const heroNameReduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const syncHeroNameShadow = (value) => {
+      heroName.setAttribute('data-shadow', value);
+    };
 
     heroName.classList.remove('animate-fade-up', 'delay-1');
     heroName.classList.add('hero-name-floating');
     heroName.setAttribute('aria-label', heroNameLabel);
-    heroName.setAttribute('data-title', heroNameLabel);
+    syncHeroNameShadow(heroNameLabel);
     heroName.style.setProperty('opacity', '1', 'important');
     heroName.style.setProperty('visibility', 'visible', 'important');
     heroName.style.setProperty('background', 'none', 'important');
@@ -154,16 +157,20 @@ document.addEventListener('DOMContentLoaded', () => {
     if (heroNameText) {
       if (heroNameReduceMotionQuery.matches) {
         heroNameText.textContent = heroNameLabel;
+        syncHeroNameShadow(heroNameLabel);
         heroName.classList.add('is-typed');
       } else {
         const startHeroNameCycle = () => {
           let heroNameIndex = 0;
           heroNameText.textContent = '';
+          syncHeroNameShadow('');
           heroName.classList.add('is-typing');
           heroName.classList.remove('is-typed');
 
           const typeHeroName = () => {
-            heroNameText.textContent = heroNameLabel.slice(0, heroNameIndex + 1);
+            const currentText = heroNameLabel.slice(0, heroNameIndex + 1);
+            heroNameText.textContent = currentText;
+            syncHeroNameShadow(currentText);
             heroNameIndex += 1;
 
             if (heroNameIndex < heroNameLabel.length) {
@@ -174,6 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
               window.setTimeout(() => {
                 heroNameText.textContent = '';
+                syncHeroNameShadow('');
                 heroName.classList.add('is-typing');
                 heroName.classList.remove('is-typed');
                 window.setTimeout(startHeroNameCycle, 280);
