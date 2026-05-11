@@ -2,6 +2,7 @@
 """Checks that the first blog article has source/PDF assets and homepage links."""
 from html.parser import HTMLParser
 from pathlib import Path
+import subprocess
 
 ARTICLE_TITLE = "AI 时代，我发现自己快不会思考了"
 PUBLISH_DATE = "2026年5月11日"
@@ -51,6 +52,10 @@ def main():
     assert ARTICLE_TITLE in tex, "LaTeX source should contain the blog article title"
     assert PUBLISH_DATE in tex, "LaTeX source should contain the publication date"
     assert "\\section{我的现状" in tex, "LaTeX source should preserve article sections"
+    assert "上海技术物理研究所" not in tex, "LaTeX source should not show the institute watermark on the blog PDF"
+
+    pdf_text = subprocess.check_output(["pdftotext", str(PDF_PATH), "-"], text=True)
+    assert "上海技术物理研究所" not in pdf_text, "Compiled PDF should not show the institute watermark"
 
 
 if __name__ == "__main__":
