@@ -1603,6 +1603,7 @@ body.custom-cursor-pressed .custom-cursor-ring span {
 .research-card,
 .pub-card,
 .project-card,
+.blog-card,
 .timeline-content,
 .award-card,
 .contact-card,
@@ -1619,6 +1620,7 @@ body.custom-cursor-pressed .custom-cursor-ring span {
 .research-card:hover,
 .pub-card:hover,
 .project-card:hover,
+.blog-card:hover,
 .timeline-content:hover,
 .award-card:hover,
 .contact-card:hover {
@@ -1630,6 +1632,7 @@ body.custom-cursor-pressed .custom-cursor-ring span {
 .research-card,
 .pub-card,
 .project-card,
+.blog-card,
 .timeline-content,
 .award-card,
 .contact-card {
@@ -1640,6 +1643,7 @@ body.custom-cursor-pressed .custom-cursor-ring span {
 .research-card::before,
 .pub-card::after,
 .project-card::before,
+.blog-card::before,
 .timeline-content::before,
 .award-card::before,
 .contact-card::before {
@@ -1658,6 +1662,7 @@ body.custom-cursor-pressed .custom-cursor-ring span {
 .research-card > *,
 .pub-card > *,
 .project-card > *,
+.blog-card > *,
 .timeline-content > *,
 .award-card > *,
 .contact-card > * {
@@ -1669,6 +1674,7 @@ body.custom-cursor-pressed .custom-cursor-ring span {
 .research-card:hover::before,
 .pub-card:hover::after,
 .project-card:hover::before,
+.blog-card:hover::before,
 .timeline-content:hover::before,
 .award-card:hover::before,
 .contact-card:hover::before {
@@ -1678,6 +1684,7 @@ body.custom-cursor-pressed .custom-cursor-ring span {
 
 .stat-icon,
 .research-icon,
+.blog-icon,
 .contact-icon,
 .award-icon,
 .techstack-icon {
@@ -2394,6 +2401,91 @@ body.custom-cursor-pressed .custom-cursor-ring span {
   border-radius: var(--radius-full);
 }
 
+/* ---------- Blog Section ---------- */
+.blog-intro {
+  max-width: 720px;
+  margin: -10px auto 34px;
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.8;
+  text-align: center;
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.blog-card {
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  transition: all var(--transition-base);
+  overflow: hidden;
+}
+
+.blog-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--primary-200);
+}
+
+.blog-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, var(--primary-50), var(--accent-100));
+  color: var(--primary-600);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  margin-bottom: 18px;
+}
+
+.blog-category,
+.blog-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 30px;
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.blog-category {
+  color: var(--primary-600);
+  background: var(--primary-50);
+  margin-bottom: 14px;
+}
+
+.blog-title {
+  font-family: var(--font-display);
+  font-size: 1.18rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+  letter-spacing: 0.01em;
+}
+
+.blog-desc {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.75;
+  margin-bottom: 18px;
+}
+
+.blog-status {
+  color: #d97706;
+  background: #fef3c7;
+}
+
 /* ---------- Contact Section ---------- */
 .contact-grid {
   display: grid;
@@ -2592,6 +2684,7 @@ body.custom-cursor-pressed .custom-cursor-ring span {
 .research-card,
 .pub-card,
 .project-card,
+.blog-card,
 .timeline-content,
 .award-card,
 .contact-card,
@@ -2609,6 +2702,7 @@ body.custom-cursor-pressed .custom-cursor-ring span {
 .research-card:hover,
 .pub-card:hover,
 .project-card:hover,
+.blog-card:hover,
 .timeline-content:hover,
 .award-card:hover,
 .contact-card:hover {
@@ -2618,6 +2712,7 @@ body.custom-cursor-pressed .custom-cursor-ring span {
 
 .pub-card,
 .project-card,
+.blog-card,
 .timeline-content,
 .award-card,
 .contact-card,
@@ -4881,6 +4976,7 @@ body.custom-cursor-pressed .custom-cursor-ring span {
   .research-grid,
   .publications-list,
   .projects-grid,
+  .blog-grid,
   .awards-grid,
   .timeline,
   .contact-grid,
@@ -4888,6 +4984,7 @@ body.custom-cursor-pressed .custom-cursor-ring span {
   .footer-content,
   .pub-card,
   .project-card,
+  .blog-card,
   .research-card,
   .award-card,
   .timeline-content,
@@ -4903,6 +5000,7 @@ body.custom-cursor-pressed .custom-cursor-ring span {
   .about-grid,
   .research-grid,
   .projects-grid,
+  .blog-grid,
   .contact-grid,
   .about-stats,
   .awards-grid,
@@ -4970,6 +5068,8 @@ body.custom-cursor-pressed .custom-cursor-ring span {
   .project-name,
   .project-desc,
   .project-facts,
+  .blog-title,
+  .blog-desc,
   .timeline-content,
   .timeline-title,
   .timeline-subtitle,
@@ -5023,6 +5123,7 @@ body.custom-cursor-pressed .custom-cursor-ring span {
   .research-card,
   .pub-card,
   .project-card,
+  .blog-card,
   .timeline-content,
   .award-card,
   .contact-card,
@@ -5033,6 +5134,7 @@ body.custom-cursor-pressed .custom-cursor-ring span {
 
   .research-grid,
   .projects-grid,
+  .blog-grid,
   .contact-grid,
   #publications .publications-list,
   #competitions .awards-grid,
@@ -5296,6 +5398,7 @@ body.custom-cursor-pressed .custom-cursor-ring span {
   #about .about-grid,
   .research-grid,
   .projects-grid,
+  .blog-grid,
   .contact-grid,
   #publications .publications-list,
   #competitions .awards-grid,
@@ -5309,6 +5412,7 @@ body.custom-cursor-pressed .custom-cursor-ring span {
   .research-card,
   .pub-card,
   .project-card,
+  .blog-card,
   .timeline-content,
   .award-card,
   .contact-card,

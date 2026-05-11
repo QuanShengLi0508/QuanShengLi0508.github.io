@@ -620,7 +620,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // ---------- Scroll Reveal Animation ----------
   const revealElements = document.querySelectorAll(
     '.section-header, .about-content, .about-stats, .stat-card, .research-card, ' +
-    '.pub-card, .project-card, .timeline-item, .award-card, .contact-card, .contact-map'
+    '.pub-card, .project-card, .blog-card, .timeline-item, .award-card, .contact-card, .contact-map'
   );
 
   revealElements.forEach(el => el.classList.add('reveal'));
