@@ -67,6 +67,11 @@ def main():
 
     blog_text = " ".join(text for text in parser.blog_text if text)
     assert "Personal Blog" in blog_text, "Blog section should have a Personal Blog heading"
+    assert "发表日期：2026年5月11日" in blog_text, "Published article should show a publication date"
+    assert "IC Design" not in blog_text, "Placeholder blog rows should not show category labels"
+    assert "Life & Growth" not in blog_text, "Placeholder blog rows should not show category labels"
+    assert "Coming Soon" not in blog_text, "Placeholder blog rows should use Chinese coming-soon copy"
+    assert blog_text.count("敬请期待") >= 2, "Two placeholder rows should say 敬请期待"
     assert "blog-list" in parser.blog_classes, "Blog section should contain a vertical blog-list container"
     assert "blog-grid" not in parser.blog_classes, "Blog section should not use the old grid layout"
     assert parser.blog_classes.count("blog-row") >= 3, "Blog section should contain at least three horizontal blog rows"
