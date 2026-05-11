@@ -67,8 +67,9 @@ def main():
 
     blog_text = " ".join(text for text in parser.blog_text if text)
     assert "Personal Blog" in blog_text, "Blog section should have a Personal Blog heading"
-    assert "blog-grid" in parser.blog_classes, "Blog section should contain a blog-grid container"
-    assert parser.blog_classes.count("blog-card") >= 3, "Blog section should contain at least three blog cards"
+    assert "blog-list" in parser.blog_classes, "Blog section should contain a vertical blog-list container"
+    assert "blog-grid" not in parser.blog_classes, "Blog section should not use the old grid layout"
+    assert parser.blog_classes.count("blog-row") >= 3, "Blog section should contain at least three horizontal blog rows"
 
 
 if __name__ == "__main__":

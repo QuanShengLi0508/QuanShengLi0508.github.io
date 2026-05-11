@@ -2411,10 +2411,12 @@ body.custom-cursor-pressed .custom-cursor-ring span {
   text-align: center;
 }
 
-.blog-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
+.blog-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  max-width: 1040px;
+  margin: 0 auto;
 }
 
 .blog-card {
@@ -2426,10 +2428,25 @@ body.custom-cursor-pressed .custom-cursor-ring span {
   overflow: hidden;
 }
 
+.blog-row {
+  display: grid;
+  grid-template-columns: minmax(170px, 0.36fr) minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 24px;
+  padding: 24px 28px;
+}
+
 .blog-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-4px);
   box-shadow: var(--shadow-xl);
   border-color: var(--primary-200);
+}
+
+.blog-row-aside {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
 }
 
 .blog-icon {
@@ -2443,6 +2460,21 @@ body.custom-cursor-pressed .custom-cursor-ring span {
   justify-content: center;
   font-size: 1.35rem;
   margin-bottom: 18px;
+}
+
+.blog-row .blog-icon {
+  width: 52px;
+  height: 52px;
+  margin-bottom: 0;
+  flex-shrink: 0;
+}
+
+.blog-badges {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  min-width: 0;
 }
 
 .blog-category,
@@ -2465,6 +2497,14 @@ body.custom-cursor-pressed .custom-cursor-ring span {
   margin-bottom: 14px;
 }
 
+.blog-row .blog-category {
+  margin-bottom: 0;
+}
+
+.blog-row-main {
+  min-width: 0;
+}
+
 .blog-title {
   font-family: var(--font-display);
   font-size: 1.18rem;
@@ -2481,9 +2521,98 @@ body.custom-cursor-pressed .custom-cursor-ring span {
   margin-bottom: 18px;
 }
 
+.blog-row .blog-desc {
+  margin-bottom: 0;
+}
+
 .blog-status {
   color: #d97706;
   background: #fef3c7;
+}
+
+.blog-status.published {
+  color: #16a34a;
+  background: #dcfce7;
+}
+
+.blog-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.blog-row-actions {
+  justify-content: flex-end;
+  min-width: 170px;
+  margin-top: 0;
+}
+
+.blog-row-placeholder {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 8px 14px;
+  border-radius: var(--radius-full);
+  color: var(--text-tertiary);
+  background: rgba(248, 250, 252, 0.8);
+  border: 1px dashed rgba(148, 163, 184, 0.4);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.blog-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 36px;
+  padding: 8px 14px;
+  border-radius: var(--radius-full);
+  color: var(--primary-600);
+  background: var(--primary-50);
+  border: 1px solid rgba(96, 165, 250, 0.24);
+  font-size: 0.78rem;
+  font-weight: 700;
+  transition: all var(--transition-fast);
+}
+
+.blog-link:hover {
+  color: white;
+  background: var(--primary-500);
+  border-color: var(--primary-500);
+  transform: translateY(-2px);
+}
+
+.blog-link-primary {
+  color: white;
+  background: linear-gradient(135deg, var(--primary-500), var(--accent-500));
+  border-color: transparent;
+}
+
+.blog-link-primary:hover {
+  box-shadow: 0 12px 24px rgba(37, 99, 235, 0.2);
+}
+
+@media (max-width: 900px) {
+  .blog-row {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .blog-badges {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .blog-row-actions {
+    justify-content: flex-start;
+    min-width: 0;
+  }
 }
 
 /* ---------- Contact Section ---------- */
@@ -4976,7 +5105,7 @@ body.custom-cursor-pressed .custom-cursor-ring span {
   .research-grid,
   .publications-list,
   .projects-grid,
-  .blog-grid,
+  .blog-list,
   .awards-grid,
   .timeline,
   .contact-grid,
@@ -5000,7 +5129,7 @@ body.custom-cursor-pressed .custom-cursor-ring span {
   .about-grid,
   .research-grid,
   .projects-grid,
-  .blog-grid,
+  .blog-list,
   .contact-grid,
   .about-stats,
   .awards-grid,
@@ -5134,7 +5263,7 @@ body.custom-cursor-pressed .custom-cursor-ring span {
 
   .research-grid,
   .projects-grid,
-  .blog-grid,
+  .blog-list,
   .contact-grid,
   #publications .publications-list,
   #competitions .awards-grid,
@@ -5398,7 +5527,7 @@ body.custom-cursor-pressed .custom-cursor-ring span {
   #about .about-grid,
   .research-grid,
   .projects-grid,
-  .blog-grid,
+  .blog-list,
   .contact-grid,
   #publications .publications-list,
   #competitions .awards-grid,

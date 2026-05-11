@@ -1,0 +1,506 @@
+\documentclass[UTF8,zihao=-4,a4paper]{ctexart}
+
+\usepackage{geometry}
+\geometry{left=24mm,right=24mm,top=25mm,bottom=25mm,headheight=24pt}
+\usepackage{xcolor}
+\usepackage{fontspec}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{titling}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{needspace}
+\usepackage{microtype}
+
+\setmainfont{Avenir Next}
+\setsansfont{Avenir Next}
+\setCJKmainfont{Songti SC}
+\setCJKsansfont{PingFang SC}
+\setCJKmonofont{PingFang SC}
+
+\definecolor{Ink}{HTML}{172033}
+\definecolor{Muted}{HTML}{5F6C82}
+\definecolor{Primary}{HTML}{2563EB}
+\definecolor{PrimaryDark}{HTML}{1E3A8A}
+\definecolor{Accent}{HTML}{7C3AED}
+\definecolor{SoftBlue}{HTML}{EFF6FF}
+\definecolor{SoftViolet}{HTML}{F5F3FF}
+\definecolor{SoftAmber}{HTML}{FFFBEB}
+\definecolor{Rule}{HTML}{DBEAFE}
+\definecolor{Paper}{HTML}{FBFDFF}
+
+\pagecolor{Paper}
+\color{Ink}
+\onehalfspacing
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0.28em}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=PrimaryDark,
+  urlcolor=Primary,
+  pdftitle={AI 时代，我发现自己快不会思考了},
+  pdfauthor={李泉胜},
+  pdfsubject={Personal Blog},
+  pdfkeywords={AI, 思考, 科研, 写作, Vibe Coding}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\sffamily\color{Muted}李泉胜 · Personal Blog}
+\fancyhead[R]{\small\sffamily\color{Muted}AI 时代，我发现自己快不会思考了}
+\fancyfoot[C]{\small\sffamily\color{Muted}\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{Rule}\leaders\hrule height \headrulewidth\hfill}}
+\renewcommand{\footrulewidth}{0pt}
+
+\titleformat{\section}
+  {\Needspace{6\baselineskip}\Large\bfseries\sffamily\color{PrimaryDark}}
+  {\thesection}{0.7em}{}
+  [\vspace{0.2em}{\color{Primary}\titlerule[1.1pt]}]
+\titleformat{\subsection}
+  {\large\bfseries\sffamily\color{Ink}}
+  {\thesubsection}{0.6em}{}
+\titlespacing*{\section}{0pt}{1.8em}{0.9em}
+\titlespacing*{\subsection}{0pt}{1.1em}{0.4em}
+
+\setlist[itemize]{leftmargin=2em,itemsep=0.2em,topsep=0.3em}
+\setlist[enumerate]{leftmargin=2em,itemsep=0.2em,topsep=0.3em}
+
+\newtcolorbox{leadbox}{
+  enhanced,
+  breakable,
+  colback=SoftBlue,
+  colframe=Primary!28,
+  boxrule=0.8pt,
+  arc=3mm,
+  left=4mm,
+  right=4mm,
+  top=3mm,
+  bottom=3mm,
+  borderline west={3pt}{0pt}{Primary},
+}
+
+\newtcolorbox{notebox}[1]{
+  enhanced,
+  breakable,
+  title={#1},
+  colback=SoftViolet,
+  colframe=Accent!30,
+  coltitle=PrimaryDark,
+  fonttitle=\bfseries\sffamily,
+  boxrule=0.7pt,
+  arc=3mm,
+  left=4mm,
+  right=4mm,
+  top=3mm,
+  bottom=3mm,
+}
+
+\newtcolorbox{amberbox}[1]{
+  enhanced,
+  breakable,
+  title={#1},
+  colback=SoftAmber,
+  colframe=orange!28,
+  coltitle=Ink,
+  fonttitle=\bfseries\sffamily,
+  boxrule=0.7pt,
+  arc=3mm,
+  left=4mm,
+  right=4mm,
+  top=3mm,
+  bottom=3mm,
+}
+
+\newcommand{\keyword}[1]{\textcolor{PrimaryDark}{\bfseries #1}}
+\newcommand{\divider}{\vspace{0.6em}{\color{Rule}\hrule}\vspace{0.6em}}
+
+\begin{document}
+\pagenumbering{gobble}
+
+\begin{titlepage}
+\thispagestyle{empty}
+\AddToShipoutPictureBG*{%
+\begin{tikzpicture}[remember picture,overlay]
+  \fill[SoftBlue] (current page.north west) rectangle ([xshift=17mm]current page.south west);
+  \fill[Primary] ([xshift=11mm]current page.north west) rectangle ([xshift=17mm]current page.south west);
+  \fill[Accent!18] ([xshift=-48mm,yshift=-18mm]current page.north east) circle (36mm);
+  \fill[Primary!12] ([xshift=20mm,yshift=18mm]current page.south west) circle (42mm);
+\end{tikzpicture}}
+\vspace*{20mm}
+\begin{flushleft}
+{\sffamily\bfseries\color{Primary}\Large PERSONAL BLOG · 001}\par
+\vspace{18mm}
+{\sffamily\bfseries\fontsize{30}{39}\selectfont AI 时代，\\我发现自己快不会思考了}\par
+\vspace{10mm}
+{\color{Muted}\Large 一次关于工具依赖、科研训练与自我夺回的复盘}\par
+\vspace{18mm}
+\begin{leadbox}
+\large
+我不是要少用 AI。相反，我以后一定还会更深地使用 AI。只是我越来越清楚：真正重要的不是让 AI 替我完成任务，而是让我重新回到问题定义、结构搭建、原理理解和结果审查之中。
+\end{leadbox}
+\vfill
+{\sffamily\large 李泉胜}\par
+\vspace{2mm}
+{\sffamily\color{Muted}中国科学院上海技术物理研究所 · Personal Academic Homepage}\par
+\vspace{2mm}
+{\sffamily\color{Muted}May 2026}\par
+\end{flushleft}
+\end{titlepage}
+
+\clearpage
+\pagenumbering{roman}
+\tableofcontents
+\clearpage
+\pagenumbering{arabic}
+
+\section*{写在前面}
+\addcontentsline{toc}{section}{写在前面}
+最近我越来越强烈地感觉到一件事：我好像越来越会用 AI 了，但也越来越不会自己思考了。
+
+这句话听起来有点矛盾。因为从表面上看，AI 确实让我变“厉害”了。
+
+我能更快写论文、写申报书、做项目方案、改代码、整理资料、生成图表思路，甚至可以快速搭出一个看起来很完整的科研工具原型。外人看起来可能会觉得：这个人好像什么都会一点，写作、科研、代码、产品、自动化工具都能碰。
+
+但我自己很清楚，很多东西只是“碰过”，不是真的变成了能力。
+
+有些时候，我用 AI 做完一份申报书，或者做完一篇论文初稿，回头再看，甚至会有一种很空的感觉：
+
+\begin{leadbox}
+这东西到底是不是我想出来的？\par
+里面的逻辑我真的掌握了吗？\par
+如果别人追问其中一个结构为什么这么安排，我能不能讲清楚？
+\end{leadbox}
+
+很多时候，答案并不乐观。
+
+我现在越来越觉得，AI 最大的风险，不是替代执行，而是诱导我把“本该自己完成的判断”也外包出去。
+
+\section{我的现状：信息太多，工具太多，判断却越来越少}
+我现在最大的问题，不是没有资源，也不是没有工具，而是工具和信息太多了。
+
+每天都有新的模型、新的 AI 编程工具、新的科研自动化工具、新的提示词、新的工作流。看起来每一个都值得学，每一个都像是下一代生产力入口。
+
+我什么都想学。
+
+新模型出来了，我想试；新产品上线了，我想试；别人说某个工具很强，我也想马上去试。表面上看，我好像一直站在 AI 信息的前沿，但实际上，我并没有因此形成稳定的产出。
+
+更具体一点说，我很容易陷入一种“工具猎奇”和“资源搜集”的兴奋感里。
+
+哪里能白嫖模型，哪里有便宜订阅，哪里有中转站，哪里有新的反代方案，哪里又出现了新的替代入口，我都想去看看。我会去 Telegram 群、NodeSeek、Linux.do，还有各种 AI 社群和信息流里刷最新消息。
+
+一开始，我会觉得这是一种信息优势。
+
+我知道得比别人早。\par
+我试过的工具比别人多。\par
+我能找到一些别人不知道的入口。\par
+我还能把这些信息分享给别人，好像自己很懂 AI，很有资源，很强。
+
+但冷静下来想，这些东西真的重要吗？
+
+除非我真的要把它变成一个长期项目，否则这些入口和渠道本身并不重要。它们最多只能让我短时间内用上某个工具，或者省下一点钱。
+
+我知道得再早，也不代表我能产出。\par
+我试得再多，也不代表我有判断。\par
+我收藏再多入口，也不代表我形成了自己的长期路线。
+
+更糟糕的是，我还会为了这些信息熬夜。
+
+有时候晚上本来应该休息，结果又去看 Telegram 群里有没有新消息，NodeSeek 上有没有新讨论，Linux.do 上有没有新的教程、工具或者账号信息。看起来像是在学习，像是在追前沿，但很多时候只是被信息流牵着走。
+
+刷到最后，大脑是乱的。\par
+注意力是散的。\par
+睡眠也被打乱了。\par
+第二天真正要写论文、看文献、做项目的时候，反而没有精力了。
+
+还有一个很明显的问题是，我越来越习惯于“复制粘贴式”的 AI 使用方式。
+
+看到一段材料，复制进去；\par
+想要一段文字，让 AI 生成；\par
+需要一个标题，让 AI 生成；\par
+需要一张图，也让 AI 生成。
+
+很多时候就是 Ctrl+C、Ctrl+V，再加一句提示词。内容很快出来了，图片也很快生成了，任务好像也在不断推进。
+
+但这种方式用多了之后，人会越来越习惯跳过自己的加工过程。
+
+AI 帮我生成了一段话，不代表我真的懂这段话。\par
+AI 帮我生成了一张图，不代表我真的理解这张图背后的逻辑。\par
+AI 帮我整理出一个结构，不代表我真的知道为什么要这样安排。
+
+\begin{notebox}{三种失控}
+\begin{itemize}
+  \item \keyword{输入失控}：信息太多，工具太多，注意力被不断切碎。
+  \item \keyword{过程失控}：越来越习惯复制粘贴、生成内容、让 AI 代替我往前推进。
+  \item \keyword{判断失控}：结果看起来完成了，但我不知道它为什么这样完成，也不知道它到底是不是我真正想要的东西。
+\end{itemize}
+\end{notebox}
+
+所以我不是不用 AI。我也不是否定工具。
+
+我只是越来越清楚地发现，如果我只是在追工具、刷信息、找入口、试模型，却没有稳定产出，也没有真正参与核心判断，那我并没有变强。
+
+我只是变得更忙、更散、更依赖 AI 了。
+
+\section{我为什么想改变：我到了一个必须重新训练自己的阶段}
+我现在正好处在一个转折点。
+
+本科即将结束，马上进入研究生阶段。我原本以为，自己可以靠 AI 大展身手。毕竟我已经比很多人更早接触这些工具，也花了很多时间研究 AI 写作、AI 编程、AI 科研工作流。
+
+但现实给我的感觉是：没有那么容易大展身手。
+
+因为会用 AI 这件事，正在迅速变得不稀缺。
+
+今天我会用 Codex，别人明天也会用。\par
+我会用 Claude Code，别人也会用。\par
+我会用 AI 写论文、写代码、做方案，等这些工具普及以后，所有人都会用。
+
+那我的壁垒在哪里？
+
+如果我的能力只是“比别人更早知道一个工具”，那这个壁垒是很脆弱的。因为工具一旦普及，差距很快就会被抹平。
+
+我真正担心的是：
+
+我以为自己在用 AI 提升能力，实际上只是把任务外包给 AI；\par
+我以为自己在做科研，实际上只是让 AI 拼接科研语言；\par
+我以为自己在做项目，实际上只是让 AI 替我搭一个看起来很完整的壳。
+
+这对我来说很危险。
+
+因为我真正想要的，不是简单地“会用 AI”，而是用 AI 放大我的专业能力。
+
+我的方向是红外探测器。这个领域本身就不是靠几段漂亮的学术语言能撑起来的。器件结构、物理机制、读出电路、测试方法、性能参数、文献脉络，每一层都需要真正理解。
+
+如果我自己不参与论文结构的思考，不亲自判断一个创新点是否合理，不去推敲一段论证为什么成立，只是让 AI 自动代替我完成，那么最后产出的东西大概率是空的。
+
+它可能语言很顺，结构很完整，格式也像论文。但它不一定真的有科研判断。
+
+而科研里最核心的东西，恰恰就是判断。
+
+这种担心不是凭空来的，而是我已经在本科毕业论文里真实经历过一次。
+
+坦白说，那段时间我对 AI 的依赖已经非常严重了。
+
+不只是润色，不只是改语句，也不只是查资料。很多正文、结构、图示思路、Word 排版，甚至答辩 PPT，都是 AI 帮我一步步完成的。
+
+当时我当然觉得很爽。
+
+论文推进得很快。\par
+PPT 做得也快。\par
+很多原本让我头疼的内容，被 AI 一下子整理得很完整。
+
+但现在回头看，我反而有点后怕。
+
+因为我发现，文件是完成了，但我对整个过程的掌控感并不强。很多内容看起来是我的成果，但里面有多少是真正经过我自己思考、判断、组织和验证的？这个问题我没法轻轻松松回答。
+
+毕业论文不应该只是一个最终文件。它本来应该是本科阶段专业训练的一次总结，是我把知识、设计、分析、图表、表达和答辩逻辑重新组织起来的过程。
+
+可如果这个过程里，大量关键环节都由 AI 替我完成，那我到底训练到了什么？
+
+我不想到了研究生阶段，还继续用这种方式做科研。\par
+不想论文写完了，却不知道自己到底写了什么。\par
+不想 PPT 做完了，却只是照着 AI 给的结构去讲。\par
+更不想把本来应该训练自己的机会，全部交给 AI。
+
+\begin{amberbox}{一句提醒}
+AI 可以帮我，但不能替我完成成长。
+\end{amberbox}
+
+\section{大部分人会怎么用 AI？我觉得问题在哪里？}
+我观察到很多人使用 AI，其实有几种常见方式。这些方式，我自己也都经历过。
+
+所以与其说我是在批评别人，不如说我是在复盘以前的自己。
+
+第一种，是把 AI 当成聊天搜索框。
+
+问一句，答一句。让它解释概念、翻译文字、润色段落、写个提纲。
+
+这种方式不算错，但效率并不高。它只是把 AI 当成一个更聪明的搜索引擎。
+
+不过我觉得这不是最大的问题。因为随着 AI 工具越来越普及，工作流工具越来越成熟，只停留在对话端的问题迟早会被解决。
+
+更大的问题是第二种：把 AI 当成全流程代工。
+
+给 AI 一个模糊目标，然后让它从头做到尾。自己不监督，不拆解，不检查，不判断。最后拿到一个看似完整的结果，就以为任务完成了。
+
+不错，这就是我。
+
+这种“全流程代工”的问题，在我身上主要体现在两个场景里。
+
+\subsection{科研：完成不等于掌握}
+我会让 AI 直接写一篇文章，直接规划一个项目，直接生成一份申报书，直接搭一个论文框架。它写得越完整，我越容易产生一种错觉：好像我真的完成了这件事。
+
+尤其是做论文、综述、申报材料的时候，AI 很容易给出一套看起来很顺的结构。标题完整，逻辑完整，语言也很像那么回事。它甚至能帮我把背景意义、研究内容、技术路线、创新点、预期成果全部写出来。
+
+但后来我发现，完成不等于掌握。
+
+AI 给出的结果越完整，人反而越容易跳过中间的思考。而真正的科研能力，往往就在中间过程里。
+
+比如：
+
+为什么这样分章节？\par
+为什么这个概念要放在前面？\par
+为什么这个实验能支撑这个结论？\par
+为什么这个创新点不是表面创新？\par
+为什么这个方法在我的领域里有意义？
+
+这些问题如果我不问，AI 不会主动替我形成真正的能力。
+
+\subsection{编程：消费“做出东西”的快感}
+第二个场景，是编程。
+
+今年很火的 Vibe Coding，其实也有类似的问题。
+
+我并不反对 Vibe Coding。相反，我觉得它确实降低了做东西的门槛。很多原本只停留在脑子里的想法，现在可以很快变成一个能看的 Demo。少部分项目如果继续打磨，也确实可能变成有意义的东西。
+
+但问题是，有些时候，人会为了 Vibe Coding 而 Vibe Coding。
+
+这也是我。
+
+突然想到一个小项目，就马上让 AI 帮我写代码、搭页面、修 bug、推送到 GitHub。整个过程很快，几小时就能做出一个看起来还不错的东西。页面能跑，功能能演示，README 也像模像样，甚至部署链接也能发出去。
+
+然后我会很自然地把它发到小红书，安利自己的 AI Coding 成果。
+
+如果有人点赞、收藏，甚至 GitHub 上有几个 Star，我会很开心。那一瞬间确实会觉得：我好像很厉害，我好像真的做出了一个产品。
+
+但冷静下来想，很多时候我只是做出了一个“看起来像产品”的东西。
+
+一问技术细节，我可能讲不清楚。\par
+代码为什么这样组织，我不一定知道。\par
+这个功能为什么这样实现，我不一定理解。\par
+GitHub 推送、部署、报错修复，很多也是 AI 帮我一步步完成的。
+
+表面上看，我是在做项目。实际上，有时候我只是在消费“做出东西”的快感。
+
+这和追新模型、刷 AI 工具、找白嫖入口，本质上有点像：它们都能让我短时间内产生一种“我在进步”的感觉。但如果没有复盘、没有理解、没有持续迭代，它们很难真正沉淀成能力。
+
+这两个场景看起来不一样，一个是科研，一个是编程，但底层问题其实是一样的：
+
+\begin{leadbox}
+我把过程交给了 AI。\par
+我跳过了真正需要自己思考的部分。\par
+我拿到了一个看似完整的结果，却没有真正形成能力。
+\end{leadbox}
+
+难点在于，这些方式真的很爽。
+
+AI 代写很快，Vibe Coding 很快，发出去也很快。人能马上看到结果，马上获得反馈，马上觉得自己在进步。
+
+但真正的思考、复盘、验证和长期积累，反馈都很慢。
+
+所以问题不是大家不知道深度思考重要，而是即时反馈太诱人，长期训练太慢。
+
+这才是 AI 时代最危险的地方：不是不会用 AI，而是误以为“让 AI 完成任务”就等于“自己具备能力”。
+
+\section{我想提出的方案：不是让 AI 主导我，而是我主导 AI}
+我现在越来越明确一个观点：
+
+\begin{leadbox}
+AI 不应该主导我。\par
+我应该主导 AI。
+\end{leadbox}
+
+我不想再把 AI 当成一个替我思考的机器，而是要把它当成一个被我调度、被我审查、被我约束的外部能力。
+
+也就是说，我应该成为 AI 的审查员，而不是 AI 的跟随者。
+
+在我看来，AI 时代真正重要的能力，不是单纯会不会提问，也不是会不会写提示词，而是能不能搭建一套属于自己的思考链。
+
+\begin{notebox}{四步思考链}
+\begin{enumerate}
+  \item \keyword{问题必须由我来定义}：我得知道我到底想解决什么问题，而不是把一个模糊目标扔给 AI，让它替我决定方向。
+  \item \keyword{核心结构必须由我来搭建}：论文的章节结构、项目的技术路线、研究的逻辑链条，这些东西不能完全交给 AI。
+  \item \keyword{底层原理必须由我自己理解}：尤其在科研里，如果我自己不懂器件原理、测试逻辑和参数关系，漂亮的话就只是空壳。
+  \item \keyword{结果必须由我来审查}：我要判断它有没有偷换概念，有没有逻辑断裂，有没有为了完整而完整。
+\end{enumerate}
+\end{notebox}
+
+简单说，就是：
+
+针对输入失控，我要减少无目的追新，只保留能服务长期产出的工具。\par
+针对过程失控，我要把 AI 放在辅助位置，而不是让它从头到尾代工。\par
+针对判断失控，我要在每次使用 AI 后追问：它为什么这样写？为什么这样做？哪里可能是错的？
+
+我现在更愿意用一个比喻来理解这件事：
+
+地基应该由我来盖。AI 可以帮我盖地基外面的建筑。
+
+它可以帮我把房子修得更快、更漂亮、更完整。但如果地基不是我打的，这个房子看起来再好，也不稳。
+
+\section{我的尝试：先从几个小动作开始}
+我现在还没有一个很成熟的方法论，但我想先从几个小动作开始。
+
+\begin{amberbox}{四个小动作}
+\begin{enumerate}
+  \item \keyword{用 AI 之前，先自己写问题框架。} 哪怕只写几行，也要先把“我要解决什么问题”“我希望得到什么结果”“我自己的初步判断是什么”写下来。
+  \item \keyword{让 AI 审查结构，而不是直接代写结构。} 写论文、写申报书、做项目方案时，先自己搭一版框架，再让 AI 帮我找漏洞、补缺口、提反例。
+  \item \keyword{对 AI 生成的内容追问“为什么成立”。} 不只看语言顺不顺，还要问依据是什么、逻辑链能不能支撑、有没有偷换概念。
+  \item \keyword{每次使用 AI 后做一个小复盘。} 追问哪些是 AI 完成的，哪些是我自己判断的，哪些地方只是接受了答案但没有理解。
+\end{enumerate}
+\end{amberbox}
+
+这几个动作看起来很小，但对我来说很重要。
+
+因为我不是要少用 AI。我以后一定还会更深地使用 AI。
+
+但我必须把自己重新放回思考链条里。
+
+\section{其他人的尝试}
+这一部分我暂时不急着下结论。
+
+后面我也想继续观察一些人的做法：有人把 AI 用成知识管理系统，有人用 AI 辅助科研阅读，有人用 AI 做产品原型，也有人只是不断追模型、追工具、追新入口。
+
+这些做法里，有些可能真的值得长期参考，有些可能只是新的信息焦虑。
+
+等我真正看到一些值得借鉴的案例，再单独写一篇。
+
+\section*{结尾：我想重新夺回自己的思考}
+\addcontentsline{toc}{section}{结尾：我想重新夺回自己的思考}
+AI 时代最讽刺的一点是：
+
+它明明可以帮助我们变得更强，但如果用错了，也可能让我们越来越懒得思考。
+
+我现在并不是要减少使用 AI。
+
+相反，我以后一定还会更深地使用 AI。
+
+但我希望自己换一种方式使用它。
+
+不是把所有东西都交给 AI。\par
+不是让 AI 带着我走。\par
+不是只追求更快完成任务。
+
+而是让 AI 放大我的专业能力，放大我的判断，放大我的结构化思考。
+
+我想真正学会的是：在 AI 很强的时代，怎样让自己也变强。
+
+不是成为一个会调用工具的人。而是成为一个能定义问题、搭建结构、理解原理、审查结果的人。
+
+最后我也想坦白一点：其实这篇文章本身，也是借助 AI 写出来的。
+
+但这一次，问题是我自己提出来的。\par
+痛点是我自己一点点梳理出来的。\par
+文章结构是我先想清楚的。\par
+哪些地方要真实，哪些地方不能写虚，哪些地方必须保留我的困惑，也是我自己判断的。
+
+AI 只是帮我把这些零散的想法组织成更清楚的文字。
+
+所以这篇文章本身，也算是一次练习：
+
+不是让 AI 替我思考，而是我先思考，再让 AI 帮我表达。\par
+不是让 AI 主导我，而是我来掌控 AI。
+
+也许这才是我现在最想重新建立的关系。
+
+\vspace{1em}
+\begin{leadbox}
+\centering\sffamily\bfseries\color{PrimaryDark}
+在 AI 很强的时代，重新训练自己的判断力。
+\end{leadbox}
+
+\end{document}
