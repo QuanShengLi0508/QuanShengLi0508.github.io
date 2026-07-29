@@ -60,9 +60,9 @@ def main():
     assert nav_ids[:2] == ["blog", "research"], f"Blog should be the first nav item before Research, got {nav_ids}"
     assert nav_labels.get("blog") == "Blog", f"Blog nav label should be Blog, got {nav_labels.get('blog')!r}"
 
-    education_idx = parser.sections.index("education")
-    assert parser.sections[education_idx:education_idx + 3] == ["education", "blog", "contact"], (
-        f"Section order should be education -> blog -> contact, got {parser.sections}"
+    hero_idx = parser.sections.index("hero")
+    assert parser.sections[hero_idx:hero_idx + 3] == ["hero", "blog", "research"], (
+        f"Blog should be the first content section after the hero, got {parser.sections}"
     )
 
     blog_text = " ".join(text for text in parser.blog_text if text)
