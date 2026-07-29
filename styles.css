@@ -442,23 +442,6 @@ body.custom-cursor-pressed .custom-cursor-ring span {
   pointer-events: none;
 }
 
-#particleCanvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.hero-grid-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background: linear-gradient(180deg, rgba(5, 16, 36, 0.24), rgba(5, 16, 36, 0.12));
-  pointer-events: none;
-}
-
 .hero-bg-animation {
   position: absolute;
   inset: 0;
@@ -1348,121 +1331,9 @@ body.custom-cursor-pressed .custom-cursor-ring span {
   right: -8px;
 }
 
-/* ---------- Typewriter Block (About) ---------- */
-.typewriter-block {
-  background: linear-gradient(135deg, rgba(51, 112, 255, 0.04) 0%, rgba(139, 92, 246, 0.04) 100%);
-  border: 1px solid rgba(51, 112, 255, 0.12);
-  border-radius: var(--radius-lg);
-  padding: 28px 32px;
-  margin-bottom: 20px;
-  font-family: var(--font-sans);
-  font-size: 1rem;
-  line-height: 1.9;
-  color: var(--text-secondary);
-  position: relative;
-  overflow: hidden;
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              box-shadow 0.4s ease, border-color 0.4s ease;
-  backdrop-filter: blur(8px);
-}
-
-.typewriter-block::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 4px;
-  height: 0;
-  background: linear-gradient(180deg, var(--primary-500), var(--accent-500));
-  border-radius: 2px;
-  transition: height 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.typewriter-block.active::before {
-  height: 100%;
-}
-
-.typewriter-block::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(51, 112, 255, 0.06) 0%, transparent 60%);
-  opacity: 0;
-  transition: opacity 0.5s ease;
-  pointer-events: none;
-}
-
-.typewriter-block:hover::after {
-  opacity: 1;
-}
-
-.typewriter-block.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.typewriter-block:hover {
-  border-color: rgba(51, 112, 255, 0.25);
-  box-shadow: 0 8px 32px rgba(51, 112, 255, 0.08), 0 0 0 1px rgba(51, 112, 255, 0.05);
-}
-
-.typewriter-prefix {
-  display: none;
-}
-
-.typewriter-text {
-  color: var(--text-primary);
-  letter-spacing: 0.01em;
-}
-
-.typewriter-text .char {
-  opacity: 0;
-  display: inline;
-  animation: charFadeIn 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-}
-
-@keyframes charFadeIn {
-  0% {
-    opacity: 0;
-    filter: blur(6px);
-    transform: translateY(8px) scale(0.95);
-  }
-  60% {
-    filter: blur(0);
-    transform: translateY(-1px) scale(1.01);
-  }
-  100% {
-    opacity: 1;
-    filter: blur(0);
-    transform: translateY(0) scale(1);
-  }
-}
-
-.typewriter-cursor {
-  display: inline-block;
-  width: 2px;
-  height: 1.1em;
-  background: linear-gradient(180deg, var(--primary-500), var(--accent-500));
-  border-radius: 1px;
-  vertical-align: text-bottom;
-  margin-left: 2px;
-  animation: cursorPulse 1s ease-in-out infinite;
-}
-
 @keyframes cursorPulse {
   0%, 100% { opacity: 1; transform: scaleY(1); }
   50% { opacity: 0.3; transform: scaleY(0.8); }
-}
-
-.typewriter-block.done .typewriter-cursor {
-  animation: cursorFadeOut 0.5s ease forwards;
-}
-
-@keyframes cursorFadeOut {
-  to { opacity: 0; width: 0; margin: 0; }
 }
 
 /* ---------- About Section ---------- */
@@ -2073,6 +1944,11 @@ body.custom-cursor-pressed .custom-cursor-ring span {
   color: #d97706;
 }
 
+.pub-venue-badge.patent {
+  background: #dcfce7;
+  color: #15803d;
+}
+
 .pub-title {
   font-family: var(--font-display);
   font-size: 1.1rem;
@@ -2389,6 +2265,22 @@ body.custom-cursor-pressed .custom-cursor-ring span {
   font-size: 0.85rem;
   color: var(--text-tertiary);
   margin-bottom: 6px;
+}
+
+.award-source-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
+  color: var(--primary-600);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.award-source-link:hover {
+  color: var(--primary-700);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
 }
 
 .award-year {
@@ -6991,4 +6883,250 @@ body::-webkit-scrollbar-thumb:hover {
 #education .timeline-content .panel-spotlight,
 #education .timeline-content .panel-frame {
   display: none !important;
+}
+
+/* ---------- Performance-Adaptive Effects ---------- */
+/*
+ * Keep the hero and hover interactions expressive, but stop decorative
+ * animations below the fold from running forever. Devices with reduced-motion,
+ * data-saver, low memory, or few CPU cores receive the lighter rules below.
+ */
+body.full-effects::after,
+body.full-effects .section::after,
+body.full-effects .section > .container,
+body.full-effects .section > .container::before,
+body.full-effects .section > .container::after,
+body.full-effects .section-title,
+body.full-effects .about-console,
+body.full-effects #publications .publications-list,
+body.full-effects #publications .pub-card::after,
+body.full-effects #education > .container::before,
+body.full-effects #education > .container::after,
+body.full-effects #education .section-title,
+body.full-effects #education .timeline::before {
+  animation: none !important;
+}
+
+body.lite-effects .custom-cursor-dot,
+body.lite-effects .custom-cursor-ring,
+body.lite-effects .panel-spotlight,
+body.lite-effects .panel-frame,
+body.lite-effects .section::after,
+body.lite-effects .hero::after,
+body.lite-effects .hero-bg-animation::before,
+body.lite-effects .hero-bg-animation::after,
+body.lite-effects .floating-shape:nth-child(n + 3) {
+  display: none !important;
+}
+
+body.lite-effects::after,
+body.lite-effects .hero-bg-animation,
+body.lite-effects .hero::before,
+body.lite-effects .hero-content::before,
+body.lite-effects .hero-content::after,
+body.lite-effects .floating-shape,
+body.lite-effects .avatar-ring,
+body.lite-effects .hero-avatar-wrapper::after,
+body.lite-effects .hero-name-floating,
+body.lite-effects .hero-name-caret,
+body.lite-effects .cursor,
+body.lite-effects .hero-motto-caret,
+body.lite-effects .scroll-arrow::before,
+body.lite-effects .about-console,
+body.lite-effects .about-type-cursor,
+body.lite-effects .section > .container,
+body.lite-effects .section > .container::before,
+body.lite-effects .section > .container::after,
+body.lite-effects .section-title,
+body.lite-effects #publications .publications-list,
+body.lite-effects #publications .pub-card::after,
+body.lite-effects #education > .container::before,
+body.lite-effects #education > .container::after,
+body.lite-effects #education .section-title,
+body.lite-effects #education .timeline::before {
+  animation: none !important;
+}
+
+body.lite-effects .reveal {
+  transition: none !important;
+}
+
+body.lite-effects .hero::before,
+body.lite-effects .floating-shape,
+body.lite-effects .section-title,
+body.lite-effects #education > .container::after {
+  filter: none !important;
+}
+
+body.lite-effects :is(
+  .navbar,
+  .hero-content,
+  .section > .container,
+  .footer-content,
+  .about-console,
+  .about-grid,
+  .research-grid,
+  .publications-list,
+  .projects-grid,
+  .awards-grid,
+  .timeline,
+  .contact-grid,
+  .stat-card,
+  .research-card,
+  .pub-card,
+  .project-card,
+  .award-card,
+  .timeline-content,
+  .contact-card,
+  .contact-map
+) {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+body.lite-effects :is(
+  .hero-content,
+  .section > .container,
+  .footer-content,
+  .about-console,
+  .stat-card,
+  .research-card,
+  .pub-card,
+  .project-card,
+  .award-card,
+  .timeline-content,
+  .contact-card,
+  .contact-map
+) {
+  box-shadow:
+    0 14px 30px rgba(15, 23, 42, 0.13),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16) !important;
+}
+
+/* ---------- Award Certificate Gallery ---------- */
+.award-proof {
+  grid-column: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-self: start;
+  width: fit-content;
+  min-height: 38px;
+  margin-top: 4px;
+  padding: 8px 14px;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--primary-600);
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
+  transition:
+    transform 220ms ease,
+    background-color 220ms ease,
+    color 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.award-proof span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.award-proof:hover {
+  transform: translateY(-2px);
+  border-color: rgba(96, 165, 250, 0.38);
+  background: rgba(239, 246, 255, 0.92);
+  color: var(--primary-700);
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.1);
+}
+
+.award-proof:focus-visible {
+  outline: 3px solid rgba(59, 130, 246, 0.3);
+  outline-offset: 3px;
+}
+
+.award-lightbox {
+  width: min(94vw, 1200px);
+  max-width: none;
+  max-height: 92dvh;
+  padding: 0;
+  overflow: visible;
+  border: 0;
+  border-radius: 22px;
+  background: transparent;
+  color: #0f172a;
+}
+
+.award-lightbox::backdrop {
+  background: rgba(2, 6, 23, 0.86);
+}
+
+.award-lightbox figure {
+  display: grid;
+  place-items: center;
+  gap: 12px;
+  margin: 0;
+  padding: 18px;
+  overflow: auto;
+  max-height: 92dvh;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 22px;
+  background: #ffffff;
+  box-shadow: 0 30px 90px rgba(2, 6, 23, 0.5);
+  overscroll-behavior: contain;
+}
+
+.award-lightbox figure img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  max-height: calc(92dvh - 82px);
+  object-fit: contain;
+}
+
+.award-lightbox figcaption {
+  width: 100%;
+  color: #334155;
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.award-lightbox form {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+}
+
+.award-lightbox-close {
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.86);
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 600px) {
+  .award-lightbox {
+    width: 96vw;
+  }
+
+  .award-lightbox figure {
+    padding: 10px;
+    border-radius: 16px;
+  }
+
+  .award-lightbox-close {
+    width: 38px;
+    height: 38px;
+  }
 }

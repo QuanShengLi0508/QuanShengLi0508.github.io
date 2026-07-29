@@ -57,7 +57,7 @@ def main():
     nav_ids = [href for href, _ in parser.nav_links]
     nav_labels = dict(parser.nav_links)
 
-    assert nav_ids[-2:] == ["blog", "contact"], f"Blog should be second-to-last nav item before Contact, got {nav_ids}"
+    assert nav_ids[:2] == ["blog", "research"], f"Blog should be the first nav item before Research, got {nav_ids}"
     assert nav_labels.get("blog") == "Blog", f"Blog nav label should be Blog, got {nav_labels.get('blog')!r}"
 
     education_idx = parser.sections.index("education")

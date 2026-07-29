@@ -3,13 +3,24 @@
    ============================================= */
 
 document.addEventListener('DOMContentLoaded', () => {
+  const body = document.body;
+  const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const lowCoreDevice =
+    Number.isFinite(navigator.hardwareConcurrency) && navigator.hardwareConcurrency <= 4;
+  const lowMemoryDevice =
+    Number.isFinite(navigator.deviceMemory) && navigator.deviceMemory <= 4;
+  const saveDataEnabled = Boolean(navigator.connection && navigator.connection.saveData);
+  const liteEffects =
+    reduceMotionQuery.matches || lowCoreDevice || lowMemoryDevice || saveDataEnabled;
+
+  body.classList.toggle('lite-effects', liteEffects);
+  body.classList.toggle('full-effects', !liteEffects);
+
   // ---------- Typed Text Effect ----------
   const typedText = document.getElementById('typedText');
   const phrases = [
-    '红外探测器',
-    '读出电路',
-    '模拟IC',
-    'AI for Science'
+    '阻挡杂质带探测器读出电路设计',
+    'AI赋能的阻挡杂质带探测器件与机理研究'
   ];
   let phraseIndex = 0;
   let charIndex = 0;
@@ -40,7 +51,9 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(type, typeSpeed);
   }
 
-  if (typedText) {
+  if (typedText && liteEffects) {
+    typedText.textContent = phrases[0];
+  } else if (typedText) {
     type();
   }
 
@@ -64,9 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
 
   if (heroMottoText && heroMotto) {
-    const heroMottoReduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-
-    if (heroMottoReduceMotionQuery.matches) {
+    if (liteEffects) {
       heroMottoText.textContent = heroMottoQuotes[0];
       heroMotto.classList.add('is-idle');
       if (heroMottoState) {
@@ -128,7 +139,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (heroName) {
     const heroNameLabel = heroName.textContent.trim();
-    const heroNameReduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     const syncHeroNameShadow = (value) => {
       heroName.setAttribute('data-shadow', value);
     };
@@ -155,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const heroNameText = heroName.querySelector('.hero-name-text');
 
     if (heroNameText) {
-      if (heroNameReduceMotionQuery.matches) {
+      if (liteEffects) {
         heroNameText.textContent = heroNameLabel;
         syncHeroNameShadow(heroNameLabel);
         heroName.classList.add('is-typed');
@@ -198,18 +208,16 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ---------- Custom Cursor ----------
-  const body = document.body;
   const cursorDot = document.getElementById('cursorDot');
   const cursorRing = document.getElementById('cursorRing');
 
   function setupCustomCursor() {
-    if (!cursorDot || !cursorRing) return;
+    if (!cursorDot || !cursorRing || liteEffects) return;
 
     const mediaQuery = window.matchMedia('(hover: hover) and (pointer: fine)');
-    const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     const surfaceSelector =
-      '.about-console, .stat-card, .techstack-card, .research-card, .pub-card, ' +
-      '.project-card, .award-card, .timeline-content, .contact-card, .contact-map';
+      '.research-card, .pub-card, .project-card, .award-card, ' +
+      '.timeline-content, .contact-card, .contact-map';
     const actionSelector =
       'a, button, .btn, .social-btn, .nav-link, .nav-logo, .filter-btn, .back-to-top';
 
@@ -245,11 +253,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function renderRing() {
-      const easing = reduceMotionQuery.matches ? 1 : 0.18;
-      ringX += (targetX - ringX) * easing;
-      ringY += (targetY - ringY) * easing;
+      ringX += (targetX - ringX) * 0.2;
+      ringY += (targetY - ringY) * 0.2;
       setRingPosition(ringX, ringY);
-      frameId = window.requestAnimationFrame(renderRing);
+
+      if (Math.abs(targetX - ringX) > 0.2 || Math.abs(targetY - ringY) > 0.2) {
+        frameId = window.requestAnimationFrame(renderRing);
+      } else {
+        ringX = targetX;
+        ringY = targetY;
+        setRingPosition(ringX, ringY);
+        frameId = 0;
+      }
+    }
+
+    function scheduleRingRender() {
+      if (!frameId) {
+        frameId = window.requestAnimationFrame(renderRing);
+      }
     }
 
     function handlePointerMove(event) {
@@ -258,6 +279,7 @@ document.addEventListener('DOMContentLoaded', () => {
       setDotPosition(targetX, targetY);
       body.classList.add('custom-cursor-visible');
       updateCursorState(event.target);
+      scheduleRingRender();
     }
 
     function handlePointerDown() {
@@ -289,13 +311,15 @@ document.addEventListener('DOMContentLoaded', () => {
       document.addEventListener('pointerup', handlePointerUp, { passive: true });
       document.addEventListener('mouseout', handleMouseOut);
       window.addEventListener('blur', clearCursorState);
-      frameId = window.requestAnimationFrame(renderRing);
     }
 
     function disableCursor() {
       if (!enabled) return;
       enabled = false;
-      window.cancelAnimationFrame(frameId);
+      if (frameId) {
+        window.cancelAnimationFrame(frameId);
+        frameId = 0;
+      }
       document.removeEventListener('pointermove', handlePointerMove);
       document.removeEventListener('pointerdown', handlePointerDown);
       document.removeEventListener('pointerup', handlePointerUp);
@@ -330,39 +354,26 @@ document.addEventListener('DOMContentLoaded', () => {
   function setupInteractivePanels() {
     const panelSelector = [
       '.hero-content',
-      '.about-grid',
-      '.about-console',
-      '.research-grid',
-      '.publications-list',
-      '.projects-grid',
-      '.awards-grid',
-      '.timeline',
-      '.contact-grid',
-      '.footer-content',
-      '.stat-card',
       '.research-card',
       '.pub-card',
       '.project-card',
-      '.timeline-content',
-      '.award-card',
-      '.contact-card',
-      '.contact-map'
+      '.contact-card'
     ].join(', ');
 
-    const panels = Array.from(document.querySelectorAll(panelSelector)).filter(
-      panel => !panel.closest('#education')
-    );
-    if (!panels.length) return;
+    const panels = Array.from(document.querySelectorAll(panelSelector));
+    if (!panels.length || liteEffects) return;
 
     const finePointerQuery = window.matchMedia('(hover: hover) and (pointer: fine)');
-    const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    let enabled = false;
+    if (!finePointerQuery.matches) return;
+
+    const panelSet = new Set(panels);
+    let activePanel = null;
+    let pointerX = 0;
+    let pointerY = 0;
+    let panelFrameId = 0;
 
     function ensureOverlay(panel, className) {
-      const exists = Array.from(panel.children).some(
-        child => child.classList && child.classList.contains(className)
-      );
-      if (exists) return;
+      if (panel.querySelector(`:scope > .${className}`)) return;
 
       const overlay = document.createElement('span');
       overlay.className = className;
@@ -379,18 +390,13 @@ document.addEventListener('DOMContentLoaded', () => {
       panel.style.setProperty('--beam-angle', '0deg');
     }
 
-    function handlePanelEnter(event) {
-      event.currentTarget.classList.add('is-pointer-active');
-    }
-
-    function handlePanelMove(event) {
-      const panel = event.currentTarget;
-      const closestPanel = event.target.closest('.interactive-panel');
-      if (closestPanel && closestPanel !== panel) return;
-
+    function renderPanelSpotlight() {
+      panelFrameId = 0;
+      const panel = activePanel;
+      if (!panel) return;
       const rect = panel.getBoundingClientRect();
-      const rawX = event.clientX - rect.left;
-      const rawY = event.clientY - rect.top;
+      const rawX = pointerX - rect.left;
+      const rawY = pointerY - rect.top;
       const x = Math.max(0, Math.min(rawX, rect.width));
       const y = Math.max(0, Math.min(rawY, rect.height));
       const normalizedX = rect.width ? x / rect.width : 0.5;
@@ -407,174 +413,108 @@ document.addEventListener('DOMContentLoaded', () => {
       panel.classList.add('is-pointer-active');
     }
 
-    function handlePanelLeave(event) {
-      const panel = event.currentTarget;
-      panel.classList.remove('is-pointer-active');
-      resetPanel(panel);
+    function clearActivePanel() {
+      if (!activePanel) return;
+      activePanel.classList.remove('is-pointer-active');
+      resetPanel(activePanel);
+      activePanel = null;
     }
 
-    function enablePanels() {
-      if (enabled) return;
-      enabled = true;
-      panels.forEach(panel => {
-        panel.classList.add('interactive-panel-enabled');
-        panel.addEventListener('pointerenter', handlePanelEnter);
-        panel.addEventListener('pointermove', handlePanelMove, { passive: true });
-        panel.addEventListener('pointerleave', handlePanelLeave);
-      });
-    }
-
-    function disablePanels() {
-      if (!enabled) {
-        panels.forEach(panel => {
-          panel.classList.remove('interactive-panel-enabled', 'is-pointer-active');
-          resetPanel(panel);
-        });
+    function handlePanelPointerMove(event) {
+      const panel = event.target.closest('.interactive-panel');
+      if (!panel || !panelSet.has(panel)) {
+        clearActivePanel();
         return;
       }
 
-      enabled = false;
-      panels.forEach(panel => {
-        panel.classList.remove('interactive-panel-enabled', 'is-pointer-active');
-        panel.removeEventListener('pointerenter', handlePanelEnter);
-        panel.removeEventListener('pointermove', handlePanelMove);
-        panel.removeEventListener('pointerleave', handlePanelLeave);
-        resetPanel(panel);
-      });
+      if (activePanel !== panel) {
+        clearActivePanel();
+        activePanel = panel;
+      }
+
+      pointerX = event.clientX;
+      pointerY = event.clientY;
+
+      if (!panelFrameId) {
+        panelFrameId = window.requestAnimationFrame(renderPanelSpotlight);
+      }
     }
 
-    function syncPanelMode() {
-      if (finePointerQuery.matches && !reduceMotionQuery.matches) {
-        enablePanels();
-      } else {
-        disablePanels();
+    function handlePanelPointerOut(event) {
+      if (activePanel && (!event.relatedTarget || !activePanel.contains(event.relatedTarget))) {
+        clearActivePanel();
       }
     }
 
     panels.forEach(panel => {
-      panel.classList.add('interactive-panel');
+      panel.classList.add('interactive-panel', 'interactive-panel-enabled');
       ensureOverlay(panel, 'panel-spotlight');
       ensureOverlay(panel, 'panel-frame');
       resetPanel(panel);
     });
 
-    syncPanelMode();
-
-    const syncHandler = () => syncPanelMode();
-    if (typeof finePointerQuery.addEventListener === 'function') {
-      finePointerQuery.addEventListener('change', syncHandler);
-      reduceMotionQuery.addEventListener('change', syncHandler);
-    } else {
-      finePointerQuery.addListener(syncHandler);
-      reduceMotionQuery.addListener(syncHandler);
-    }
+    document.addEventListener('pointermove', handlePanelPointerMove, { passive: true });
+    document.addEventListener('pointerout', handlePanelPointerOut, { passive: true });
+    window.addEventListener('blur', clearActivePanel);
   }
 
   setupInteractivePanels();
-
-  // ---------- About Me Typing Effect ----------
-  const aboutConsole = document.getElementById('aboutConsole');
-  const aboutTypeTargets = document.querySelectorAll('.about-type-target');
-
-  function typeAboutLine(target, done) {
-    const text = target.dataset.text || '';
-    const line = target.closest('.about-type-line');
-    let index = 0;
-
-    function step() {
-      target.textContent = text.slice(0, index);
-      index += 1;
-
-      if (index <= text.length) {
-        const delay = text[index - 1] === ' ' ? 12 : 18;
-        window.setTimeout(step, delay);
-      } else {
-        if (line) {
-          line.classList.add('done');
-        }
-        done();
-      }
-    }
-
-    step();
-  }
-
-  if (aboutConsole && aboutTypeTargets.length) {
-    let aboutAnimated = false;
-    aboutTypeTargets.forEach(target => {
-      target.textContent = '';
-    });
-
-    const aboutObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting && !aboutAnimated) {
-            aboutAnimated = true;
-            let currentIndex = 0;
-
-            function runNextLine() {
-              const currentTarget = aboutTypeTargets[currentIndex];
-              if (!currentTarget) {
-                aboutObserver.disconnect();
-                return;
-              }
-
-              typeAboutLine(currentTarget, () => {
-                currentIndex += 1;
-                runNextLine();
-              });
-            }
-
-            runNextLine();
-          }
-        });
-      },
-      { threshold: 0.35 }
-    );
-
-    aboutObserver.observe(aboutConsole);
-  }
 
   // ---------- Navbar Scroll Effect ----------
   const navbar = document.getElementById('navbar');
   const navLinks = document.querySelectorAll('.nav-link');
   const sections = document.querySelectorAll('.section, .hero');
+  const backToTop = document.getElementById('backToTop');
+  let sectionBounds = [];
+  let scrollFrameId = 0;
+  let boundsFrameId = 0;
 
-  function handleScroll() {
-    // Navbar background
-    if (window.scrollY > 50) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
+  function updateSectionBounds() {
+    sectionBounds = Array.from(sections).map(section => ({
+      id: section.id,
+      top: section.offsetTop - 120,
+      bottom: section.offsetTop + section.offsetHeight - 120
+    }));
+  }
+
+  function renderScrollState() {
+    scrollFrameId = 0;
+    const scrollY = window.scrollY;
+    navbar.classList.toggle('scrolled', scrollY > 50);
+    if (backToTop) backToTop.classList.toggle('visible', scrollY > 500);
+
+    let current = '';
+    for (const section of sectionBounds) {
+      if (scrollY >= section.top && scrollY < section.bottom) {
+        current = section.id;
+        break;
+      }
     }
 
-    // Active nav link
-    let current = '';
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop - 120;
-      const sectionHeight = section.offsetHeight;
-      if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-        current = section.getAttribute('id');
-      }
-    });
-
     navLinks.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === `#${current}`) {
-        link.classList.add('active');
-      }
+      link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
     });
+  }
 
-    // Back to top button
-    const backToTop = document.getElementById('backToTop');
-    if (window.scrollY > 500) {
-      backToTop.classList.add('visible');
-    } else {
-      backToTop.classList.remove('visible');
+  function handleScroll() {
+    if (!scrollFrameId) {
+      scrollFrameId = window.requestAnimationFrame(renderScrollState);
     }
   }
 
+  function scheduleBoundsUpdate() {
+    if (boundsFrameId) return;
+    boundsFrameId = window.requestAnimationFrame(() => {
+      boundsFrameId = 0;
+      updateSectionBounds();
+      handleScroll();
+    });
+  }
+
+  updateSectionBounds();
   window.addEventListener('scroll', handleScroll, { passive: true });
+  window.addEventListener('resize', scheduleBoundsUpdate, { passive: true });
+  window.addEventListener('load', scheduleBoundsUpdate, { once: true });
 
   // ---------- Mobile Navigation Toggle ----------
   const navToggle = document.getElementById('navToggle');
@@ -596,7 +536,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ---------- Back to Top ----------
-  const backToTop = document.getElementById('backToTop');
   if (backToTop) {
     backToTop.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -619,67 +558,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ---------- Scroll Reveal Animation ----------
   const revealElements = document.querySelectorAll(
-    '.section-header, .about-content, .about-stats, .stat-card, .research-card, ' +
-    '.pub-card, .project-card, .blog-card, .timeline-item, .award-card, .contact-card, .contact-map'
+    '.section-header, .research-card, .pub-card, .project-card, .blog-card, ' +
+    '.timeline-item, .award-card, .contact-card, .contact-map'
   );
 
-  revealElements.forEach(el => el.classList.add('reveal'));
+  revealElements.forEach(el => {
+    el.classList.add('reveal');
+    if (liteEffects) el.classList.add('visible');
+  });
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    },
-    { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
-  );
+  if (!liteEffects) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    );
 
-  revealElements.forEach(el => observer.observe(el));
-
-  // ---------- Counter Animation ----------
-  const statNumbers = document.querySelectorAll('.stat-number');
-
-  const counterObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const el = entry.target;
-          const target = parseInt(el.getAttribute('data-target'));
-          animateCounter(el, 0, target, 1500);
-          counterObserver.unobserve(el);
-        }
-      });
-    },
-    { threshold: 0.5 }
-  );
-
-  statNumbers.forEach(el => counterObserver.observe(el));
-
-  function animateCounter(el, start, end, duration) {
-    const startTime = performance.now();
-
-    function update(currentTime) {
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const easeProgress = 1 - Math.pow(1 - progress, 3); // easeOutCubic
-      const current = Math.floor(start + (end - start) * easeProgress);
-      el.textContent = current;
-
-      if (progress < 1) {
-        requestAnimationFrame(update);
-      } else {
-        el.textContent = end + '+';
-      }
-    }
-
-    requestAnimationFrame(update);
+    revealElements.forEach(el => observer.observe(el));
   }
 
   // ---------- Publication Filters ----------
   const filterBtns = document.querySelectorAll('.filter-btn');
-  const pubCards = document.querySelectorAll('.pub-card');
+  const pubCards = document.querySelectorAll('#publications .pub-card');
 
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -702,188 +608,51 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // ---------- Parallax effect for floating shapes ----------
-  let ticking = false;
-  window.addEventListener('scroll', () => {
-    if (!ticking) {
-      requestAnimationFrame(() => {
-        const scrolled = window.scrollY;
-        const shapes = document.querySelectorAll('.floating-shape');
-        shapes.forEach((shape, i) => {
-          const speed = 0.05 * (i + 1);
-          shape.style.transform = `translateY(${scrolled * speed}px)`;
-        });
-        ticking = false;
-      });
-      ticking = true;
-    }
-  }, { passive: true });
+  // ---------- Award Certificate Viewer ----------
+  const awardLightbox = document.getElementById('awardLightbox');
+  const awardLightboxImage = document.getElementById('awardLightboxImage');
+  const awardLightboxCaption = document.getElementById('awardLightboxCaption');
 
-  // ---------- Typewriter Float Effect (About) ----------
-  const typewriterBlocks = document.querySelectorAll('.typewriter-block');
+  document.addEventListener('click', event => {
+    const target = event.target instanceof Element ? event.target : null;
+    const awardProof = target && target.closest('.award-proof');
+    if (!awardProof) return;
 
-  function startTypewriter(block) {
-    const textEl = block.querySelector('.typewriter-text');
-    const fullText = textEl.getAttribute('data-text');
-    if (!fullText) return;
+    const modifiedClick = event.metaKey || event.ctrlKey || event.shiftKey || event.altKey;
+    const isDocumentProof = awardProof.dataset.proofType === 'document';
+    const canShowDialog =
+      awardLightbox &&
+      awardLightboxImage &&
+      awardLightboxCaption &&
+      typeof awardLightbox.showModal === 'function';
 
-    block.classList.add('active');
-    textEl.innerHTML = '';
-    let i = 0;
+    if (modifiedClick || isDocumentProof || !canShowDialog) return;
 
-    function typeChar() {
-      if (i < fullText.length) {
-        const span = document.createElement('span');
-        span.className = 'char';
-        span.textContent = fullText[i];
-        span.style.animationDelay = '0s';
-        textEl.appendChild(span);
-        i++;
-        const speed = fullText[i - 1] === '.' || fullText[i - 1] === ',' ? 60 : 18;
-        setTimeout(typeChar, speed);
-      } else {
-        block.classList.add('done');
-        // Start next block
-        const nextBlock = block.nextElementSibling;
-        if (nextBlock && nextBlock.classList.contains('typewriter-block')) {
-          setTimeout(() => startTypewriter(nextBlock), 400);
-        }
-      }
-    }
+    event.preventDefault();
+    const title = awardProof.dataset.title || '获奖证明';
+    awardLightboxImage.src = awardProof.href;
+    awardLightboxImage.alt = title;
+    awardLightboxCaption.textContent = title;
+    awardLightbox.showModal();
+  });
 
-    typeChar();
-  }
-
-  if (typewriterBlocks.length > 0) {
-    const twObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const block = entry.target;
-            // Only start the first block; rest chain automatically
-            if (block.getAttribute('data-delay') === '0') {
-              setTimeout(() => startTypewriter(block), 300);
-            }
-            twObserver.unobserve(block);
-          }
-        });
-      },
-      { threshold: 0.3 }
-    );
-    // Only observe the first block
-    twObserver.observe(typewriterBlocks[0]);
-  }
-
-  // ---------- Particle Canvas Animation ----------
-  const canvas = document.getElementById('particleCanvas');
-  if (canvas) {
-    const ctx = canvas.getContext('2d');
-    let particles = [];
-    const PARTICLE_COUNT = 80;
-    const CONNECTION_DIST = 120;
-    let mouse = { x: -1000, y: -1000 };
-    let animId;
-
-    function resizeCanvas() {
-      canvas.width = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
-    }
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-
-    canvas.parentElement.addEventListener('mousemove', (e) => {
-      const rect = canvas.getBoundingClientRect();
-      mouse.x = e.clientX - rect.left;
-      mouse.y = e.clientY - rect.top;
-    });
-    canvas.parentElement.addEventListener('mouseleave', () => {
-      mouse.x = -1000;
-      mouse.y = -1000;
+  if (awardLightbox && awardLightboxImage && awardLightboxCaption) {
+    awardLightbox.addEventListener('click', event => {
+      if (event.target !== awardLightbox) return;
+      const rect = awardLightbox.getBoundingClientRect();
+      const outside =
+        event.clientX < rect.left ||
+        event.clientX > rect.right ||
+        event.clientY < rect.top ||
+        event.clientY > rect.bottom;
+      if (outside) awardLightbox.close();
     });
 
-    class Particle {
-      constructor() {
-        this.reset();
-      }
-      reset() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.vx = (Math.random() - 0.5) * 0.5;
-        this.vy = (Math.random() - 0.5) * 0.5;
-        this.radius = Math.random() * 2 + 0.5;
-        this.opacity = Math.random() * 0.5 + 0.2;
-      }
-      update() {
-        // Mouse repulsion
-        const dx = this.x - mouse.x;
-        const dy = this.y - mouse.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 150) {
-          const force = (150 - dist) / 150 * 0.02;
-          this.vx += dx * force;
-          this.vy += dy * force;
-        }
-        // Damping
-        this.vx *= 0.99;
-        this.vy *= 0.99;
-        this.x += this.vx;
-        this.y += this.vy;
-        // Wrap
-        if (this.x < 0) this.x = canvas.width;
-        if (this.x > canvas.width) this.x = 0;
-        if (this.y < 0) this.y = canvas.height;
-        if (this.y > canvas.height) this.y = 0;
-      }
-      draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(142, 187, 255, ${this.opacity})`;
-        ctx.fill();
-      }
-    }
-
-    for (let i = 0; i < PARTICLE_COUNT; i++) {
-      particles.push(new Particle());
-    }
-
-    function drawConnections() {
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < CONNECTION_DIST) {
-            const opacity = (1 - dist / CONNECTION_DIST) * 0.15;
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(142, 187, 255, ${opacity})`;
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
-          }
-        }
-      }
-    }
-
-    function animateParticles() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(p => { p.update(); p.draw(); });
-      drawConnections();
-      animId = requestAnimationFrame(animateParticles);
-    }
-
-    // Only animate when hero is visible
-    const heroEl = document.getElementById('hero');
-    const heroObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          animateParticles();
-        } else {
-          cancelAnimationFrame(animId);
-        }
-      });
-    }, { threshold: 0 });
-    heroObserver.observe(heroEl);
+    awardLightbox.addEventListener('close', () => {
+      awardLightboxImage.removeAttribute('src');
+      awardLightboxImage.alt = '';
+      awardLightboxCaption.textContent = '';
+    });
   }
 
   // ---------- Initial call ----------
