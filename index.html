@@ -8,28 +8,29 @@
   <title>李泉胜 | 学术主页</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&amp;family=Inter:wght@300;400;500;600;700;800&amp;family=Noto+Sans+SC:wght@300;400;500;600;700&amp;family=Noto+Serif+SC:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=Noto+Sans+SC:wght@300;400;500;600;700&amp;family=Noto+Serif+SC:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <a class="skip-link" href="#research">跳至主要内容</a>
   <!-- Navigation -->
   <nav class="navbar" id="navbar">
     <div class="nav-container">
-      <a href="#" class="nav-logo">
-        <span class="logo-icon">🎓</span>
+      <a href="#hero" class="nav-logo" aria-label="返回首页">
+        <span class="logo-icon" aria-hidden="true">QL</span>
         <span class="logo-text">李泉胜</span>
       </a>
       <ul class="nav-links" id="navLinks">
-        <li><a href="#blog" class="nav-link">Blog</a></li>
-        <li><a href="#research" class="nav-link">Research</a></li>
-        <li><a href="#publications" class="nav-link">Publications</a></li>
-        <li><a href="#patents" class="nav-link">Patents</a></li>
-        <li><a href="#competitions" class="nav-link">Awards</a></li>
-        <li><a href="#education" class="nav-link">Education</a></li>
-        <li><a href="#contact" class="nav-link">Contact</a></li>
+        <li><a href="#research" class="nav-link">研究方向</a></li>
+        <li><a href="#publications" class="nav-link">论文成果</a></li>
+        <li><a href="#patents" class="nav-link">专利</a></li>
+        <li><a href="#competitions" class="nav-link">获奖荣誉</a></li>
+        <li><a href="#education" class="nav-link">教育经历</a></li>
+        <li><a href="#blog" class="nav-link">博客</a></li>
+        <li><a href="#contact" class="nav-link">联系</a></li>
       </ul>
-      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+      <button class="nav-toggle" id="navToggle" aria-label="展开导航" aria-expanded="false" aria-controls="navLinks">
         <span class="hamburger"></span>
       </button>
     </div>
@@ -37,13 +38,7 @@
 
   <!-- Hero Section -->
   <section class="hero" id="hero">
-    <div class="hero-bg-animation">
-      <div class="floating-shape shape-1"></div>
-      <div class="floating-shape shape-2"></div>
-      <div class="floating-shape shape-3"></div>
-      <div class="floating-shape shape-4"></div>
-      <div class="floating-shape shape-5"></div>
-    </div>
+
     <div class="hero-container">
       <div class="hero-content">
         <div class="hero-avatar-wrapper">
@@ -51,28 +46,29 @@
             <img
               src="assets/images/avatar.jpg"
               alt="李泉胜"
-              class="hero-avatar-image"
+              class="hero-avatar-image" width="560" height="700" fetchpriority="high"
               onerror="if (this.dataset.fallback !== 'done') { this.dataset.fallback = 'done'; this.src = 'assets/images/image.png'; return; } this.parentElement.classList.add('is-fallback');"
             >
             <div class="avatar-placeholder" aria-hidden="true">
               <i class="fas fa-user-graduate"></i>
             </div>
           </div>
-          <div class="avatar-ring"></div>
+
         </div>
         <div class="hero-text">
-          <div class="hero-greeting animate-fade-up">Hello, I'm</div>
-          <h1 class="hero-name animate-fade-up delay-1">李泉胜</h1>
-          <p class="hero-title animate-fade-up delay-2">
+          <div class="hero-greeting">DETECTORS · CIRCUITS · AI FOR SCIENCE</div>
+          <h1 class="hero-name">李泉胜</h1>
+          <p class="hero-name-en">Quansheng Li</p>
+          <p class="hero-title">
             <span class="title-highlight">M.S. Student</span> / Researcher
           </p>
-          <p class="hero-affiliation animate-fade-up delay-3">
+          <p class="hero-affiliation">
             <i class="fas fa-building-columns"></i> 中国科学院上海技术物理研究所
           </p>
-          <p class="hero-description animate-fade-up delay-4">
-            致力于 <span class="typed-text" id="typedText"></span><span class="cursor">|</span>
+          <p class="hero-description">
+            聚焦<strong>阻挡杂质带探测器读出电路设计</strong>，探索 AI 赋能的器件建模、性能预测与物理机理研究。
           </p>
-          <div class="hero-social animate-fade-up delay-5">
+          <div class="hero-social">
             <a href="https://github.com/QuanShengLi0508" class="social-btn" title="GitHub" target="_blank" rel="noopener noreferrer">
               <i class="fab fa-github"></i>
             </a>
@@ -83,100 +79,30 @@
               <i class="fas fa-envelope"></i>
             </a>
           </div>
-          <div class="hero-actions animate-fade-up delay-5">
+          <div class="hero-actions">
             <a href="#publications" class="btn btn-primary">
-              <i class="fas fa-book-open"></i> View Publications
+              <i class="fas fa-book-open"></i> 浏览论文成果
             </a>
             <a href="#contact" class="btn btn-outline">
-              <i class="fas fa-paper-plane"></i> Contact Me
+              <i class="fas fa-paper-plane"></i> 联系我
             </a>
           </div>
-          <div class="hero-motto animate-fade-up delay-5" aria-live="polite">
-            <div class="hero-motto-label">
-              <span class="hero-motto-kicker">TERMINAL</span>
-              <span class="hero-motto-state">ONLINE</span>
-            </div>
+          <div class="hero-motto">
+
             <div class="hero-motto-shell">
-              <span class="hero-motto-prefix">&gt;_</span>
-              <span class="hero-motto-text" id="heroMottoText"></span>
-              <span class="hero-motto-caret" aria-hidden="true"></span>
+
+              <span class="hero-motto-text">有些事不是看到了希望才坚持，而是坚持了才能看到希望。</span>
+
             </div>
           </div>
         </div>
       </div>
-      <div class="scroll-indicator">
-        <div class="scroll-arrow"></div>
+      <div class="hero-summary" aria-label="学术成果概览">
+        <a href="#publications"><strong>02</strong> 发表论文</a>
+        <a href="#patents"><strong>01</strong> 授权专利</a>
+        <a href="#research"><strong>02</strong> 研究方向</a>
       </div>
-    </div>
-  </section>
 
-  <!-- Blog Section -->
-  <section class="section" id="blog">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">WRITING</span>
-        <h2 class="section-title">Personal Blog</h2>
-        <div class="section-divider"></div>
-      </div>
-      <p class="blog-intro">
-        这里将持续整理科研阅读、集成电路学习、项目实践与个人成长记录。
-      </p>
-      <div class="blog-list">
-        <article class="blog-card blog-row">
-          <div class="blog-row-aside">
-            <div class="blog-icon"><i class="fas fa-pen-nib"></i></div>
-            <div class="blog-badges">
-              <span class="blog-category">Reflection</span>
-              <span class="blog-status published">Published</span>
-            </div>
-          </div>
-          <div class="blog-row-main">
-            <time class="blog-date" datetime="2026-05-11">
-              <i class="fas fa-calendar-days"></i> 发表日期：2026年5月11日
-            </time>
-            <h3 class="blog-title">AI 时代，我发现自己快不会思考了</h3>
-            <p class="blog-desc">
-              第一篇个人博客，复盘自己在 AI 工具、科研写作与 Vibe Coding 中的依赖感，并重新整理“我主导 AI”的使用关系。
-            </p>
-          </div>
-          <div class="blog-links blog-row-actions">
-            <a href="assets/blog/ai-era-thinking.pdf" class="blog-link blog-link-primary" target="_blank" rel="noopener noreferrer">
-              <i class="fas fa-file-pdf"></i> 阅读 PDF
-            </a>
-            <a href="assets/blog/ai-era-thinking.tex" class="blog-link" target="_blank" rel="noopener noreferrer">
-              <i class="fas fa-code"></i> LaTeX 源码
-            </a>
-          </div>
-        </article>
-        <article class="blog-card blog-row">
-          <div class="blog-row-aside">
-            <div class="blog-icon"><i class="fas fa-microchip"></i></div>
-            <div class="blog-badges">
-              <span class="blog-status">敬请期待</span>
-            </div>
-          </div>
-          <div class="blog-row-main">
-            <h3 class="blog-title">敬请期待</h3>
-            <p class="blog-desc">
-              后续博客内容整理中。
-            </p>
-          </div>
-        </article>
-        <article class="blog-card blog-row">
-          <div class="blog-row-aside">
-            <div class="blog-icon"><i class="fas fa-seedling"></i></div>
-            <div class="blog-badges">
-              <span class="blog-status">敬请期待</span>
-            </div>
-          </div>
-          <div class="blog-row-main">
-            <h3 class="blog-title">敬请期待</h3>
-            <p class="blog-desc">
-              后续博客内容整理中。
-            </p>
-          </div>
-        </article>
-      </div>
     </div>
   </section>
 
@@ -185,7 +111,7 @@
     <div class="container">
       <div class="section-header">
         <span class="section-tag">FOCUS AREAS</span>
-        <h2 class="section-title">Research Interests</h2>
+        <h2 class="section-title">研究方向</h2>
         <div class="section-divider"></div>
       </div>
       <div class="research-grid">
@@ -238,7 +164,7 @@
     <div class="container">
       <div class="section-header">
         <span class="section-tag">ACADEMIC OUTPUT</span>
-        <h2 class="section-title">Publications</h2>
+        <h2 class="section-title">论文成果</h2>
         <div class="section-divider"></div>
       </div>
 
@@ -311,7 +237,7 @@
     <div class="container">
       <div class="section-header">
         <span class="section-tag">INTELLECTUAL PROPERTY</span>
-        <h2 class="section-title">Patents</h2>
+        <h2 class="section-title">专利成果</h2>
         <div class="section-divider"></div>
       </div>
 
@@ -356,7 +282,7 @@
     <div class="container">
       <div class="section-header">
         <span class="section-tag">RECOGNITION</span>
-        <h2 class="section-title">Competition Awards</h2>
+        <h2 class="section-title">获奖与荣誉</h2>
         <div class="section-divider"></div>
       </div>
 
@@ -711,7 +637,7 @@
     <div class="container">
       <div class="section-header">
         <span class="section-tag">BACKGROUND</span>
-        <h2 class="section-title">Education</h2>
+        <h2 class="section-title">教育经历</h2>
         <div class="section-divider"></div>
       </div>
       <div class="timeline">
@@ -775,12 +701,55 @@
     </div>
   </section>
 
+  <!-- Blog Section -->
+  <section class="section" id="blog">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">WRITING</span>
+        <h2 class="section-title">思考与记录</h2>
+        <div class="section-divider"></div>
+      </div>
+      <p class="blog-intro">
+        这里将持续整理科研阅读、集成电路学习、项目实践与个人成长记录。
+      </p>
+      <div class="blog-list">
+        <article class="blog-card blog-row">
+          <div class="blog-row-aside">
+            <div class="blog-icon"><i class="fas fa-pen-nib"></i></div>
+            <div class="blog-badges">
+              <span class="blog-category">Reflection</span>
+              <span class="blog-status published">Published</span>
+            </div>
+          </div>
+          <div class="blog-row-main">
+            <time class="blog-date" datetime="2026-05-11">
+              <i class="fas fa-calendar-days"></i> 发表日期：2026年5月11日
+            </time>
+            <h3 class="blog-title">AI 时代，我发现自己快不会思考了</h3>
+            <p class="blog-desc">
+              第一篇个人博客，复盘自己在 AI 工具、科研写作与 Vibe Coding 中的依赖感，并重新整理“我主导 AI”的使用关系。
+            </p>
+          </div>
+          <div class="blog-links blog-row-actions">
+            <a href="assets/blog/ai-era-thinking.pdf" class="blog-link blog-link-primary" target="_blank" rel="noopener noreferrer">
+              <i class="fas fa-file-pdf"></i> 阅读 PDF
+            </a>
+            <a href="assets/blog/ai-era-thinking.tex" class="blog-link" target="_blank" rel="noopener noreferrer">
+              <i class="fas fa-code"></i> LaTeX 源码
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
   <!-- Contact Section -->
   <section class="section" id="contact">
     <div class="container">
       <div class="section-header">
         <span class="section-tag">GET IN TOUCH</span>
-        <h2 class="section-title">Contact Me</h2>
+        <h2 class="section-title">保持联系</h2>
         <div class="section-divider"></div>
       </div>
         <div class="contact-grid">
@@ -830,7 +799,7 @@
     <div class="container">
       <div class="footer-content">
         <div class="footer-brand">
-          <span class="logo-icon">🎓</span>
+          <span class="logo-icon" aria-hidden="true">QL</span>
           <span>李泉胜 · Quansheng Li</span>
         </div>
         <div class="footer-social">
@@ -841,7 +810,7 @@
         <p class="footer-copy">
           &copy; 2025-2026 李泉胜. Powered by GitHub Pages.
         </p>
-        <p class="footer-update">Last updated: March 2026</p>
+        <p class="footer-update">Last updated: October 2026</p>
       </div>
     </div>
   </footer>
@@ -864,12 +833,8 @@
     <i class="fas fa-chevron-up"></i>
   </button>
 
-  <div class="custom-cursor-dot" id="cursorDot" aria-hidden="true">
-    <span></span>
-  </div>
-  <div class="custom-cursor-ring" id="cursorRing" aria-hidden="true">
-    <span></span>
-  </div>
+
+
 
   <script src="script.js"></script>
 </body>
